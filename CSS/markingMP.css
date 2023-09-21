@@ -1,0 +1,8 @@
+#marking
+{
+    display: grid;
+    margin: 0% -1% 0%;
+    grid-template-areas: 'Preview'
+                         'Find'
+                         'Cards';
+}
