@@ -1,0 +1,12 @@
+#topPanel{
+    z-index:1;
+    display: flex;
+    grid-area: TopPanel;
+    justify-items: start;
+    align-items: start;
+    padding-left: 10px;
+}
+
+.button{
+    margin-right: 3vw;
+}

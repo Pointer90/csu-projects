@@ -1,0 +1,9 @@
+#background{
+    z-index: 0;
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgb(221,237,240);
+    background: radial-gradient(circle, rgba(221,237,240,1) 23%, rgba(31,100,150,1) 88%);
+}

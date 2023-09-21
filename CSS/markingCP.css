@@ -1,0 +1,9 @@
+#marking
+{
+    z-index:1;
+    display: grid;
+    z-index: 0;
+    grid-template-areas: "TopPanel"
+                         "Find"
+                         "Cards";
+}
