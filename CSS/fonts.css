@@ -1,0 +1,25 @@
+:root
+{
+    --fontSize: calc(1vh + 1vw);
+}
+
+.mainFont, .projectName, .titleFont
+{
+    font-family: 'Monospace', 'Courier', 'Courier New';
+}
+
+.mainFont
+{
+    font-size: xx-large;
+}
+
+.projectNameFont
+{
+    font-size: calc(var(--fontSize) * 1.7);
+}
+
+.titleFont
+{
+    font-size: calc(var(--fontSize) * 2.5);
+    font-weight: bold;
+}
