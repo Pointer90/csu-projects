@@ -54,11 +54,12 @@
     margin: 5px;
 }
 
-.backСontent
+.backContent
 {
+    display: flex;
+    flex-flow: column;
     width: 100%;
     text-align: center;
-    top: 50%;
 }
 
 .project:hover > .front

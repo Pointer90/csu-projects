@@ -1,17 +1,19 @@
 // 3D Scroll
 
-let zSpacing = -1000,
-    lastPos = zSpacing / 5,
-    $frames = document.getElementsByClassName('frame'),
-    frames = Array.from($frames),
-    zVals = [],
-    flagEnd = false
+let zSpacing = -1000,                                                   //Расстояние между рамками (frame)
+    lastPos = zSpacing / 5,                                             //Последняя позиция рамки
+    $frames = document.getElementsByClassName('frame'),                 //HTML Collection со всеми элементами класа frame
+    frames = Array.from($frames),                       
+    zVals = [],                                                         //Массив с координатами рамок
+    flagEnd = false                                                     //Флаг останова
 
-window.onscroll = function()
+
+
+window.onscroll = function ()
 {
 
 
-    let top = document.documentElement.scrollTop,
+    let top = document.documentElement.scrollTop,                       //Вехняя граница документа
         delta = lastPos - top
 
 
@@ -19,13 +21,13 @@ window.onscroll = function()
     if(!flagEnd){
         frames.forEach(function(n, i)
         {
-            zVals.push((i * zSpacing) + zSpacing * 1.5)
+            zVals.push((i * zSpacing) + zSpacing * 1.5)                 //Вычисляем положение рамки на странице
             zVals[i] += delta * -5
 
 
             let frame = frames[i],
-                transform = `translateZ(${zVals[i]}px)`,
-                opacity = zVals[i] < Math.abs(zSpacing) / 2 ? 1 : 0,
+                transform = `translateZ(${zVals[i]}px)`,                //создаём атрибут трансформации для рамки - сместиться на zVals[i]пиксель
+                opacity = zVals[i] < Math.abs(zSpacing) / 2 ? 1 : 0,    //создаём отрибут видимости рамки
                 $textBlurRight = frame.getElementsByClassName("textBlurRight"),
                 $textBlurLeft = frame.getElementsByClassName("textBlurLeft")
 
@@ -37,7 +39,7 @@ window.onscroll = function()
 
 
                 let textBlurRight = $textBlurRight[0],
-                    left = zVals[i] < zSpacing ? 50 : 25
+                    left = zVals[i] < zSpacing ? 50 : 30
                     opacity = zVals[i] < zSpacing ? 0 : 1
 
             
@@ -49,7 +51,7 @@ window.onscroll = function()
 
 
                 let textBlurLeft = $textBlurLeft[0],
-                    right = zVals[i] < zSpacing / 2 ? -50 : -25
+                    right = zVals[i] < zSpacing / 2 ? -50 : -30
                     opacity = zVals[i] < zSpacing / 2 ? 0 : 1
 
 
@@ -58,14 +60,14 @@ window.onscroll = function()
         })
     }
     
-    str = frames[frames.length - 1].style.transform
+    str = frames[frames.length - 1].style.transform                     //Берём последний существующий фрэйм
 
 
     let leftBracket = str.indexOf("("),
         rightBracket = str.indexOf(")")
 
     
-    number = Number(str.substr(leftBracket + 1, (rightBracket - leftBracket) - 3))
+    number = Number(str.substr(leftBracket + 1, (rightBracket - leftBracket) - 3))  //Получаем положение последней рамки
     if(number >= 1000)
     {
 
@@ -81,7 +83,7 @@ window.onscroll = function()
             frame.setAttribute('style', `opacity: ${0}`)
         })
         
-        scroll(0, 0)
+        scroll(0, 0)                                                    //Возвращаемся в начало страницы при достяжении её конца
 
         flagEnd = false
     }
