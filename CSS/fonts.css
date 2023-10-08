@@ -3,23 +3,24 @@
     --fontSize: calc(1vh + 1vw);
 }
 
-.mainFont, .projectName, .titleFont
+h1, h3, h5
 {
     font-family: 'Monospace', 'Courier', 'Courier New';
 }
 
-.mainFont
+h1
 {
-    font-size: xx-large;
+    font-size: calc(var(--fontSize) * 2.5);
 }
 
-.projectNameFont
+h3
 {
+    font-weight: lighter;
     font-size: calc(var(--fontSize) * 1.7);
 }
 
-.titleFont
+h5
 {
-    font-size: calc(var(--fontSize) * 2.5);
-    font-weight: bold;
+    font-weight: lighter;
+    font-size: calc(var(--fontSize));
 }

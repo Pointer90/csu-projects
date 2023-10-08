@@ -1,14 +1,17 @@
-#topPanel
+nav
 {
-    z-index:1;
     display: flex;
+    position: relative;
     grid-area: TopPanel;
-    justify-items: start;
-    align-items: start;
-    padding-left: 10px;
+    align-items: center;
+    justify-content: baseline;
+    margin: -2% 1.5%;
+    /*TODO Сделать нормальный отступ*/
 }
 
 .button
 {
-    margin-right: 3vw;
+    display: flex;
+    position: relative;
+    align-items: center;
 }
