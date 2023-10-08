@@ -6,7 +6,6 @@
     animation-name: ascent;
     animation-duration: 4s;
     transition: 2.5s;
-    animation-iteration-count: infinite;
   
     display: flex;
     width: 70%;

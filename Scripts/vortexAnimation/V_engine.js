@@ -1,20 +1,22 @@
 /* ----- Генератор спирали ----- */
 
-var frame = V_START_FRAME,  // не удалять (на нее ссылаются!)
+var img = document.getElementById("test");
+
+
+var frame = vSTART_FRAME,  // не удалять (на нее ссылаются!)
     isOpen = false;         // произошла ли анимация развертывания спирали (не удалять!)
 
 
 // Конвернирует градусы в радианы
 rad = (degree) => {return degree * (Math.PI / 180);}
 
-
 // Вычисляет координаты точки спирали
-calcX = (r, phi) => {return Math.trunc(r * Math.cos(phi) * V_WIDTH_VORTEX) * V_SCALE_SIMBOL;}
-calcY = (r, phi) => {return Math.trunc(r * Math.sin(phi) * V_HEIGHT_VORTEX) * V_SCALE_SIMBOL;} 
+calcX = (r, phi) => {return Math.trunc(r * Math.cos(phi) * vSTRETCH_WIDTH) * 12;}
+calcY = (r, phi) => {return Math.trunc(r * Math.sin(phi) * vSTRETCH_HEIGHT) * 8;} 
 
 
 // Анимирует вращения спирали (ссылается на глобальную переменную frame!!!)
-keyframes = () => {if (frame > V_END_FRAME) frame = V_START_FRAME; frame += V_SPEED_ANIMATION;} 
+keyframes = () => {if (frame > vEND_FRAME) frame = vSTART_FRAME; frame += vSPEED_ANIMATION;} 
 
 
 /**
@@ -26,8 +28,8 @@ keyframes = () => {if (frame > V_END_FRAME) frame = V_START_FRAME; frame += V_SP
  */
 function deviation(deviationNow, itr)
 {
-    if (deviationNow > V_END_FRAME) isOpen = true;
-    return (deviationNow < V_BRANCHES[itr].deviation && !isOpen) ? deviationNow : V_BRANCHES[itr].deviation;
+    if (deviationNow > vEND_FRAME) isOpen = true;
+    return (deviationNow < vBRANCHES[itr].deviation && !isOpen) ? deviationNow : vBRANCHES[itr].deviation;
 }
 
 
@@ -52,7 +54,7 @@ function vortex(speed, b, start, end)
 
     */
 
-    for (let a = 0, angle = 0; a < 3.5; a += V_BRANCH_STEP, angle += V_ANGLE_STEP)
+    for (let a = 0, angle = 0; a < 3.5; a += vBRANCH_STEP, angle += vANGLE_STEP)
     {
         phi = rad(angle) - speed;
         r = a + b * rad(angle);
@@ -62,8 +64,8 @@ function vortex(speed, b, start, end)
 
         if (a > start && a < end)
         {
-            V_CTX.fillText( '.', x, y);
-            V_CTX.fillText( '.', -x, -y);
+            vCTX.fillText( '.', x, y);
+            vCTX.fillText( '.', -x, -y);
         }
     }
 }
@@ -73,23 +75,36 @@ function vortex(speed, b, start, end)
  * Рисует спираль
  * @author Arseniy ELiseev
  */
-function drawVortex(){
+function drawVortex(color)
+{
+    vCTX.fillStyle = color;
 
-    V_CTX.clearRect(-V_WIDTH, -V_HEIGHT, V_WIDTH * 2, V_HEIGHT * 2);
-    V_CTX.fillStyle = "white";
-    V_CTX.fillRect(-V_WIDTH, -V_HEIGHT, V_WIDTH * 2, V_HEIGHT * 2);
-    V_CTX.fillStyle = V_COLOR_VORTEX;
-    
-    keyframes();
-
-    for (let i = 0; i < V_BRANCHES.length; i++)
+    for (let i = 0; i < vBRANCHES.length; i++)
         vortex(
-            frame * V_BRANCHES[i].speed,
+            frame * vBRANCHES[i].speed,
             deviation(frame, i),
-            V_BRANCHES[i].start,
-            V_BRANCHES[i].end
+            vBRANCHES[i].start,
+            vBRANCHES[i].end
             );
-
 }
 
-setInterval(drawVortex, V_FPS);
+function drawLogo(color)
+{
+    vCTX.fillStyle = color;
+
+    for (i = 0; i < LOGO.length; i++)
+        vCTX.fillText(LOGO[i], 0, (i * 8 - 88));
+}
+
+function draw()
+{
+    
+    vCTX.clearRect(-vWIDTH, -vHEIGHT,vWIDTH * 2, vHEIGHT * 2);
+    keyframes();
+    drawVortex(grdLogo);
+    drawLogo(grdVortex);
+}
+
+
+
+setInterval(draw, vFPS);
