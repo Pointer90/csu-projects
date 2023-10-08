@@ -1,0 +1,21 @@
+.subscribeButton
+{
+    position: fixed;
+    bottom: 5%;
+    height: 4.5vh;
+    width: 90%;
+    margin-left: 5%;
+    background-color: #fff;
+    border-radius: 17px;
+    transition: .4s;
+}
+
+.subscribeButton:hover
+{
+    background: rgb(46, 229, 157);
+    box-shadow: 0 15px 20px rgba(46,229,157,.4);
+    color: #fff;
+    border-color: rgb(37, 164, 113);
+    transform: translateY(-7px);
+    transition: .4s;
+}
