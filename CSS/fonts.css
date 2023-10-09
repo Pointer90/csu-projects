@@ -3,7 +3,7 @@
     --fontSize: calc(1vh + 1vw);
 }
 
-#title, .hFont, .hmFont, .mFont
+#title, .hFont, .hmFont, .mFont, #find::placeholder, input
 {
     font-family: 'Monospace', 'Courier', 'Courier New';
 }
@@ -26,7 +26,7 @@
     font-size: calc(var(--fontSize) * 1.3);
 }
 
-.mFont
+.mFont, #find::placeholder, input
 {
     font-weight: lighter;
     font-size: calc(var(--fontSize));
