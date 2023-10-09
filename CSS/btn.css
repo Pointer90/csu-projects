@@ -1,6 +1,6 @@
-.subscribeButton
+button
 {
-    position: fixed;
+    position: relative;
     bottom: 5%;
     height: 4.5vh;
     width: 90%;
@@ -10,7 +10,7 @@
     transition: .4s;
 }
 
-.subscribeButton:hover
+button:hover
 {
     background: rgb(46, 229, 157);
     box-shadow: 0 15px 20px rgba(46,229,157,.4);

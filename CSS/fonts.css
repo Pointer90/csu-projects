@@ -3,24 +3,32 @@
     --fontSize: calc(1vh + 1vw);
 }
 
-h1, h3, h5
+#title, .hFont, .hmFont, .mFont
 {
     font-family: 'Monospace', 'Courier', 'Courier New';
 }
 
-h1
+#title
 {
+    font-weight: bold;
     font-size: calc(var(--fontSize) * 2.5);
 }
 
-h3
+.hFont
 {
     font-weight: lighter;
     font-size: calc(var(--fontSize) * 1.7);
 }
 
-h5
+.hmFont
+{
+    font-weight: lighter;
+    font-size: calc(var(--fontSize) * 1.3);
+}
+
+.mFont
 {
     font-weight: lighter;
     font-size: calc(var(--fontSize));
 }
+

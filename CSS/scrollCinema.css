@@ -17,11 +17,6 @@
     --transitionText: .75s cubic-bezier(0.790, 0.090, 0.585, 0.425);
 }
 
-@font-face 
-{
-    font-family: 'Monospace', 'Courier', 'Courier New';
-}
-
 body
 {
     background-color: white;

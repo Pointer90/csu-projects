@@ -1,0 +1,16 @@
+nav
+{
+    display: flex;
+    position: relative;
+    grid-area: TopPanel;
+    align-items: center;
+    justify-content: baseline;
+    padding: 1%;
+    /*TODO Сделать нормальный отступ*/
+}
+
+nav button
+{
+    width: 25%;
+    margin-top: 3%;
+}
