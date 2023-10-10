@@ -62,6 +62,13 @@
     text-align: center;
 }
 
+.subscribeButton
+{
+    position: absolute;
+    width: 90%;
+    bottom: 5%;
+}
+
 .project:hover > .front
 {
     transform: perspective(600px) rotateY(-180deg);

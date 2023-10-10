@@ -21,7 +21,7 @@ window.onscroll = function ()
     if(!flagEnd){
         frames.forEach(function(n, i)
         {
-            zVals.push((i * zSpacing) + zSpacing * 1.5)                 //Вычисляем положение рамки на странице
+            zVals.push((i * zSpacing * 2) + zSpacing * 1.5)                 //Вычисляем положение рамки на странице
             zVals[i] += delta * -5
 
 
@@ -39,8 +39,8 @@ window.onscroll = function ()
 
 
                 let textBlurRight = $textBlurRight[0],
-                    left = zVals[i] < zSpacing ? 50 : 30
-                    opacity = zVals[i] < zSpacing ? 0 : 1
+                    left = zVals[i] < zSpacing * 1.5 ? 50 : 35
+                    opacity = zVals[i] < zSpacing * 1.5 ? 0 : 1
 
             
                 textBlurRight.setAttribute("style", `left: ${left}vw; opacity: ${opacity}`)
@@ -51,8 +51,8 @@ window.onscroll = function ()
 
 
                 let textBlurLeft = $textBlurLeft[0],
-                    right = zVals[i] < zSpacing / 2 ? -50 : -30
-                    opacity = zVals[i] < zSpacing / 2 ? 0 : 1
+                    right = zVals[i] < zSpacing * 1.5 / 2 ? -50 : -35
+                    opacity = zVals[i] < zSpacing * 1.5 / 2 ? 0 : 1
 
 
                 textBlurLeft.setAttribute("style", `left: ${right}vw; opacity: ${opacity}`)

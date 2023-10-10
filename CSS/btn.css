@@ -3,9 +3,6 @@ button
     position: relative;
     bottom: 5%;
     height: 4.5vh;
-
-    /* TODO: Ширина мешает нормально сделать кнопки в navBar*/
-    /*width: 90%;*/
     margin-left: 5%;
     background-color: #fff;
     border-radius: 17px;
