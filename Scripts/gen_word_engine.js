@@ -65,6 +65,6 @@ function stopAnimation()
     if (enumeration())
     {
         clearInterval(animation);
-        ELEMENT.innerHTML = WORD.substr(0, WORD.length - 1) + "<span class='blink'>_</span>"
+        ELEMENT.innerHTML = WORD.substr(0, WORD.length - 1) + "<span class='blink'>.</span>"
     }
 }

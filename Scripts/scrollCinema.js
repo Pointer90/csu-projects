@@ -89,5 +89,14 @@ window.onscroll = function ()
     }
 
 }
+window.scrollTo(0,1);
 
-window.scrollTo(0, 1)
+// var isPaused = false;    //Попытка в автоскролл
+// var ScrollPosition
+ 
+// window.setInterval(function(){
+//             window.scrollBy({
+//                 top: 25,
+//                 behavior: "smooth"
+//                 });
+// }, 200);
