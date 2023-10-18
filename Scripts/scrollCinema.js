@@ -21,7 +21,7 @@ window.onscroll = function ()
     if(!flagEnd){
         frames.forEach(function(n, i)
         {
-            zVals.push((i * zSpacing * 2) + zSpacing * 1.5)                 //Вычисляем положение рамки на странице
+            zVals.push((i * zSpacing * 2) + zSpacing * 2)                 //Вычисляем положение рамки на странице
             zVals[i] += delta * -5
 
 
@@ -39,8 +39,9 @@ window.onscroll = function ()
 
 
                 let textBlurRight = $textBlurRight[0],
-                    left = zVals[i] < zSpacing * 1.5 ? 50 : 35
-                    opacity = zVals[i] < zSpacing * 1.5 ? 0 : 1
+                    left = zVals[i] < zSpacing * 2 ? 50 : 35
+                    console.log(zVals[i])
+                    opacity = zVals[i] < zSpacing * 2 ? 0 : 1
 
             
                 textBlurRight.setAttribute("style", `left: ${left}vw; opacity: ${opacity}`)
@@ -51,8 +52,9 @@ window.onscroll = function ()
 
 
                 let textBlurLeft = $textBlurLeft[0],
-                    right = zVals[i] < zSpacing * 1.5 / 2 ? -50 : -35
-                    opacity = zVals[i] < zSpacing * 1.5 / 2 ? 0 : 1
+                    right = zVals[i] < zSpacing * 2 / 2 ? -50 : -35
+                    console.log(zVals[i])
+                    opacity = zVals[i] < zSpacing * 2 / 2 ? 0 : 1
 
 
                 textBlurLeft.setAttribute("style", `left: ${right}vw; opacity: ${opacity}`)
@@ -96,7 +98,7 @@ window.scrollTo(0,1);
  
 // window.setInterval(function(){
 //             window.scrollBy({
-//                 top: 25,
+//                 top: 700,
 //                 behavior: "smooth"
 //                 });
-// }, 200);
+// }, 2000);
