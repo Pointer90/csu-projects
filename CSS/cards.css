@@ -24,7 +24,6 @@
     align-items:center;
     text-align: center;
     width: 90%;
-    /* TODO Придумать вычисление размерности карточек */
     height: 50vh;
     margin: 3%;
     min-width: 10vw;
