@@ -85,6 +85,7 @@ img
     display: flex;
     flex-flow: column;
     vertical-align: middle;
+    justify-content: center;
     backface-visibility: hidden;
     background-color: #fff;
     box-sizing: border-box;
@@ -105,6 +106,7 @@ img
     display: flex;
     flex-flow: column;
     vertical-align: middle;
+    justify-content: center;
     grid-gap: 20px;
     padding: 0 13px;
     z-index: 99;
