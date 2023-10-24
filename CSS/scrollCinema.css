@@ -108,6 +108,7 @@ h1, h2, h3, h4
     transition-duration: 1.5s;
     transition-timing-function: var(--transitionText);
     transition: var(--transitionText),  opacity 1.5s ease;
+    background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(100, 100, 100, 0.05));
 }
 
 .textBlurLeft
@@ -117,6 +118,7 @@ h1, h2, h3, h4
     transition-duration: 1.5s;
     transition-timing-function: var(--transitionText);
     transition: var(--transitionText),  opacity 1.5s ease;
+    background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(100, 100, 100, 0.05));
 }
 
 .textRight > *

@@ -4,7 +4,8 @@
     --sideBig: 26;
 }
 
-.projectsSpace {
+.projectsSpace
+{
     display: grid;
     grid-area: Cards;
     gap: 8%;
@@ -29,8 +30,7 @@
     min-width: 10vw;
 }
 
-.front,
-.back
+.front, .back
 {
     grid-area: A;
     display: flex;
@@ -45,6 +45,7 @@
     border-radius: 25px;
     background-color: rgb(245, 245, 245, 0.125);
     backdrop-filter: blur(5px);
+    background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(100, 100, 100, 0.05));
 }
 
 .front
