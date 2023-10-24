@@ -11,10 +11,9 @@ button
 
 button:hover
 {
-    background: rgb(46, 229, 157);
-    box-shadow: 0 15px 20px rgba(46,229,157,.4);
+    background: rgb(228, 27, 27);
+    box-shadow: 0 15px 20px rgba(228, 27, 27,.4);
     color: #fff;
-    border-color: rgb(37, 164, 113);
     transform: translateY(-7px);
     transition: .4s;
 }

@@ -1,0 +1,179 @@
+:root{
+    --index: calc(1vh + 1vw);
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+#bookHolder
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input
+{
+    display: none;
+}
+
+img
+{
+    width: 80%;
+    height: 60%;
+    padding-bottom: 20%;
+}
+
+.book
+{
+    display: flex;
+}
+
+#cover
+{
+    z-index: 0;
+    width: calc(25 * var(--index));
+    height: calc(25 * var(--index));
+    background-color: #fff;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: 0px 0px 26px -4px #555555;
+}
+
+.flipBook
+{
+    width: calc(25 * var(--index));
+    height: calc(25 * var(--index));
+    position: relative;
+    perspective: 1500px;
+    vertical-align: center;
+}
+
+.flip
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-flow: column;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition: .5s;
+    color: #000;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.front
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-flow: column;
+    vertical-align: middle;
+    backface-visibility: hidden;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 20px 13px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    gap: 4%;
+    box-shadow: 0px 0px 26px -4px #555555;
+}
+
+.back
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-flow: column;
+    vertical-align: middle;
+    grid-gap: 20px;
+    padding: 0 13px;
+    z-index: 99;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    background-color: #fff;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: 0px 0px 26px -4px #555555;
+}
+
+.nextBtn
+{
+    position: absolute;
+    bottom: 13px;
+    right: 13px;
+    cursor: pointer;
+    color: #000;
+}
+
+.backBtn
+{
+    position: absolute;
+    bottom: 13px;
+    left: -13px;
+    cursor: pointer;
+    color: #000;
+}
+
+#p1
+{
+    z-index: 4;
+}
+
+#p2
+{
+    z-index: 3;
+}
+
+#p3
+{
+    z-index: 2;
+}
+
+#p3
+{
+    z-index: 1;
+}
+
+#c1:checked ~ .flipBook #p1
+{
+    transform: rotateY(-180deg);
+    z-index: 1;
+}
+
+#c2:checked ~ .flipBook #p2
+{
+    transform: rotateY(-180deg);
+    z-index: 2;
+}
+
+#c3:checked ~ .flipBook #p3
+{
+    transform: rotateY(-180deg);
+    z-index: 3;
+}
+
+#c4:checked ~ .flipBook #p4
+{
+    transform: rotateY(-180deg);
+    z-index: 4;
+}

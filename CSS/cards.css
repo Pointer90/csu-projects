@@ -1,8 +1,14 @@
-.projectsSpace 
+:root
+{
+    --sideSmall: 16;
+    --sideBig: 26;
+}
+
+.projectsSpace
 {
     display: grid;
     grid-area: Cards;
-    gap: 6%;
+    gap: 8%;
     margin-top: 4%;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -19,7 +25,7 @@
     align-items:center;
     text-align: center;
     width: 90%;
-    height: 40vh;
+    height: 50vh;
     margin: 3%;
     min-width: 10vw;
 }
@@ -47,6 +53,15 @@
     vertical-align: middle;
     transform: perspective(600px) rotateY(0deg);
     margin: 5px;
+}
+
+.frontMedia
+{
+    height:70%;
+    width: 70%;
+    padding-left: 15%;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 .back

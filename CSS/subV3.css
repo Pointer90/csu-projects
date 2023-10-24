@@ -1,0 +1,75 @@
+:root
+{
+    --index: calc(1vh + 1vw);
+    --transitionBlock: .75s cubic-bezier(0.790, 0.090, 0.585, 0.425);
+}
+
+input
+{
+    display: none;
+}
+
+.subprojectHandler
+{
+    position: absolute;
+    top: calc(5 * var(--index));
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    perspective: 1500px;
+    padding: calc(var(--index));
+    height: calc(25 * var(--index));
+    width: calc(40 * var(--index));
+    display: grid;
+    grid-template-areas: 'Name SubNeeds SubNeeds'
+                         'Name SubNeeds SubNeeds'
+                         'Description SubNeeds SubNeeds'
+                         'Description SubNeeds SubNeeds'
+                         'BackBtn Subscribe NextBtn';
+    text-align: center;
+    border-radius: 25px;
+    background-color: rgb(245, 245, 245, 0.125);
+    box-shadow: 0px 0px 26px -4px #555555;
+}
+
+.subName
+{
+    grid-area: Name;
+}
+
+.subDescription
+{
+    grid-area: Description;
+}
+
+.subNeeds
+{
+    grid-area: SubNeeds;
+    display: flex;
+    flex-flow: column;
+    gap: 2%;
+}
+
+.nextBtn
+{
+    grid-area: NextBtn;
+    margin-right: calc(var(--index));
+    margin-left: calc(2 * var(--index));
+    bottom: calc(-2 * var(--index));
+}
+
+.backBtn
+{
+    grid-area: BackBtn;
+    margin-left: calc(var(--index));;
+    margin-right: calc(2 * var(--index));
+    bottom: calc(-2 * var(--index));
+}
+
+.subscribeBtn
+{
+    grid-area: Subscribe;
+    margin: 0;
+    bottom: calc(-2 * var(--index));
+}
+
