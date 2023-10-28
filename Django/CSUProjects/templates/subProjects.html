@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Подпроекты {% endblock title %}
+
+{% block cssAndScripts %}
+    {% load static%}
+
+    <script type="text/javascript" src= {% static "/src/JScripts/gen_word_engine.js" %} defer></script>
+    <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_canvas_settings.js" %} defer></script>
+    <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_constants.js" %} defer></script>
+    <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_engine.js" %} defer></script>
+    <link rel="stylesheet" href= {% static "/css/background.css" %}>
+    <link rel="stylesheet" href= {% static "/css/markingCP.css" %}>
+    <link rel="stylesheet" href= {% static "/css/navBar.css" %}>
+    <link rel="stylesheet" href= {% static "/css/cards.css" %}>
+    <link rel="stylesheet" href= {% static "/css/fonts.css" %}>
+    <link rel="stylesheet" href= {% static "/css/blurContainer.css" %}>
+    <link rel="stylesheet" href= {% static "/css/btn.css" %}>
+
+{% endblock cssAndScripts %}
+
+{% block content %}
+{% endblock content %}

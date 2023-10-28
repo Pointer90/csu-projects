@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %} Главная {% endblock title %}
+
+{% block cssAndScripts %}
+    {% load static%}
+
+    <script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_constants.js" %} defer></script>
+	<script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_engine.js" %} defer></script>
+	<script type="text/javascript" src={% static "/src/JScripts/gen_word_engine.js" %} defer></script>
+	<script type="text/javascript" src={% static "/src/JScripts/backgroundAnimation/B_constants.js" %} defer></script>
+	<script type="text/javascript" src={% static "/src/JScripts/backgroundAnimation/B_canvas_settings.js" %} defer></script>
+	<script type="text/javascript" src={% static "/src/JScripts/backgroundAnimation/B_engine.js" %} defer></script>
+
+	<link rel="stylesheet" href={% static "/css/markingMP.css" %}>
+	<link rel="stylesheet" href={% static "/css/background.css" %}>
+	<link rel="stylesheet" href={% static "/css/previewMP.css" %}>
+	<link rel="stylesheet" href={% static "/css/blurContainer.css" %}>
+	<link rel="stylesheet" href={% static "/css/find.css" %}>
+	<link rel="stylesheet" href={% static "/css/fonts.css" %}>
+    <link rel="stylesheet" href={% static "/css/cards.css" %}>
+
+{% endblock cssAndScripts %}
+
+{% block content %}
+	<div id="preview">
+		<canvas id="vortex" width="800" height="300"  style="background-color: white;"></canvas>
+		<div id="title">Проекты ЧелГУ.</div>
+	</div>
+
+	<input class="blurContainer" id="find" placeholder="Введите название проекта">
+
+	<div class="projectsSpace mainFont">
+		{% for card in cards%}
+		<a class="project" href="{{card.url}}">
+			<div class="front hFont">
+				<img class="frontMedia" src={% static '/src/img/project_preview.jpg' %}>
+				<div class="frontText">{{card.name}}</div>
+			</div>
+			<div class="back">
+				<div class="backContent mFont">{{card.content}}</div>
+			</div>
+		</a>
+		{% endfor %}
+	</div>
+{% endblock content %}

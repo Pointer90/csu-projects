@@ -1,0 +1,18 @@
+body
+{
+    margin: 0%;
+}
+
+#marking
+{
+    display: grid;
+    grid-template-areas: 'Preview'
+                         'Find'
+                         'Cards';
+}
+
+a
+{
+    text-decoration: none;
+    color: inherit;
+}

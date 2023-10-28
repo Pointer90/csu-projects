@@ -1,0 +1,19 @@
+button
+{
+    position: relative;
+    bottom: 5%;
+    height: 4.5vh;
+    margin-left: 5%;
+    background-color: #fff;
+    border-radius: 17px;
+    transition: .4s;
+}
+
+button:hover
+{
+    background: rgb(228, 27, 27);
+    box-shadow: 0 15px 20px rgba(228, 27, 27,.4);
+    color: #fff;
+    transform: translateY(-7px);
+    transition: .4s;
+}

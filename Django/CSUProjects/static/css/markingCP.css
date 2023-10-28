@@ -1,0 +1,19 @@
+body
+{
+    margin: 0%;
+}
+#marking
+{
+    z-index:1;
+    display: grid;
+    padding: 0%;
+    grid-template-areas: "TopPanel"
+                         "Find"
+                         "Cards";
+}
+
+a
+{
+    text-decoration: none;
+    color: inherit;
+}
