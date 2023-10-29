@@ -1,19 +1,18 @@
 {% extends "base.html" %}
-{% block title %} Подпроекты {% endblock title %}
+{% block title %} Выполненные проекты {% endblock title %}
 
 {% block cssAndScripts %}
     {% load static%}
 
-    <script type="text/javascript" src= {% static "/src/JScripts/gen_word_engine.js" %} defer></script>
-    <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_canvas_settings.js" %} defer></script>
-    <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_constants.js" %} defer></script>
-    <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_engine.js" %} defer></script>
+    <script type="text/javascript" src= {% static "/src/JScripts/gen_word_engine.js" %} defer> </script>
     <link rel="stylesheet" href= {% static "/css/background.css" %}>
     <link rel="stylesheet" href= {% static "/css/markingCP.css" %}>
     <link rel="stylesheet" href= {% static "/css/navBar.css" %}>
+    <link rel="stylesheet" href= {% static "/css/find.css" %}>
     <link rel="stylesheet" href= {% static "/css/cards.css" %}>
-    <link rel="stylesheet" href= {% static "/css/fonts.css" %}>
     <link rel="stylesheet" href= {% static "/css/blurContainer.css" %}>
+    <link rel="stylesheet" href= {% static "/css/fonts.css" %}>
+    <link rel="stylesheet" href= {% static "/css/animation.css" %}>
     <link rel="stylesheet" href= {% static "/css/btn.css" %}>
 
 {% endblock cssAndScripts %}
@@ -27,22 +26,20 @@
             <button id="completedProjects" class="button blurContainer mFont" ><a href="completedProjects">Выполненные проекты</a></button>
         </nav>
 
+        <input class="blurContainer" id="find" placeholder="Введите название проекта">
+
         <div class="projectsSpace">
             {% for card in cards %}
-            <div class="project">
-                <div class="front hFont">{{card.name}}</div>
-                <div class="back">
-                    <div class="backContent">
-                        <div class="backContentText mFont">
-                            {{card.content}}
-                        </div>
-                        <button class="subscribeButton">
-                            <div>Записаться</div>
-                        </button>
-                    </div>
-                    
+            <a href="/cinema" class="project">
+                <div class="front hFont">
+                    {{card.name}}
                 </div>
-            </div>
+                <div class="back">
+                    <div class="backContent mFont">
+                        {{card.content}}
+                    </div>
+                </div>
+            </a>
             {% endfor %}
         </div>
     </div>
