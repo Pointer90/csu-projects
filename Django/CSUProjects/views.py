@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from .models import *
 
 # Create your views here.
 
@@ -58,7 +59,8 @@ dataCinemaPage = {
 }
 
 def main(request):
-    return render(request, 'index.html', context= dataMainPage)
+    projects = Projects.objects.all()
+    return render(request, 'index.html', context={"projects": projects})
 
 def subProjects(request):
     return render(request, 'subProjects.html', context= dataSubPage)
