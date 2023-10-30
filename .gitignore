@@ -1,6 +1,5 @@
 # media
-Django/CSUProjects/static/src/img
-media/
+/Django/CSUProjects/static/src/img/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
