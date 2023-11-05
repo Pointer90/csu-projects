@@ -69,4 +69,5 @@ def completedProjects(request):
     return render(request, 'completedProjects.html', context= dataCompletedPage)
 
 def cinema(request):
-    return render(request, 'cinema.html',context= dataCinemaPage)
+    data = Workers.objects.all()
+    return render(request, 'cinema.html',context= {'workers': data})

@@ -5,7 +5,7 @@ class Projects(models.Model):
     project_id = models.AutoField(primary_key=True)
     project_name = models.TextField(unique=True, blank=False, help_text="Название проекта")
     project_description = models.TextField(blank=False, help_text="Описание проекта")
-    project_preview = models.ImageField(upload_to="CSUProjects/static/src/img/projects/", blank=True, help_text="Изображение проекта (необязательно)")
+    project_preview = models.ImageField(upload_to="previews/", blank=True, help_text="Изображение проекта (необязательно)")
 
     def __str__(self):
         return self.project_name
@@ -34,7 +34,7 @@ class Completed_projects(models.Model):
     comp_project_id = models.AutoField(primary_key=True)
     comp_project_name = models.CharField(max_length=255, blank=False, help_text="Название выполненного проекта")
     comp_project_description = models.CharField(max_length=255, help_text="Описание выполненного проекта")
-    comp_project_preview = models.ImageField(upload_to="CSUProjects/static/src/img/compProjects/", blank=True, help_text="Изображение проекта (необязательно)")
+    comp_project_preview = models.ImageField(upload_to="previews/", blank=True, help_text="Изображение проекта (необязательно)")
 
     def __str__(self):
         return self.comp_project_name
@@ -46,7 +46,7 @@ class Workers(models.Model):
     worker_full_name = models.CharField(max_length=127, blank=False)
     worker_post = models.CharField(max_length=127, blank=False)
     worker_description = models.TextField(blank=False)
-    worker_photo = models.ImageField(upload_to="CSUProjects/static/src/img/compProjects/workers/", blank=False)
+    worker_photo = models.ImageField(upload_to="peoples/", blank=False)
 
     def __str__(self):
         return self.worker_full_name
