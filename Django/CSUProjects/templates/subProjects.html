@@ -22,19 +22,19 @@
     <canvas id="background" width="800" height="600"></canvas>
     <div id="marking">
         <nav>
-            <a id="title" class="button" href="/">Проекты ЧелГУ.</a>
+            <a id="title" class="button" href={% url 'main' %}>Проекты ЧелГУ.</a>
             <button id="completedProjects" class="button blurContainer mFont" ><a href="/">Главная</a></button>
             <button id="completedProjects" class="button blurContainer mFont" ><a href="completedProjects">Выполненные проекты</a></button>
         </nav>
 
         <div class="projectsSpace">
-            {% for card in cards %}
+            {% for project in projects %}
             <div class="project">
-                <div class="front hFont">{{card.name}}</div>
+                <div class="front hFont">{{project.subproject_name}}</div>
                 <div class="back">
                     <div class="backContent">
                         <div class="backContentText mFont">
-                            {{card.content}}
+                            {{project.subproject_description}}
                         </div>
                         <button class="subscribeButton">
                             <div>Записаться</div>

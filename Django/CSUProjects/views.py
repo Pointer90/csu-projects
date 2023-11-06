@@ -59,10 +59,10 @@ dataCinemaPage = {
 }
 
 def main(request):
-    projects = Projects.objects.all()
-    return render(request, 'index.html', context={"projects": projects})
+    data = Projects.objects.all()
+    return render(request, 'index.html', context={"projects": data})
 
-def subProjects(request):
+def subProjects(request, project_id):
     return render(request, 'subProjects.html', context= dataSubPage)
 
 def completedProjects(request):

@@ -31,7 +31,7 @@
 
 	<div class="projectsSpace mainFont">
 		{% for project in projects%}
-		<a class="project" href="{{project.project_id}}"> <!--TODO Переделать ссылки-->
+		<a class="project" href="subProjects/{{project.project_id}}"> <!--TODO Переделать ссылки-->
 			<div class="front hFont">
 				<img class="frontMedia" src= {{project.project_preview.url}}>
 				<div class="frontText">{{project.project_name}}</div>
