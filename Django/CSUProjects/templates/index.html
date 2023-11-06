@@ -30,14 +30,16 @@
 	<input class="blurContainer" id="find" placeholder="Введите название проекта">
 
 	<div class="projectsSpace mainFont">
-		{% for project in projects%}
-		<a class="project" href="subProjects/{{project.project_id}}"> <!--TODO Переделать ссылки-->
+		{% for card in cards%}
+		<a class="project" href="subProjects/{{card.project_id}}"> <!--TODO Переделать ссылки-->
 			<div class="front hFont">
-				<img class="frontMedia" src= {{project.project_preview.url}}>
-				<div class="frontText">{{project.project_name}}</div>
+			{% if card.mediaExists %}
+				<img class="frontMedia" src= {{card.project_preview.url}}>
+			{% endif %}
+				<div class="frontText">{{card.project_name}}</div>
 			</div>
 			<div class="back">
-				<div class="backContent mFont">{{project.project_description}}</div>
+				<div class="backContent mFont">{{card.project_description}}</div>
 			</div>
 		</a>
 		{% endfor %}

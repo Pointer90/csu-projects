@@ -45,6 +45,13 @@ class CompletedProjects(models.Model):
 
     def __str__(self):
         return self.comp_project_name
+    
+    def mediaExists(self):
+        try:
+            result = self.project_preview.url
+        except:
+            return False
+        return True
 
 class Workers(models.Model):
     worker_id = models.AutoField(primary_key=True)

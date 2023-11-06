@@ -60,13 +60,15 @@ dataCinemaPage = {
 
 def main(request):
     data = Projects.objects.all()
-    return render(request, 'index.html', context={"projects": data})
+    return render(request, 'index.html', context={"cards": data})
 
 def subProjects(request, project_id):
-    return render(request, 'subProjects.html', context= dataSubPage)
+    data = SubProjects.objects.filter(project_id=project_id)
+    return render(request, 'subProjects.html', context= {"cards" : data})
 
 def completedProjects(request):
-    return render(request, 'completedProjects.html', context= dataCompletedPage)
+    data = CompletedProjects.objects.all()
+    return render(request, 'completedProjects.html', context= {"cards": data})
 
 def cinema(request):
     data = Workers.objects.all()

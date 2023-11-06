@@ -5,6 +5,9 @@
     {% load static%}
 
     <script type="text/javascript" src= {% static "/src/JScripts/gen_word_engine.js" %} defer> </script>
+    <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_canvas_settings.js" %} defer></script>
+    <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_constants.js" %} defer></script>
+    <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_engine.js" %} defer></script>
     <link rel="stylesheet" href= {% static "/css/background.css" %}>
     <link rel="stylesheet" href= {% static "/css/markingCP.css" %}>
     <link rel="stylesheet" href= {% static "/css/navBar.css" %}>
@@ -12,7 +15,6 @@
     <link rel="stylesheet" href= {% static "/css/cards.css" %}>
     <link rel="stylesheet" href= {% static "/css/blurContainer.css" %}>
     <link rel="stylesheet" href= {% static "/css/fonts.css" %}>
-    <link rel="stylesheet" href= {% static "/css/animation.css" %}>
     <link rel="stylesheet" href= {% static "/css/btn.css" %}>
 
 {% endblock cssAndScripts %}
@@ -21,21 +23,22 @@
     <canvas id="background" width="800" height="600"></canvas>
     <div id="marking">
         <nav>
-            <a id="title" class="button" href="{% url 'main' %}">Проекты ЧелГУ.</a>
-            <button id="completedProjects" class="button blurContainer mFont" ><a href="{% url 'main' %}">Главная</a></button>
-            <button id="completedProjects" class="button blurContainer mFont" ><a href="completedProjects">Выполненные проекты</a></button>
+            <a id="title" class="button" href={% url 'main' %}>Проекты ЧелГУ.</a>
+            <button id="completedProjects" class="button blurContainer mFont" ><a href={% url 'main' %}>Главная</a></button>
+            <button id="completedProjects" class="button blurContainer mFont" ><a href={% url 'completedProjects' %}>Выполненные проекты</a></button>
         </nav>
 
         <input class="blurContainer" id="find" placeholder="Введите название проекта">
 
         <div class="projectsSpace">
             {% for card in cards %}
-            <a href="cinema/{{project.project_id}}" class="project">
+            <a href="cinema/{{card.project_id}}" class="project">
                 <div class="front hFont">
-                {% if card.mediaExists %}
-                    <img class="frontMedia" src= {{project.project_preview.url}}>
-                {% endif %}
-                {{card.comp_project_name}}</div>
+                    {% if card.mediaExists %}
+                    <img class="frontMedia" src= {{card.comp_project_preview.url}}>
+                    {% endif %}
+                    <div class="frontText">{{card.comp_project_name}}</div>
+                </div>
                 <div class="back">
                     <div class="backContent mFont">
                         {{card.comp_project_description}}
