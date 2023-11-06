@@ -15,8 +15,8 @@
 
 {% block content %}
     <nav>
-        <a id="title" class="button" href="/">Проекты ЧелГУ.</a>
-        <button id="completedProjects" class="button blurContainer mFont" ><a href="/">Главная</a></button>
+        <a id="title" class="button" href="{% url 'main' %}">Проекты ЧелГУ.</a>
+        <button id="completedProjects" class="button blurContainer mFont" ><a href="{% url 'main' %}">Главная</a></button>
         <button id="completedProjects" class="button blurContainer mFont" ><a href="completedProjects">Выполненные проекты</a></button>
     </nav>
 

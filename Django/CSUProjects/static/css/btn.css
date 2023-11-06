@@ -11,8 +11,8 @@ button
 
 button:hover
 {
-    background: rgb(228, 27, 27);
-    box-shadow: 0 15px 20px rgba(228, 27, 27,.4);
+    background: rgb(31, 96, 174);
+    box-shadow: 0 15px 20px rgba(36, 19, 153, 0.4);
     color: #fff;
     transform: translateY(-7px);
     transition: .4s;

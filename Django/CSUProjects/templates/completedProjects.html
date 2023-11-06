@@ -21,8 +21,8 @@
     <canvas id="background" width="800" height="600"></canvas>
     <div id="marking">
         <nav>
-            <a id="title" class="button" href="/">Проекты ЧелГУ.</a>
-            <button id="completedProjects" class="button blurContainer mFont" ><a href="/">Главная</a></button>
+            <a id="title" class="button" href="{% url 'main' %}">Проекты ЧелГУ.</a>
+            <button id="completedProjects" class="button blurContainer mFont" ><a href="{% url 'main' %}">Главная</a></button>
             <button id="completedProjects" class="button blurContainer mFont" ><a href="completedProjects">Выполненные проекты</a></button>
         </nav>
 
@@ -30,13 +30,15 @@
 
         <div class="projectsSpace">
             {% for card in cards %}
-            <a href="/cinema" class="project">
+            <a href="cinema/{{project.project_id}}" class="project">
                 <div class="front hFont">
-                    {{card.name}}
-                </div>
+                {% if card.mediaExists %}
+                    <img class="frontMedia" src= {{project.project_preview.url}}>
+                {% endif %}
+                {{card.comp_project_name}}</div>
                 <div class="back">
                     <div class="backContent mFont">
-                        {{card.content}}
+                        {{card.comp_project_description}}
                     </div>
                 </div>
             </a>
