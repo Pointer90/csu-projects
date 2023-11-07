@@ -40,7 +40,6 @@ window.onscroll = function ()
 
                 let textBlurRight = $textBlurRight[0],
                     left = zVals[i] < zSpacing * 2 ? 50 : 35
-                    console.log(zVals[i])
                     opacity = zVals[i] < zSpacing * 2 ? 0 : 1
 
             
@@ -53,7 +52,6 @@ window.onscroll = function ()
 
                 let textBlurLeft = $textBlurLeft[0],
                     right = zVals[i] < zSpacing * 2 / 2 ? -50 : -35
-                    console.log(zVals[i])
                     opacity = zVals[i] < zSpacing * 2 / 2 ? 0 : 1
 
 
