@@ -14,6 +14,7 @@
 {% endblock cssAndScripts %}
 
 {% block content %}
+    <body style = "height: {{size}}px">
     <nav>
         <a id="title" class="button" href={% url 'main' %}>Проекты ЧелГУ.</a>
         <button id="completedProjects" class="button blurContainer mFont" ><a href={% url 'main' %}>Главная</a></button>
