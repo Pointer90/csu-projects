@@ -74,4 +74,4 @@ class WorkersInProject(models.Model):
         return f'{self.worker_id} {self.comp_project_id}'
 
     def isEven(self):
-        self.w_p_id % 2 == 0 if True else False
+        return self.w_p_id % 2 == 0 if True else False
