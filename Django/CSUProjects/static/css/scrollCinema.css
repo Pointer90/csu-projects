@@ -12,7 +12,6 @@
     --gutter: 30px;
     --sideSmall: 46;
     --sideBig: 56;
-    --depth: 5500px;
     --transition: .75s cubic-bezier(.085, .590, 0, 1);
     --transitionText: .75s cubic-bezier(0.790, 0.090, 0.585, 0.425);
 }
@@ -24,7 +23,6 @@ body
     font-size: calc(var(--index) * .8);
     font-family: 'Monospace', 'Courier', 'Courier New';
     line-height: 1.75;
-    height: var(--depth);
 }
 
 nav

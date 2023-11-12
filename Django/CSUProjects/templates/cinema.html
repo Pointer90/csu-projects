@@ -14,6 +14,7 @@
 {% endblock cssAndScripts %}
 
 {% block content %}
+    <body style = "height: {{size}}px">
     <nav>
         <a id="title" class="button" href={% url 'main' %}>Проекты ЧелГУ.</a>
         <button id="completedProjects" class="button blurContainer mFont" ><a href={% url 'main' %}>Главная</a></button>
@@ -24,24 +25,24 @@
         <section class = "gallery">
             <div class="frame frameBG">
                 <div class="frameContent mFont">
-                    <h2>{{nameProject}}</h2>
+                    <h2>{{nameProject.comp_project_name}}</h2>
                 </div>
             </div>
             
             {% for card in cards%}
                 <div class="frame">
-                    <div class= {% if card.side %} 'textBlurLeft' {% else %} 'textBlurRight' {% endif %}>
+                    <div class= {% if card.isEven %} 'textBlurLeft' {% else %} 'textBlurRight' {% endif %}>
                         <div class="frameContent mFont textLeft  blurContainer">
-                            <h3>{{card.post}}</h3>
-                            <h4>{{card.name}}</h4>
-                            <p>{{card.content}}</p>
+                            <h3>{{card.worker_post}}</h3>
+                            <h4>{{card.worker_id.worker_full_name}}</h4>
+                            <p>{{card.worker_description}}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="frame frameBG ">
                     <div class="frameContent mFont">
-                        <img class={% if card.side %} "frameMedia frameMediaRight" {% else %} "frameMedia frameMediaLeft" {% endif %} src={% static '/src/img/img_default.jpg' %}>
+                        <img class={% if card.isEven %} "frameMedia frameMediaRight" {% else %} "frameMedia frameMediaLeft" {% endif %} src= {{card.worker_id.worker_photo.url}}>
                         
                         <!-- TODO: Нужно будет реализовать подругому, так как Django не может вставить картинку (img - это заглушка)
                             <div class={% if card.side %} "frameMedia frameMediaRight" {% else %} "frameMedia frameMediaLeft" {% endif %} style="background-image: url(/src/img/img_2.jpg);"></div> -->

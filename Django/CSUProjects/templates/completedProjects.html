@@ -32,7 +32,7 @@
 
         <div class="projectsSpace">
             {% for card in cards %}
-            <a href="cinema/{{card.project_id}}" class="project">
+            <a href="cinema/{{card.comp_project_id}}" class="project">
                 <div class="front hFont">
                     {% if card.mediaExists %}
                     <img class="frontMedia" src= {{card.comp_project_preview.url}}>
