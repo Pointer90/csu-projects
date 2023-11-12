@@ -1,37 +1,51 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>MyCode</title>
-    <link rel="stylesheet" href="./CSS/form.css">
-    <link rel="stylesheet" href="./CSS/btn.css">
-    <link rel="stylesheet" href="./CSS/fonts.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./Script.js" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
 </head>
 <body>
-    <form method="post">
-        <div id="header"></div>
-        <div class="wrapper">
-            <label class="hmFont" for="name">Имя</label>
-            <input id="name" name="name" type="text" placeholder="Введите имя">
+    <button class="subscribe">Записаться</button>
+    <div class="wrapper">
+        <span class="icon-close">
+            <ion-icon name="close"></ion-icon>
+        </span>
+        <div class="form-box login">
+            <h2>Записаться</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
+                    <input type="text" required>
+                    <label for="">Имя</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
+                    <input type="text" required>
+                    <label for="">Фамилия</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
+                    <input type="text" required>
+                    <label for="">Группа</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail-open"></ion-icon></span>
+                    <input type="email" required>
+                    <label for="">Почта</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></ion-icon></span>
+                    <input type="text">
+                    <label for="">О себе</label>
+                </div>
+                <button type="submit" class="btn">Записаться</button>
+            </form>
         </div>
-        <dib class="wrapper">
-            <label class="hmFont" for="secondName">Фамилия</label>
-            <input id="secondName" name="secondName" type="text" placeholder="Введите фамилию">
-        </dib>
-        <dib class="wrapper">
-            <label class="hmFont" for="group">Группа</label>
-            <input id="group" name="group" type="text" placeholder="Введите группу">
-        </dib>
-        <dib class="wrapper">
-            <label class="hmFont" for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="example@mail.ru">
-        </dib>
-        <dib class="wrapper">
-            <label class="hmFont" for="aboutMe">О себе</label>
-            <textarea id="aboutMe" name="aboutMe" rows="4" maxlength="80" placeholder="Расскажите что-нибудь о себе"></textarea>
-        </dib>
-        <button id="send" class="mFont" name="send" type="submit">Отправить</button>
-    </form>
+    </div>
 </body>
 </html>
