@@ -1,11 +1,15 @@
 button
 {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     bottom: 5%;
     height: 4.5vh;
-    margin-left: 5%;
+    padding: 1.5%;
+    /* margin-left: 5%; */
     background-color: #fff;
-    border-radius: 17px;
+    border-radius: 12px;
     transition: .4s;
 }
 

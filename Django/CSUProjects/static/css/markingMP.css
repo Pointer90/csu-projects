@@ -1,14 +1,32 @@
-body
+*
 {
-    margin: 0%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#marking
+body
 {
-    display: grid;
-    grid-template-areas: 'Preview'
-                         'Find'
-                         'Cards';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+section
+{
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+}
+
+section #buttons button
+{
+    align-items: center;
 }
 
 a
