@@ -4,10 +4,15 @@
 {% block cssAndScripts %}
     {% load static%}
 
+    <script type="text/javascript" src={% static "/src/JScripts/showSubscriptionForm.js" %} defer></script>
     <script type="text/javascript" src= {% static "/src/JScripts/gen_word_engine.js" %} defer></script>
     <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_canvas_settings.js" %} defer></script>
     <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_constants.js" %} defer></script>
     <script type="text/javascript" src= {% static "/src/JScripts/backgroundAnimation/B_engine.js" %} defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
+
+    <link rel="stylesheet" href= {% static "/css/subscriptionForm.css" %}>
     <link rel="stylesheet" href= {% static "/css/background.css" %}>
     <link rel="stylesheet" href= {% static "/css/markingCP.css" %}>
     <link rel="stylesheet" href= {% static "/css/navBar.css" %}>
@@ -15,7 +20,7 @@
     <link rel="stylesheet" href= {% static "/css/fonts.css" %}>
     <link rel="stylesheet" href= {% static "/css/blurContainer.css" %}>
     <link rel="stylesheet" href= {% static "/css/btn.css" %}>
-
+    
 {% endblock cssAndScripts %}
 
 {% block content %}
@@ -44,6 +49,43 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <span class="icon-close">
+            <ion-icon name="close"></ion-icon>
+        </span>
+        <div class="form-box login">
+            <h2>Записаться</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
+                    <input type="text" required>
+                    <label for="">Имя</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
+                    <input type="text" required>
+                    <label>Фамилия</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
+                    <input type="text" required>
+                    <label>Группа</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail-open"></ion-icon></span>
+                    <input type="email" required>
+                    <label>Почта</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail-open"></ion-icon></span>
+                    <input type="text" required>
+                    <label>О себе</label>
+                </div>
+                <button type="submit" class="submit-button" >Записаться</button>
+            </form>
         </div>
     </div>
 {% endblock content %}
