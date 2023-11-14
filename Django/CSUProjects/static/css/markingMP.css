@@ -21,12 +21,19 @@ section
     width: 100%;
     display: flex;
     position: relative;
-    justify-content: space-evenly;
+    
 }
 
-section #buttons button
+#projectsSpace
+{
+    margin: 50%;
+}
+
+
+#buttons
 {
     align-items: center;
+    justify-content: space-evenly;
 }
 
 a
