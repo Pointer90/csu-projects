@@ -12,10 +12,11 @@ btns.forEach(btn => {
     });
 })
 
+btnClose.addEventListener('click', ()=> {
+    console.log('YESS')
+    wrapper.classList.remove('active-appear');
+});
+
 createBtn.addEventListener('click', ()=> {
     wrapper.classList.add('active-appear');
 })
-
-btnClose.addEventListener('click', ()=> {
-    wrapper.classList.remove('active-appear');
-});

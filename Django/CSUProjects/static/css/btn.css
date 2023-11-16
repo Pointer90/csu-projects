@@ -11,13 +11,15 @@ button
     background-color: #fff;
     border-radius: 12px;
     transition: .4s;
+
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 button:hover
 {
     background: rgb(31, 96, 174);
-    box-shadow: 0 15px 20px rgba(36, 19, 153, 0.4);
+    box-shadow: rgb(48, 96, 147) 0px 20px 50px -5px;
     color: #fff;
     transform: translateY(-7px);
-    transition: .4s;
+    transition: .5s ease;
 }

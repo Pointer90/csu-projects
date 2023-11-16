@@ -4,17 +4,6 @@
     --sideBig: 26;
 }
 
-.projectsSpace
-{
-    display: grid;
-    grid-area: Cards;
-    gap: 8%;
-    margin-top: 4%;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    justify-items: center;
-}
-
 .project
 {
     cursor: pointer;
@@ -41,11 +30,9 @@
     height: 100%;
     backface-visibility: hidden;
     transition: transform .6s linear;
-    box-shadow: 0px 0px 26px -4px #555555;
-    border-radius: 25px;
-    background-color: rgb(245, 245, 245, 0.125);
-    backdrop-filter: blur(5px);
-    background: radial-gradient(rgba(255, 255, 255, 0.8), rgba(100, 100, 100, 0.05));
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border-radius: 16px;
+    background-color: #fff;
 }
 
 .front

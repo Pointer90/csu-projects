@@ -10,16 +10,19 @@
     <link rel="stylesheet" href= {% static "/css/navBar.css" %}>
     <link rel="stylesheet" href= {% static "/css/fonts.css" %}>
     <link rel="stylesheet" href= {% static "/css/btn.css" %}>
+    <link rel="stylesheet" href= {% static "/css/markingPages.css" %}>
 
 {% endblock cssAndScripts %}
 
 {% block content %}
-    <body style = "height: {{size}}px">
-    <nav>
-        <a id="title" class="button" href={% url 'main' %}>Проекты ЧелГУ.</a>
-        <button id="completedProjects" class="button blurContainer mFont" ><a href={% url 'main' %}>Главная</a></button>
-        <button id="completedProjects" class="button blurContainer mFont" ><a href={% url 'completedProjects' %}>Выполненные проекты</a></button>
-    </nav>
+<body style = "height: {{size}}px">
+    <header style='position: absolute;'>
+        <h2 class="logo"><a id="title" class="button" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
+        <nav class="navigation">
+            <a href={% url 'main' %}>Главная</a>
+            <a href={% url 'completedProjects' %}>Выполненные проекты</a>
+        </nav>
+    </header>
 
     <div class="container">
         <section class = "gallery">
@@ -52,4 +55,5 @@
 
         </section>
     </div>
+</body>
 {% endblock content %}

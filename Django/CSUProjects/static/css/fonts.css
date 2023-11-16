@@ -8,13 +8,6 @@
     font-family: 'Montserrat', 'Monospace', 'Courier New';
 }
 
-#title
-{
-    font-weight: 600;
-    font-style: italic;
-    font-size: calc(var(--fontSize) * 2.5);
-}
-
 .hFont
 {
     font-weight: 500;
@@ -39,4 +32,3 @@
     font-weight: lighter;
     font-size: calc(var(--fontSize) * 0.8);
 }
-

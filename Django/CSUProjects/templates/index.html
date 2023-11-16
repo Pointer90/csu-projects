@@ -6,16 +6,12 @@
     <script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_constants.js" %} defer></script>
 	<script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_engine.js" %} defer></script>
 	<script type="text/javascript" src={% static "/src/JScripts/gen_word_engine.js" %} defer></script>
-	<script type="text/javascript" src={% static "/src/JScripts/backgroundAnimation/B_constants.js" %} defer></script>
-	<script type="text/javascript" src={% static "/src/JScripts/backgroundAnimation/B_canvas_settings.js" %} defer></script>
-	<script type="text/javascript" src={% static "/src/JScripts/backgroundAnimation/B_engine.js" %} defer></script>
 	<script type="text/javascript" src={% static "/src/JScripts/showSubscriptionForm.js" %} defer> </script>
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
 
-	<link rel="stylesheet" href={% static "/css/markingMP.css" %}>
-	<link rel="stylesheet" href={% static "/css/background.css" %}>
-	<link rel="stylesheet" href={% static "/css/previewMP.css" %}>
+	<link rel="stylesheet" href={% static "/css/markingPages.css" %}>
+	<link rel="stylesheet" href={% static "/css/vortex.css" %}>
 	<link rel="stylesheet" href={% static "/css/blurContainer.css" %}>
 	<link rel="stylesheet" href={% static "/css/find.css" %}>
 	<link rel="stylesheet" href={% static "/css/fonts.css" %}>
@@ -26,20 +22,18 @@
 {% endblock cssAndScripts %}
 
 {% block content %}
-	<canvas id="background" width="800" height="600"></canvas>
 	<section id="preview">
-		<canvas id="vortex" width="800" height="300"  style="background-color: white;"></canvas>
+		<canvas id="vortex" width="800" height="300"></canvas>
 		<div id="title">Проекты ЧелГУ.</div>
 	</section>
-
-	<input class="blurContainer" id="find" placeholder="Введите название проекта">
+	<input id="find-style-1" placeholder="Введите название проекта">
 
 	<section id="buttons">
 		<button id="completed-projects"><a href={% url 'completedProjects' %}>Выполненные проекты</a></button>
 		<button id="create-project">Предложить проект</button>
 	</section>
 
-	<section id="projectsSpace hFont">
+	<section id="projects-space">
 		{% for card in cards%}
 		<a class="project" href="subProjects/{{card.project_id}}">
 			<div class="front hFont">
