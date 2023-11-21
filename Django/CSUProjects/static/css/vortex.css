@@ -27,3 +27,10 @@
   height: 100%;
   filter: blur(0.8px);
 }
+
+#CSULogo
+{
+  position: absolute;
+  top: 17%;
+  z-index: 1;
+}
