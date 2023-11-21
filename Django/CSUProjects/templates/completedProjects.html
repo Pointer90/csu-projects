@@ -4,6 +4,85 @@
 {% block cssAndScripts %}
     {% load static%}
 
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@v0.158.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@v0.158.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type = "module" name="miniCSULogo" defer>
+        import * as THREE from 'three';
+        import {GLTFLoader} from 'three/addons/loaders/GLTFLoader'
+
+        //Требуемые переменные и константы
+        let logo = null,                                              //Хранилище логотипа
+            canvas = document.querySelector(".logo");                //Канвас со спиралью
+
+        const sizes = {
+            width: canvas.offsetHeight / 0.8,
+            height: canvas.offsetHeight / 0.9,
+        };
+
+        //Создаём сцену с "бесконечным" пространством
+        const scene = new THREE.Scene();
+
+        //Создаём камеру типа Перспектива с FOV 75 и 500/500
+        const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000);
+        camera.position.set(0.2, 0, 2.1);
+        scene.add(camera);
+
+        //Создаём отрисовщика с прозрачным фоном и сглаженными краями
+        const renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+        renderer.setSize(sizes.width, sizes.height);
+        renderer.setClearColor(0x000000, 0);
+        renderer.domElement.setAttribute("id", "CSULogo");
+        {% comment %} var el = document.createElement('a');
+        el.setAttribute("id", "title");
+        el.href = '{% url 'main' %}';
+        el.setAttribute("class", "button");
+        el.appendChild(document.createTextNode('Проекты ЧелГУ.'));
+        renderer.domElement.appendChild(el); {% endcomment %}
+        canvas.insertBefore(renderer.domElement, canvas.firstChild);
+
+        //Создаём пространственный свет
+        const aLight = new THREE.AmbientLight(0xeeeeee, 3);
+        scene.add(aLight);
+
+        //Создаём точечный свет
+        const pLight = new THREE.PointLight(0xffffff, 10);
+        pLight.position.set(1, 1, 2);
+        scene.add(pLight);
+
+        //Создаём загрузчик и запускаем функцию загрузги 
+        const loader = new GLTFLoader();
+        loader.load(
+        	"/static/src/models/CSU.gltf",
+        	(gltf) => {
+        		logo = gltf.scene.children[0];
+                logo.scale.set(1.5, 1.5, 1.5);
+        		scene.add(logo);
+        	}
+        );
+        //Создаём функцию анимации
+        const clock = new THREE.Clock();
+
+        renderer.render(scene, camera);
+
+        function tick(){
+            const elapsedTime = clock.getElapsedTime();
+            if (logo){
+                logo.rotation.y = elapsedTime;
+            }
+            renderer.render(scene, camera);
+            window.requestAnimationFrame(tick);
+        };
+        tick();
+
+    </script>
+
     <script type="text/javascript" src= {% static "/src/JScripts/gen_word_engine.js" %} defer> </script>
 
     <link rel="stylesheet" href= {% static "/css/markingPages.css" %}>
