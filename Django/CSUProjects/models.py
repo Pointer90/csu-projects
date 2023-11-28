@@ -1,29 +1,27 @@
-from tabnanny import verbose
-from typing import Self
 from django.db import models
 
 
 class Projects(models.Model):
     project_id = models.AutoField(primary_key=True)
     project_name = models.CharField(
+        'Название проекта',
         max_length=80,
         unique=True,
-        blank=False,
-        verbose_name='Название проекта'
+        blank=False
     )
     project_description = models.TextField(
-        blank=False,
-        verbose_name='Краткое описание'
+        'Краткое описание',
+        blank=False
     )
     project_preview = models.ImageField(
+        'Превью проекта',
         upload_to='previews/',
         blank=True,
-        help_text='*необязательное поле',
-        verbose_name='Превью проекта'
+        help_text='*необязательное поле'
     )
     project_created = models.DateTimeField(
-        auto_now=True,
-        verbose_name='Дата создания'
+        'Дата создания',
+        auto_now=True
     )
 
     def __str__(self):
@@ -45,24 +43,24 @@ class SubProjects(models.Model):
     subproject_id = models.AutoField(primary_key=True)
     project_id = models.ForeignKey(
         Projects,
+        verbose_name='Идентификатор проекта',
         on_delete=models.CASCADE,
         help_text='Необходимо указать к какому проекту принадлежит',
-        verbose_name='Идентификатор проекта'
     )
     subproject_name = models.CharField(
+        'Название подпроекта',
         max_length=80,
         unique=True,
         blank=False,
-        help_text='Название подпроекта',
-        verbose_name='Название подпроекта'
+        help_text='Название подпроекта'
     )
     subproject_description = models.TextField(
-        help_text='Краткое описание проекта',
-        verbose_name='Описание'
+        'Описание',
+        help_text='Краткое описание проекта'
     )
     subproject_created = models.DateTimeField(
-        auto_now=True,
-        verbose_name='Дата создания'
+        'Дата создания',
+        auto_now=True
     )
 
     def __str__(self):
@@ -77,19 +75,19 @@ class SubProjectNeeds(models.Model):
     need_id = models.AutoField(primary_key=True)
     subproject_id = models.ForeignKey(
         SubProjects,
-        on_delete=models.CASCADE,
-        verbose_name='Название проекта'
+        verbose_name='Название проекта',
+        on_delete=models.CASCADE
     )
     need_description = models.TextField(
+        'Требования к работнику',
         max_length=255,
         blank=False,
-        help_text='Краткое описание требований',
-        verbose_name='Требования к работнику'
+        help_text='Краткое описание требований'
     )
     need_profiles = models.CharField(
+        'Специальность',
         max_length=80,
-        help_text='Требуемые профили обучения',
-        verbose_name='Специальность'
+        help_text='Требуемые профили обучения'
     )
 
     def __str__(self):
@@ -103,24 +101,24 @@ class SubProjectNeeds(models.Model):
 class CompletedProjects(models.Model):
     comp_project_id = models.AutoField(primary_key=True)
     comp_project_name = models.CharField(
+        'Название проекта',
         max_length=255,
-        blank=False,
-        verbose_name='Название проекта'
+        blank=False
     )
     comp_project_description = models.TextField(
+        'Описание',
         max_length=255,
-        help_text='Краткое описание выполненного проекта',
-        verbose_name='Описание'
+        help_text='Краткое описание выполненного проекта'
     )
     comp_project_preview = models.ImageField(
+        'Превью проекта',
         upload_to='previews/',
         blank=True,
-        help_text='*необязательное поле',
-        verbose_name='Превью проекта'
+        help_text='*необязательное поле'
     )
     comp_project_created = models.DateTimeField(
-        auto_now=True,
-        verbose_name='Дата создания'
+        'Дата создания',
+        auto_now=True
     )
 
     def __str__(self):
@@ -141,14 +139,14 @@ class CompletedProjects(models.Model):
 class Workers(models.Model):
     worker_id = models.AutoField(primary_key=True)
     worker_full_name = models.CharField(
+        'Имя',
         max_length=80,
-        blank=False,
-        verbose_name='Имя'
+        blank=False
     )
     worker_photo = models.ImageField(
+        'Фото',
         upload_to='peoples/',
-        blank=False,
-        verbose_name='Фото'
+        blank=False
     )
 
     def __str__(self):
@@ -166,23 +164,23 @@ class WorkersInProject(models.Model):
         Workers, on_delete=models.CASCADE, verbose_name='ФИО')
     comp_project_id = models.ForeignKey(
         CompletedProjects,
-        on_delete=models.CASCADE,
-        verbose_name='Название проекта'
+        verbose_name='Название проекта',
+        on_delete=models.CASCADE
     )
     models.UniqueConstraint(
         fields=['comp_project_id', 'worker_id'],
         name='worker_in_project'
     )
     worker_post = models.CharField(
+        'Должность',
         max_length=80,
-        blank=False,
-        verbose_name='Должность'
+        blank=False
     )
     worker_description = models.TextField(
+        'Описание',
         max_length=255,
         blank=False,
-        help_text='Краткое описание чем занимался в проекте',
-        verbose_name='Описание'
+        help_text='Краткое описание чем занимался в проекте'
     )
 
     def __str__(self):
