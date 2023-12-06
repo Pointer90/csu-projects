@@ -1,5 +1,11 @@
 from django.db import models
-from status import StatusProjectEnum
+from datetime import datetime
+
+StatusProjectEnum = (
+    ('notComplete', 'Не выполнен'),
+    ('partial', 'Недобор'),
+    ('complete', 'Выполнен')
+)
 
 
 class Projects(models.Model):
@@ -22,19 +28,19 @@ class Projects(models.Model):
     )
     prj_created = models.DateTimeField(
         'Дата создания',
-        auto_created=True
+        auto_now_add=True
     )
     prj_updated = models.DateTimeField(
         'Дата изменения',
         auto_now=True
     )
-    prj_year_created = models.DateField('Год создания', auto_created=True)
+    prj_year_created = models.DateField('Год создания', auto_now_add=True)
 
     status = models.CharField(
         'Статус', 
         max_length= 11, 
         choices=StatusProjectEnum, 
-        default=StatusProjectEnum.notComplete,
+        default='notComplete',
         help_text=' Введите статус готовности (по умолчанию статус не готов)'
     )
 
@@ -72,9 +78,15 @@ class SubProjects(models.Model):
         'Описание',
         help_text='Краткое описание проекта'
     )
+    subprj_preview = models.ImageField(
+        upload_to='previews/',
+        blank=True,
+        help_text='*необязательное поле',
+        verbose_name='Превью проекта'
+    )
     subprj_created = models.DateTimeField(
         'Дата создания',
-        auto_created=True
+        auto_now_add=True
     )
     subprj_updated = models.DateTimeField(
         'Дата изменения',
@@ -82,13 +94,13 @@ class SubProjects(models.Model):
     )
     subprj_year = models.DateField(
         'Год создания',
-        auto_created=True
+        auto_now_add=True
     )
     status = models.CharField(
         'Статус', 
         max_length= 11, 
         choices=StatusProjectEnum, 
-        default=StatusProjectEnum.notComplete,
+        default='notComplete',
         help_text=' Введите статус готовности (по умолчанию статус не готов)'
     )
 

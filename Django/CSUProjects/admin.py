@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from django import forms
 
 # Register your models here.
 
@@ -7,70 +8,42 @@ class SubProjectsInline(admin.TabularInline):
     model = SubProjects
     extra = 0
 
+    fields = ('subprj_name', 'status', 'subprj_preview', 'subprj_description')
+    formfield_overrides = {
+        models.TextField: {'widget': forms.Textarea(attrs={'rows': 10, 'cols': 40})},
+    }
+
 
 @admin.register(Projects)
 class Projects(admin.ModelAdmin):
 
-    list_display = ['project_name', 'project_description', 'get_year', 'project_created']
-    list_filter = ('project_created', )
+    list_display = ['prj_name', 'prj_description', 'prj_created', 'status']
+    list_filter = ('prj_created', )
 
-    fieldsets = (
-        (None, {
-            'fields': (('project_name', 'project_preview'),)
-        }),
-        (None, {
-            'fields': ('project_description',)
-        })
-    )
+    fields = (('prj_name', 'status'), 'prj_preview', 'prj_description')
 
     inlines = [SubProjectsInline]
 
 
-# @admin.register(SubProjects)
 class SubProjects(admin.ModelAdmin):
-    list_filter = ('subproject_created',)
+    list_filter = ('subprj_created',)
 
-    list_display = ['project_id',
-                    'subproject_name',
-                    'subproject_description',
-                    'subproject_created'
+    list_display = ['prj_id',
+                    'subprj_name',
+                    'subprj_description',
+                    'subprj_created'
                     ]
 
-    fieldsets = (
-        (None, {
-            'fields': (('project_id', 'subproject_name'),)
-        }),
-        (None, {
-            'fields': ('subproject_description',)
-        })
-    )
+    fields = (('subprj_name', 'status'), 'subprj_preview', 'subprj_description')
 
 
 @admin.register(SubProjectNeeds)
 class SubProjectNeeds(admin.ModelAdmin):
     list_filter = ('need_profiles',)
-    list_display = ['subproject_id', 'need_profiles', 'need_description']
+    list_display = ['subprj_id', 'need_profiles', 'need_description']
 
-    fields = ('subproject_id', 'need_profiles', 'need_description')
+    fields = ('subprj_id', 'need_profiles', 'need_description')
 
-
-@admin.register(CompletedProjects)
-class CompletedProjects(admin.ModelAdmin):
-    list_filter = ('comp_project_created',)
-
-    list_display = ['comp_project_name',
-                    'comp_project_description',
-                    'comp_project_created'
-                    ]
-
-    fieldsets = (
-        (None, {
-            'fields': ('comp_project_name', 'comp_project_preview',)
-        }),
-        (None, {
-            'fields': ('comp_project_description',)
-        })
-    )
 
 
 @admin.register(Workers)
@@ -83,7 +56,7 @@ class WorkersInProject(admin.ModelAdmin):
     list_filter = ('worker_post',)
     list_display = ['worker_id',
                     'worker_post',
-                    'comp_project_id',
+                    'prj_id',
                     'worker_description'
                     ]
     fieldsets = (
@@ -91,6 +64,6 @@ class WorkersInProject(admin.ModelAdmin):
             'fields': (('worker_id', 'worker_post'),)
         }),
         ('Данные проекта', {
-            'fields': ('comp_project_id', 'worker_description')
+            'fields': ('prj_id', 'worker_description')
         }),
     )
