@@ -3,12 +3,16 @@ from .models import *
 
 # Register your models here.
 
+class SubProjectsInline(admin.TabularInline):
+    model = SubProjects
+    extra = 0
+
 
 @admin.register(Projects)
 class Projects(admin.ModelAdmin):
-    list_filter = ('project_created',)
 
-    list_display = ['project_name', 'project_description', 'project_created']
+    list_display = ['project_name', 'project_description', 'get_year', 'project_created']
+    list_filter = ('project_created', )
 
     fieldsets = (
         (None, {
@@ -19,8 +23,10 @@ class Projects(admin.ModelAdmin):
         })
     )
 
+    inlines = [SubProjectsInline]
 
-@admin.register(SubProjects)
+
+# @admin.register(SubProjects)
 class SubProjects(admin.ModelAdmin):
     list_filter = ('subproject_created',)
 

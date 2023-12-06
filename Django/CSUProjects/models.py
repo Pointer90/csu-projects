@@ -1,33 +1,45 @@
-from tabnanny import verbose
-from typing import Self
 from django.db import models
+from status import StatusProjectEnum
 
 
 class Projects(models.Model):
-    project_id = models.AutoField(primary_key=True)
-    project_name = models.CharField(
+    prj_id = models.AutoField(primary_key=True)
+    prj_name = models.CharField(
         max_length=80,
         unique=True,
         blank=False,
         verbose_name='Название проекта'
     )
-    project_description = models.TextField(
+    prj_description = models.TextField(
         blank=False,
         verbose_name='Краткое описание'
     )
-    project_preview = models.ImageField(
+    prj_preview = models.ImageField(
         upload_to='previews/',
         blank=True,
         help_text='*необязательное поле',
         verbose_name='Превью проекта'
     )
-    project_created = models.DateTimeField(
-        auto_now=True,
-        verbose_name='Дата создания'
+    prj_created = models.DateTimeField(
+        'Дата создания',
+        auto_created=True
+    )
+    prj_updated = models.DateTimeField(
+        'Дата изменения',
+        auto_now=True
+    )
+    prj_year_created = models.DateField('Год создания', auto_created=True)
+
+    status = models.CharField(
+        'Статус', 
+        max_length= 11, 
+        choices=StatusProjectEnum, 
+        default=StatusProjectEnum.notComplete,
+        help_text=' Введите статус готовности (по умолчанию статус не готов)'
     )
 
     def __str__(self):
-        return self.project_name
+        return self.prj_name
 
     class Meta:
         verbose_name = 'Проект'
@@ -35,38 +47,53 @@ class Projects(models.Model):
 
     def mediaExists(self):
         try:
-            result = self.project_preview.url
+            result = self.prj_preview.url
         except:
             return False
         return True
 
 
 class SubProjects(models.Model):
-    subproject_id = models.AutoField(primary_key=True)
-    project_id = models.ForeignKey(
+    subprj_id = models.AutoField(primary_key=True)
+    prj_id = models.ForeignKey(
         Projects,
         on_delete=models.CASCADE,
         help_text='Необходимо указать к какому проекту принадлежит',
         verbose_name='Идентификатор проекта'
     )
-    subproject_name = models.CharField(
+    subprj_name = models.CharField(
+        'Название подпроекта',
         max_length=80,
         unique=True,
         blank=False,
-        help_text='Название подпроекта',
-        verbose_name='Название подпроекта'
+        help_text='Название подпроекта'
     )
-    subproject_description = models.TextField(
-        help_text='Краткое описание проекта',
-        verbose_name='Описание'
+    subprj_description = models.TextField(
+        'Описание',
+        help_text='Краткое описание проекта'
     )
-    subproject_created = models.DateTimeField(
-        auto_now=True,
-        verbose_name='Дата создания'
+    subprj_created = models.DateTimeField(
+        'Дата создания',
+        auto_created=True
+    )
+    subprj_updated = models.DateTimeField(
+        'Дата изменения',
+        auto_now=True
+    )
+    subprj_year = models.DateField(
+        'Год создания',
+        auto_created=True
+    )
+    status = models.CharField(
+        'Статус', 
+        max_length= 11, 
+        choices=StatusProjectEnum, 
+        default=StatusProjectEnum.notComplete,
+        help_text=' Введите статус готовности (по умолчанию статус не готов)'
     )
 
     def __str__(self):
-        return self.subproject_name
+        return self.subprj_name
 
     class Meta:
         verbose_name = 'Подпроект'
@@ -75,21 +102,21 @@ class SubProjects(models.Model):
 
 class SubProjectNeeds(models.Model):
     need_id = models.AutoField(primary_key=True)
-    subproject_id = models.ForeignKey(
+    subprj_id = models.ForeignKey(
         SubProjects,
         on_delete=models.CASCADE,
         verbose_name='Название проекта'
     )
     need_description = models.TextField(
+        'Требования к работнику',
         max_length=255,
         blank=False,
-        help_text='Краткое описание требований',
-        verbose_name='Требования к работнику'
+        help_text='Краткое описание требований'
     )
     need_profiles = models.CharField(
+        'Специальность',
         max_length=80,
-        help_text='Требуемые профили обучения',
-        verbose_name='Специальность'
+        help_text='Требуемые профили обучения'
     )
 
     def __str__(self):
@@ -100,63 +127,25 @@ class SubProjectNeeds(models.Model):
         verbose_name_plural = 'Вакансии'
 
 
-class CompletedProjects(models.Model):
-    comp_project_id = models.AutoField(primary_key=True)
-    comp_project_name = models.CharField(
-        max_length=255,
-        blank=False,
-        verbose_name='Название проекта'
-    )
-    comp_project_description = models.TextField(
-        max_length=255,
-        help_text='Краткое описание выполненного проекта',
-        verbose_name='Описание'
-    )
-    comp_project_preview = models.ImageField(
-        upload_to='previews/',
-        blank=True,
-        help_text='*необязательное поле',
-        verbose_name='Превью проекта'
-    )
-    comp_project_created = models.DateTimeField(
-        auto_now=True,
-        verbose_name='Дата создания'
-    )
-
-    def __str__(self):
-        return self.comp_project_name
-
-    class Meta:
-        verbose_name = 'Выполенный проект'
-        verbose_name_plural = 'Выполненные проекты'
-
-    def mediaExists(self):
-        try:
-            result = self.project_preview.url
-        except:
-            return False
-        return True
-
-
 class Workers(models.Model):
     worker_id = models.AutoField(primary_key=True)
     worker_full_name = models.CharField(
+        'Имя',
         max_length=80,
-        blank=False,
-        verbose_name='Имя'
+        blank=False
     )
     worker_photo = models.ImageField(
+        'Фото',
         upload_to='peoples/',
-        blank=False,
-        verbose_name='Фото'
+        blank=False
     )
 
     def __str__(self):
         return self.worker_full_name
 
     class Meta:
-        verbose_name = 'Работник'
-        verbose_name_plural = 'Работники'
+        verbose_name = 'Исполнитель'
+        verbose_name_plural = 'Исполнители'
 
 
 class WorkersInProject(models.Model):
@@ -164,29 +153,29 @@ class WorkersInProject(models.Model):
     w_p_id = models.AutoField(primary_key=True)
     worker_id = models.ForeignKey(
         Workers, on_delete=models.CASCADE, verbose_name='ФИО')
-    comp_project_id = models.ForeignKey(
-        CompletedProjects,
+    prj_id = models.ForeignKey(
+        Projects,
         on_delete=models.CASCADE,
         verbose_name='Название проекта'
     )
     models.UniqueConstraint(
-        fields=['comp_project_id', 'worker_id'],
+        fields=['prj_id', 'worker_id'],
         name='worker_in_project'
     )
     worker_post = models.CharField(
+        'Должность',
         max_length=80,
-        blank=False,
-        verbose_name='Должность'
+        blank=False
     )
     worker_description = models.TextField(
+        'Описание',
         max_length=255,
         blank=False,
-        help_text='Краткое описание чем занимался в проекте',
-        verbose_name='Описание'
+        help_text='Краткое описание чем занимался в проекте'
     )
 
     def __str__(self):
-        return f'{self.worker_id} {self.comp_project_id}'
+        return f'{self.worker_id} {self.comp_prj_id}'
 
     class Meta:
         verbose_name = 'Участник проекта'
