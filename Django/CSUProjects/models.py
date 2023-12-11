@@ -1,12 +1,10 @@
 from django.db import models
-from datetime import datetime
 
 StatusProjectEnum = (
     ('notComplete', 'Не выполнен'),
-    ('partial', 'Недобор'),
+    ('partial', 'В процессе'),
     ('complete', 'Выполнен')
 )
-
 
 class Projects(models.Model):
     prj_id = models.AutoField(primary_key=True)
@@ -34,7 +32,6 @@ class Projects(models.Model):
         'Дата изменения',
         auto_now=True
     )
-    prj_year_created = models.DateField('Год создания', auto_now_add=True)
 
     status = models.CharField(
         'Статус', 
@@ -57,6 +54,10 @@ class Projects(models.Model):
         except:
             return False
         return True
+    
+    def display_year(self):
+        return self.prj_created.year
+    display_year.short_description = 'Год создания'
 
 
 class SubProjects(models.Model):
@@ -92,10 +93,6 @@ class SubProjects(models.Model):
         'Дата изменения',
         auto_now=True
     )
-    subprj_year = models.DateField(
-        'Год создания',
-        auto_now_add=True
-    )
     status = models.CharField(
         'Статус', 
         max_length= 11, 
@@ -104,12 +101,12 @@ class SubProjects(models.Model):
         help_text=' Введите статус готовности (по умолчанию статус не готов)'
     )
 
-    def __str__(self):
-        return self.subprj_name
-
     class Meta:
         verbose_name = 'Подпроект'
         verbose_name_plural = 'Подпроекты'
+
+    def __str__(self):
+        return self.subprj_name
 
 
 class SubProjectNeeds(models.Model):
@@ -186,12 +183,13 @@ class WorkersInProject(models.Model):
         help_text='Краткое описание чем занимался в проекте'
     )
 
-    def __str__(self):
-        return f'{self.worker_id} {self.comp_prj_id}'
-
     class Meta:
         verbose_name = 'Участник проекта'
         verbose_name_plural = 'Участники проекта'
+
+    def __str__(self):
+        return f'{self.worker_id} {self.prj_id}'
+
 
     def isEven(self):
         return self.w_p_id % 2 == 0 if True else False
