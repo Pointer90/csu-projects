@@ -106,16 +106,16 @@
     <input id="find-style-2" placeholder="Введите название проекта">
     <section id="projects-space">
         {% for card in cards %}
-            <a href="cinema/{{card.comp_project_id}}" class="project">
+            <a href="cinema/{{card.prj_id}}" class="project">
                 <div class="front hFont">
                     {% if card.mediaExists %}
-                    <img class="frontMedia" src= {{card.comp_project_preview.url}}>
+                    <img class="frontMedia" src= {{card.prj_preview.url}}>
                     {% endif %}
-                    <div class="frontText">{{card.comp_project_name}}</div>
+                    <div class="frontText">{{card.prj_name}}</div>
                 </div>
                 <div class="back">
                     <div class="backContent mFont">
-                        {{card.comp_project_description}}
+                        {{card.prj_description}}
                     </div>
                 </div>
             </a>

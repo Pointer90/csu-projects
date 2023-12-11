@@ -129,15 +129,15 @@
 
 	<section id="projects-space">
 		{% for card in cards%}
-		<a class="project" href="subProjects/{{card.project_id}}">
+		<a class="project" href="subProjects/{{card.prj_id}}">
 			<div class="front hFont">
 			{% if card.mediaExists %}
 				<img class="frontMedia" src= {{card.project_preview.url}}>
 			{% endif %}
-				<div class="frontText">{{card.project_name}}</div>
+				<div class="frontText">{{card.prj_name}}</div>
 			</div>
 			<div class="back">
-				<div class="backContent mFont">{{card.project_description}}</div>
+				<div class="backContent mFont">{{card.prj_description}}</div>
 			</div>
 		</a>
 		{% endfor %}
