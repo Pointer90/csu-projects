@@ -1,13 +1,13 @@
-From python:3.11
+From python:3.11-slim
 
 SHELL [ "/bin/bash", "-c"]
 
-WORKDIR /app
-COPY . .
-
-RUN apt update
+COPY ./requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD [ "python", "./Django/manage.py", "makemigrations" ]
-CMD ["python", "./Django/manage.py", "migrate"]
+WORKDIR /app
+COPY ./Django /app
+
+COPY ./entrypoint.sh /
+ENTRYPOINT [ "sh", "/entrypoint.sh" ]

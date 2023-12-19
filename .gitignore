@@ -2,6 +2,9 @@
 /Django/CSUProjects/static/src/img/
 /Django/media/
 
+#conf
+*.conf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
