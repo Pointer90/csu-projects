@@ -109,7 +109,6 @@
 	<link rel="stylesheet" href={% static "/css/find.css" %}>
 	<link rel="stylesheet" href={% static "/css/fonts.css" %}>
     <link rel="stylesheet" href={% static "/css/cards.css" %}>
-	<link rel="stylesheet" href={% static "/css/btn.css" %}>
 	<link rel="stylesheet" href={% static "/css/subscriptionForm.css" %}>
 
 {% endblock cssAndScripts %}
@@ -123,60 +122,46 @@
 	<input id="find-style-1" placeholder="Введите название проекта">
 
 	<section id="buttons">
-		<button id="completed-projects"><a href={% url 'completedProjects' %}>Выполненные проекты</a></button>
-		<button id="create-project">Предложить проект</button>
+		<a id="completed-projects" type="button" class="btn btn-outline-info" href={% url 'completedProjects' %}>Выполненные проекты</a>
+        <button id="create-project" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#invite-prj">Предложить проект</button>
 	</section>
 
-	<section id="projects-space">
-		{% for card in cards%}
-		<a class="project" href="subProjects/{{card.project_id}}">
-			<div class="front hFont">
-			{% if card.mediaExists %}
-				<img class="frontMedia" src= {{card.project_preview.url}}>
-			{% endif %}
-				<div class="frontText">{{card.project_name}}</div>
-			</div>
-			<div class="back">
-				<div class="backContent mFont">{{card.project_description}}</div>
-			</div>
-		</a>
-		{% endfor %}
-	</section>
-
-	<div class="wrapper">
-        <span class="icon-close">
-            <ion-icon name="close"></ion-icon>
-        </span>
-        <div class="form-box login">
-            <h2>Предложить проект</h2>
-            <form action="#">
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
-                    <input type="text" required>
-                    <label>Название</label>
+<!-- Modal window -->
+<div class="modal fade" id="invite-prj" tabindex="-1" aria-labelledby="label-invite-prj" aria-hidden="true" style="backdrop-filter: blur(10px)">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3" id="label-invite-prj">Предложить проект</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control shadow-lg" id="floatingTitle" placeholder="Название проекта">
+                    <label for="floatingTitle">Название проекта</label>
                 </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
-                    <input type="text" required>
-                    <label>Название организации</label>
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control shadow-lg" id="floatingOrganization" placeholder="Название организации">
+                    <label for="floatingOrganization">Название организации</label>
                 </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
-                    <input type="text" required>
-                    <label>Кто необходим</label>
+                <div class="form-floating mb-4">
+                    <input type="email" class="form-control shadow-lg" id="floatingEmail" placeholder="Email">
+                    <label for="floatingEmail">Email</label>
                 </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="mail-open"></ion-icon></span>
-                    <input type="email" required>
-                    <label>Почта</label>
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control shadow-lg" id="floatingVacancy" placeholder="Кто необходим" aria-describedby="vacancyHelp">
+                    <label for="floatingVacancy" class="form-label">Кто необходим</label>
+                    <div id="vacancyHelp" class="form-text">Перечислите должности участников.</div>
                 </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="mail-open"></ion-icon></span>
-                    <input type="text" required>
-                    <label>Описание проекта</label>
+                <div class="form-floating mb-4">
+                    <textarea class="form-control shadow-lg" id="floatingDescription" rows="3" col="4" placeholder="Описание проекта" aria-describedby="descriptionHelp"></textarea>
+                    <label for="floatingDescription" class="form-label">Описание</label>
+                    <div id="descriptionHelp" class="form-text">Кратко опишите идею своего проекта.</div>
                 </div>
-                <button type="submit" class="submit-button" >Предложить</button>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="col btn btn-primary shadow-lg">Отправить</button>
+            </div>
         </div>
     </div>
+</div>
 {% endblock content %}
