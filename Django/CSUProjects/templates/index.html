@@ -125,6 +125,29 @@
         <button id="create-project" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#invite-prj">Предложить проект</button>
 	</section>
 
+<div class="grid mt-5 mb-5 d-flex">
+        <div class="row gy-3 gx-0 justify-content-around">
+		{% for card in cards%}
+            <div class="card shadow-lg col-6" style="max-width: 540px;">
+                <div class="row">
+                    <div class="col-md-4">
+                        {% if card.mediaExists %}
+                            <img class="rounded-start img-fluid h-100" src= {{card.project_preview.url}}>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{card.project_name}}</h5>
+                            <p class="card-text">{{card.project_description}}</p>
+                            <a href="subProjects/{{card.project_id}}" class="btn btn-primary">Изучить проект</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		{% endfor %}
+        </div>
+	</div>
+
 <!-- Modal window -->
 <div class="modal fade" id="invite-prj" tabindex="-1" aria-labelledby="label-invite-prj" aria-hidden="true" style="backdrop-filter: blur(10px)">
     <div class="modal-dialog modal-dialog-centered">
