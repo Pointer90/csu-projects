@@ -121,67 +121,46 @@
 	<input id="find-style-1" placeholder="Введите название проекта">
 
 	<section id="buttons">
-		<a class="btn btn-outline-primary shadow-lg" href={% url 'completedProjects' %}>Выполненные проекты</a>
-		<button class="btn btn-outline-info shadow-lg" id="create-project">Предложить проект</button>
+		<a id="completed-projects" type="button" class="btn btn-outline-info" href={% url 'completedProjects' %}>Выполненные проекты</a>
+        <button id="create-project" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#invite-prj">Предложить проект</button>
 	</section>
 
-	<div class="grid mt-5 mb-5 d-flex">
-        <div class="row gy-3 gx-0 justify-content-around">
-		{% for card in cards%}
-            <div class="card shadow-lg col-6" style="max-width: 540px;">
-                <div class="row">
-                    <div class="col-md-4">
-                        {% if card.mediaExists %}
-                            <img class="rounded-start img-fluid h-100" src= {{card.project_preview.url}}>
-                        {% endif %}
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{card.project_name}}</h5>
-                            <p class="card-text">{{card.project_description}}</p>
-                            <a href="subProjects/{{card.project_id}}" class="btn btn-primary">Изучить проект</a>
-                        </div>
-                    </div>
+<!-- Modal window -->
+<div class="modal fade" id="invite-prj" tabindex="-1" aria-labelledby="label-invite-prj" aria-hidden="true" style="backdrop-filter: blur(10px)">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3" id="label-invite-prj">Предложить проект</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control shadow-lg" id="floatingTitle" placeholder="Название проекта">
+                    <label for="floatingTitle">Название проекта</label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control shadow-lg" id="floatingOrganization" placeholder="Название организации">
+                    <label for="floatingOrganization">Название организации</label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input type="email" class="form-control shadow-lg" id="floatingEmail" placeholder="Email">
+                    <label for="floatingEmail">Email</label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control shadow-lg" id="floatingVacancy" placeholder="Кто необходим" aria-describedby="vacancyHelp">
+                    <label for="floatingVacancy" class="form-label">Кто необходим</label>
+                    <div id="vacancyHelp" class="form-text">Перечислите должности участников.</div>
+                </div>
+                <div class="form-floating mb-4">
+                    <textarea class="form-control shadow-lg" id="floatingDescription" rows="3" col="4" placeholder="Описание проекта" aria-describedby="descriptionHelp"></textarea>
+                    <label for="floatingDescription" class="form-label">Описание</label>
+                    <div id="descriptionHelp" class="form-text">Кратко опишите идею своего проекта.</div>
                 </div>
             </div>
-		{% endfor %}
-        </div>
-	</div>
-
-	<div class="wrapper">
-        <span class="icon-close">
-            <ion-icon name="close"></ion-icon>
-        </span>
-        <div class="form-box login">
-            <h2>Предложить проект</h2>
-            <form action="#">
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
-                    <input type="text" required>
-                    <label>Название</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
-                    <input type="text" required>
-                    <label>Название организации</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="checkmark-circle"></ion-icon></span>
-                    <input type="text" required>
-                    <label>Кто необходим</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="mail-open"></ion-icon></span>
-                    <input type="email" required>
-                    <label>Почта</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="mail-open"></ion-icon></span>
-                    <input type="text" required>
-                    <label>Описание проекта</label>
-                </div>
-                <button type="submit" class="submit-button" >Предложить</button>
-            </form>
+            <div class="modal-footer">
+                <button type="button" class="col btn btn-primary shadow-lg">Отправить</button>
+            </div>
         </div>
     </div>
+</div>
 {% endblock content %}
