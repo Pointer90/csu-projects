@@ -85,40 +85,55 @@
 
     <script type="text/javascript" src= {% static "/src/JScripts/gen_word_engine.js" %} defer> </script>
 
-    <link rel="stylesheet" href= {% static "/css/markingPages.css" %}>
-    <link rel="stylesheet" href= {% static "/css/navBar.css" %}>
-    <link rel="stylesheet" href= {% static "/css/find.css" %}>
-    <link rel="stylesheet" href= {% static "/css/cards.css" %}>
-    <link rel="stylesheet" href= {% static "/css/blurContainer.css" %}>
-    <link rel="stylesheet" href= {% static "/css/fonts.css" %}>
-    <link rel="stylesheet" href= {% static "/css/btn.css" %}>
-
 {% endblock cssAndScripts %}
 
 {% block content %}
-    <header>
-        <h2 class="logo"><a id="title" class="button" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
-        <nav class="navigation">
-            <a href={% url 'main' %}>Главная</a>
-            <a href={% url 'completedProjects' %}>Выполненные проекты</a>
-        </nav>
-    </header>
-    <input id="find-style-2" placeholder="Введите название проекта">
-    <section id="projects-space">
-        {% for card in cards %}
-            <a href="cinema/{{card.comp_project_id}}" class="project">
-                <div class="front hFont">
-                    {% if card.mediaExists %}
-                    <img class="frontMedia" src= {{card.comp_project_preview.url}}>
-                    {% endif %}
-                    <div class="frontText">{{card.comp_project_name}}</div>
-                </div>
-                <div class="back">
-                    <div class="backContent mFont">
-                        {{card.comp_project_description}}
+    <nav class="navbar navbar-expand-sm position-fixed-top border-bottom shadow-lg nav-underline user-select-none">
+        <div class="container-fluid">
+            <h2 class="logo d-flex justify-content-center"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
+        </div>
+        <div class="collapse navbar-collapse overflow-auto justify-content-end col-8" id="navbarNav">
+            <ul class="navbar-nav text-center align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href={% url 'main' %}>Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={% url 'completedProjects' %}>Выполненные проекты</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container my-5 bg-light-primary border border-2 rounded-4 g-0 p-3 shadow">
+        <div class="form-floating d-flex rounded-start" role="search">
+            <input class="form-control border-0 rounded-start" type="search" id="floatingSearch" placeholder="Поиск проекта" aria-label="Search">
+            <label for="floatingSearch">Поиск проекта</label>
+            <div class="vr"></div>
+            <button class="btn border-0" type="submit">Поиск</button>
+        </div>
+    </div>
+
+    <div class="grid mt-5 mb-5">
+        <div class="row gy-3 gx-0 justify-content-around">
+        {% for card in cards%}
+             <div class="card shadow-lg col-6 rounded-4" style="max-width: 540px;">
+                <div class="row">
+                    <div class="col-md-4">
+                        {% if card.mediaExists %}
+                            <img class="rounded-start img-fluid h-100" src= {{card.comp_project_preview.url}}>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{card.comp_project_name}}</h5>
+                            <p class="card-text">{{card.comp_project_description}}</p>
+                            <a href="cinema/{{card.comp_project_id}}" class="btn btn-primary">Изучить проект</a>
+                        </div>
                     </div>
                 </div>
-            </a>
-            {% endfor %}
-    </section>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    
 {% endblock content %}

@@ -89,81 +89,42 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
 
-    <link rel="stylesheet" href= {% static "/css/subscriptionForm.css" %}>
-    <link rel="stylesheet" href= {% static "/css/markingPages.css" %}>
-    <link rel="stylesheet" href= {% static "/css/navBar.css" %}>
-    <link rel="stylesheet" href= {% static "/css/cards.css" %}>
-    <link rel="stylesheet" href= {% static "/css/fonts.css" %}>
-    <link rel="stylesheet" href= {% static "/css/blurContainer.css" %}>
-    <link rel="stylesheet" href= {% static "/css/btn.css" %}>
+
     
 {% endblock cssAndScripts %}
 
 {% block content %}
-    <header>
-        <h2 class="logo"><a id="title" class="button" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
-        <nav class="navigation">
-            <a href={% url 'main' %}>Главная</a>
-            <a href={% url 'completedProjects' %}>Выполненные проекты</a>
-        </nav>
-    </header>
+    
+    <nav class="navbar navbar-expand-sm position-fixed-top border-bottom shadow-lg nav-underline user-select-none">
+        <div class="container-fluid">
+            <h2 class="logo d-flex justify-content-center"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
+        </div>
+        <div class="collapse navbar-collapse overflow-auto justify-content-end col-8" id="navbarNav">
+            <ul class="navbar-nav text-center align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href={% url 'main' %}>Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={% url 'completedProjects' %}>Выполненные проекты</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <div id="marking">
-
-        <section id="projects-space">
-            {% for card in cards %}
-            <div class="project">
-                <div class="front hFont">{{card.subproject_name}}</div>
-                <div class="back">
-                    <div class="backContent">
-                        <div class="backContentText mFont">
-                            {{card.subproject_description}}
-                        </div>
-                        <button class="subscribeButton">
-                            <div>Записаться</div>
-                        </button>
+    <div class="grid mt-5 mb-5">
+        <div class="row gy-3 gx-0 justify-content-around">
+        {% for card in cards%}
+            <div class="card shadow-lg rounded-4 border-2" style="max-width: 540px;">
+                <div class="d-flex text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">{{card.subproject_name}}</h5>
+                        <p class="card-text">{{card.subproject_description}}</p>
+                        <button class="btn btn-primary subscribeButton">Записаться</button>
                     </div>
-                    
                 </div>
             </div>
-            {% endfor %}
-        </div>
-    </section>
-
-    <div class="wrapper">
-        <span class="icon-close">
-            <ion-icon name="close"></ion-icon>
-        </span>
-        <div class="form-box login">
-            <h2>Записаться</h2>
-            <form action="#">
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="add-circle"></ion-icon></span>
-                    <input type="text" required>
-                    <label for="">Имя</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="add-circle"></ion-icon></span>
-                    <input type="text" required>
-                    <label>Фамилия</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="add-circle"></ion-icon></span>
-                    <input type="text" required>
-                    <label>Группа</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="mail-open"></ion-icon></span>
-                    <input type="email" required>
-                    <label>Почта</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="add-circle"></ion-icon></span>
-                    <input type="text" required>
-                    <label>О себе</label>
-                </div>
-                <button type="submit" class="submit-button" >Записаться</button>
-            </form>
+        {% endfor %}
         </div>
     </div>
+
 {% endblock content %}

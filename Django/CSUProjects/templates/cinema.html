@@ -6,23 +6,27 @@
 
     <script src= {% static "/src/JScripts/scrollCinema.js" %} defer></script>
     <link rel="stylesheet" href= {% static "/css/scrollCinema.css" %}>
-    <link rel="stylesheet" href= {% static "/css/blurContainer.css" %}>
-    <link rel="stylesheet" href= {% static "/css/navBar.css" %}>
-    <link rel="stylesheet" href= {% static "/css/fonts.css" %}>
-    <link rel="stylesheet" href= {% static "/css/btn.css" %}>
-    <link rel="stylesheet" href= {% static "/css/markingPages.css" %}>
 
 {% endblock cssAndScripts %}
 
 {% block content %}
 <body style = "height: {{size}}px">
-    <header style='position: absolute;'>
-        <h2 class="logo"><a id="title" class="button" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
-        <nav class="navigation">
-            <a href={% url 'main' %}>Главная</a>
-            <a href={% url 'completedProjects' %}>Выполненные проекты</a>
-        </nav>
-    </header>
+
+    <nav class="navbar navbar-expand-sm position-fixed-top border-bottom shadow-lg nav-underline user-select-none">
+        <div class="container-fluid">
+            <h2 class="logo d-flex justify-content-center"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
+        </div>
+        <div class="collapse navbar-collapse overflow-auto justify-content-end col-8" id="navbarNav">
+            <ul class="navbar-nav text-center align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href={% url 'main' %}>Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={% url 'completedProjects' %}>Выполненные проекты</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container">
         <section class = "gallery">
