@@ -185,9 +185,9 @@
         <div class="container-fluid">
             <h1 class="fs-1 p-2">Проекты</h1>
                 <div class="grid mt-4 d-flex">
-                    <div class="row gy-3 gx-0 justify-content-around">
+                    <div class="row row-cols-2 gy-3 gx-0 justify-content-around">
                         {% for card in cards%}
-                        <div class="card shadow-lg col-6" style="max-width: 540px;">
+                        <div class="card shadow-lg" style="max-width: 540px;">
                             <div class="row">
                                 <div class="col-md-4">
                                     {% if card.mediaExists %}
@@ -220,8 +220,8 @@
         <div class="container-fluid bg-body-secondary">
             <h1 class="fs-1 p-2">Есть что предложить нам?</h1>
             <div class="row justify-content-around p-3">
-                <button type="button" class="btn btn-primary col-3 rounded-3">Выполненные проекты</button>
-                <button type="button" class="btn btn-primary col-3 rounded-3">Предложить проект</button>
+                <a class="btn btn-primary col-3 rounded-3" href={% url 'completedProjects' %}>Выполненные проекты</a>
+                <button type="button" class="btn btn-primary col-3 rounded-3" data-bs-toggle="modal" data-bs-target="invite-prj">Предложить проект</button>
             </div>
             <p class="fs-6 bg-body-secondary p-4">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur, expedita nemo delectus minus nulla doloribus quo cum mollitia illum adipisci repellat ducimus voluptate quae iusto eius numquam libero ipsam blanditiis omnis molestiae, asperiores sit est. Ipsam consectetur qui, beatae libero quos quidem mollitia harum, commodi ab assumenda consequuntur sint? Illo, eum corrupti facilis voluptas eligendi in, amet dicta eaque soluta vel, dolores alias officia. Non rerum libero architecto vero iusto incidunt impedit. Enim provident, veniam modi minus perferendis corporis. Quos debitis minus sunt quod esse fugit aut consequatur accusamus, perferendis eligendi, asperiores sit voluptatem laudantium tempore eius, quasi voluptatibus provident.
