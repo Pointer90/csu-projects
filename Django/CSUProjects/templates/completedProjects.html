@@ -113,14 +113,14 @@
         </div>
     </div>
 
-    <div class="grid mt-5 mb-5">
+    <div class="grid mt-4">
         <div class="row gy-3 gx-0 justify-content-around">
         {% for card in cards%}
-             <div class="card shadow-lg col-6 rounded-4" style="max-width: 540px;">
+             <div class="card shadow-lg col-6 rounded-4 border-2" style="max-width: 540px;">
                 <div class="row">
                     <div class="col-md-4">
                         {% if card.mediaExists %}
-                            <img class="rounded-start img-fluid h-100" src= {{card.comp_project_preview.url}}>
+                            <img class="rounded-start" style="width: 160px; height: 240px;" src= {{card.comp_project_preview.url}}>
                         {% endif %}
                     </div>
                     <div class="col-md-8">

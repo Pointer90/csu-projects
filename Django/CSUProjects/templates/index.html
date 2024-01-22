@@ -107,7 +107,7 @@
 {% endblock cssAndScripts %}
 
 {% block content %}
-	<section id="preview">
+	<section id="preview" class="position-fixed-top">
 		<canvas id="vortex" width="800" height="300">
         </canvas>
 		<div id="title">Проекты ЧелГУ.</div>
@@ -185,16 +185,16 @@
         <h1 class="fs-1 p-2">Проекты</h1>
         <div class="container">
             <div class="grid mt-4">
-                <div class="row gy-3 gx-0 justify-content-around">
+                <div class="row gy-5 gx-0 justify-content-between">
                     {% for card in cards%}
-                    <div class="card shadow-lg col-6 align-items-stretch rounded-4" style="max-width: 540px;">
+                    <div class="card shadow-lg col-6 rounded-4 border-2" style="max-width: 540px; max-height: 300px;">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-lg-4">
                                 {% if card.mediaExists %}
-                                    <img class="rounded-start-4 img-fluid h-100" src= {{card.project_preview.url}}>
+                                    <img class="rounded-start-4" style="width: 160px; height: 240px;" src= {{card.project_preview.url}}>
                                 {% endif %}
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-lg-8">
                                 <div class="card-body">
                                     <h5 class="card-title">{{card.project_name}}</h5>
                                     <p class="card-text">{{card.project_description}}</p>
