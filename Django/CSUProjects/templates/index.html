@@ -99,16 +99,10 @@
 
     <script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_constants.js" %} defer></script>
 	<script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_engine.js" %} defer></script>
-	<script type="text/javascript" src={% static "/src/JScripts/gen_word_engine.js" %} defer></script>
 	<script type="text/javascript" src={% static "/src/JScripts/showSubscriptionForm.js" %} defer> </script>
     {% comment %} <script type="text/javascript" src={% static "/src/JScripts/CSULogo.js" %} defer></script> {% endcomment %}
 
-	{% comment %}<link rel="stylesheet" href={% static "/css/markingPages.css" %}> {% endcomment %}
 	<link rel="stylesheet" href={% static "/css/vortex.css" %}>
-	<link rel="stylesheet" href={% static "/css/blurContainer.css" %}>
-	<link rel="stylesheet" href={% static "/css/find.css" %}>
-	<link rel="stylesheet" href={% static "/css/fonts.css" %}>
-	<link rel="stylesheet" href={% static "/css/subscriptionForm.css" %}>
 
 {% endblock cssAndScripts %}
 
@@ -118,35 +112,144 @@
         </canvas>
 		<div id="title">Проекты ЧелГУ.</div>
 	</section>
-	<input id="find-style-1" placeholder="Введите название проекта">
 
-	<section id="buttons">
-		<a id="completed-projects" type="button" class="btn btn-outline-info" href={% url 'completedProjects' %}>Выполненные проекты</a>
-        <button id="create-project" type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#invite-prj">Предложить проект</button>
-	</section>
+    <section>
+        <div class="shape-container shape-line shape-position-top">
+            <svg width="2560px" height="100px" fill="#e9ecef" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class="">
+                <polygon points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+        <div class="bg-body-secondary p-3">
+            <h1 class="fs-1">О нас</h1>
+            <p class="fs-5">Виртуальное пространство, где инновации и знания сливаются в единое целое! Наш хостинг - это результат коллективных усилий университета, предоставляющий инфраструктуру для запуска и поддержки разнообразных проектов, подпроектов и исследовательских инициатив.Мы предоставляем пространство и ресурсы для развертывания разнообразных проектов, от исследовательских и учебных до инновационных и творческих инициатив.
+        </div>
+        <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
+            <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class="">
+                <polygon points="2560 0 2560 100 0 100" fill="white"></polygon>
+            </svg>
+        </div>
+    </section>
 
-<div class="grid mt-5 mb-5 d-flex">
-        <div class="row gy-3 gx-0 justify-content-around">
-		{% for card in cards%}
-            <div class="card shadow-lg col-6" style="max-width: 540px;">
-                <div class="row">
-                    <div class="col-md-4">
-                        {% if card.mediaExists %}
-                            <img class="rounded-start img-fluid h-100" src= {{card.project_preview.url}}>
-                        {% endif %}
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{card.project_name}}</h5>
-                            <p class="card-text">{{card.project_description}}</p>
-                            <a href="subProjects/{{card.project_id}}" class="btn btn-primary">Изучить проект</a>
-                        </div>
-                    </div>
+    <section>
+        <div class="container-fluid mt-4 col-10">
+            <div class="row">
+                <div class="col-3 p-4">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-columns-gap" viewBox="0 0 16 16">
+                            <path d="M6 1v3H1V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zm14 12v3h-5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zM6 8v7H1V8zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zm14-6v7h-5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"/>
+                        </svg>
+                    </span>
+                    <h3 class="fs-4 mt-3">Какие проекты могут размещаться на вашем хостинге?</h3>
+                    <p class="fs-6">
+                        Мы приветствуем широкий спектр проектов, включая исследования, учебные инициативы, творческие проекты и инновационные стартапы. Важно, чтобы ваш проект отражал ценности университетского сообщества.
+                    </p>
+                </div>
+                <div class="col-3 p-4">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
+                        </svg>
+                    </span>
+                    <h3 class="fs-4 mt-3">Каковы преимущества размещения проекта на вашем хостинге?</h3>
+                    <p class="fs-6">
+                        Наш хостинг предоставляет надежное виртуальное пространство с высокой производительностью, а также поддержку исследовательских и образовательных инициатив. Вы также будете частью активного сообщества, обмен информацией и идеями с другими проектами.
+                    </p>
+                </div>
+                <div class="col-3 p-4">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-chat-square-text-fill" viewBox="0 0 16 16">
+                            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+                        </svg>
+                    </span>
+                    <h3 class="fs-4 mt-3">Как получить поддержку для своего проекта на вашем хостинге?</h3>
+                    <p class="fs-6">
+                        Мы предоставляем техническую поддержку и консультации по настройке проекта. Кроме того, у нас есть сеть сообщества, где вы можете обсудить свои идеи, найти партнеров и получить обратную связь от опытных участников.
+                    </p>
+                </div>
+                <div class="col-3 p-4">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707"/>
+                        </svg>
+                    </span>
+                    <h3 class="fs-4 mt-3">Какие возможности для масштабирования предоставляет ваш хостинг?</h3>
+                    <p class="fs-6">
+                        Наш хостинг гибко растет вместе с вашим проектом. Вы можете легко масштабировать ресурсы, добавлять новые функции и адаптировать свой проект к изменяющимся требованиям, обеспечивая его долгосрочное развитие.
+                    </p>
                 </div>
             </div>
-		{% endfor %}
         </div>
-	</div>
+    </section>
+
+    <section>
+        <div class="container-fluid">
+            <h1 class="fs-1 p-2">Проекты</h1>
+                <div class="grid mt-4 d-flex">
+                    <div class="row gy-3 gx-0 justify-content-around">
+                        {% for card in cards%}
+                        <div class="card shadow-lg col-6" style="max-width: 540px;">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {% if card.mediaExists %}
+                                        <img class="rounded-start img-fluid h-100" src= {{card.project_preview.url}}>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{card.project_name}}</h5>
+                                        <p class="card-text">{{card.project_description}}</p>
+                                        <a href="subProjects/{{card.project_id}}" class="btn btn-primary">Изучить проект</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+        </div>
+    </section>
+
+
+
+    <section>Количество проектов, участников, подпроектов</section>
+
+    <section>
+        <div class="shape shape-bottom shape-fluid-x text-gray-200">
+            <svg viewBox="0 0 1440 280" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill="#e9ecef"></path></svg>
+        </div>
+        <div class="container-fluid bg-body-secondary">
+            <h1 class="fs-1 p-2">Есть что предложить нам?</h1>
+            <div class="row justify-content-around p-3">
+                <button type="button" class="btn btn-primary col-3 rounded-3">Выполненные проекты</button>
+                <button type="button" class="btn btn-primary col-3 rounded-3">Предложить проект</button>
+            </div>
+            <p class="fs-6 bg-body-secondary p-4">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur, expedita nemo delectus minus nulla doloribus quo cum mollitia illum adipisci repellat ducimus voluptate quae iusto eius numquam libero ipsam blanditiis omnis molestiae, asperiores sit est. Ipsam consectetur qui, beatae libero quos quidem mollitia harum, commodi ab assumenda consequuntur sint? Illo, eum corrupti facilis voluptas eligendi in, amet dicta eaque soluta vel, dolores alias officia. Non rerum libero architecto vero iusto incidunt impedit. Enim provident, veniam modi minus perferendis corporis. Quos debitis minus sunt quod esse fugit aut consequatur accusamus, perferendis eligendi, asperiores sit voluptatem laudantium tempore eius, quasi voluptatibus provident.
+            </p>
+        </div>
+    </section>
+    <section>
+        <div class="container-fluid text-body-secondary bg-primary">
+            <h1 class="fs-1 col text-start">Контакты</h1>
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <h6>Контакты</h6>
+                    <ul>
+                        <li>Телефон: +7(000)-000-00-00</li>
+                        <li>Адрес: Ул.Пушкина, д. Колотушкина</li>
+                        <li>Почта: user@example.com</li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <h6>Продукты</h6>
+                    <ul>
+                        <li>Наш университет</li>
+                        <li>Сайт цифровой школы</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <!-- Modal window -->
 <div class="modal fade" id="invite-prj" tabindex="-1" aria-labelledby="label-invite-prj" aria-hidden="true" style="backdrop-filter: blur(10px)">
