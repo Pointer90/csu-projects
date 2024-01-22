@@ -130,7 +130,7 @@ class CompletedProjects(models.Model):
 
     def mediaExists(self):
         try:
-            result = self.project_preview.url
+            result = self.comp_project_preview.url
         except:
             return False
         return True
