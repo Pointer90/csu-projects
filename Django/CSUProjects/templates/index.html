@@ -106,18 +106,13 @@
 {% endblock cssAndScripts %}
 
 {% block content %}
-	<section id="preview">
+	<section id="preview" class="position-fixed-top mb-5">
 		<canvas id="vortex" width="800" height="300">
         </canvas>
 		<div id="title">Проекты ЧелГУ.</div>
 	</section>
 
     <section id="about us">
-        <div class="shape-container shape-line shape-position-top">
-            <svg width="2560px" height="100px" fill="#e9ecef" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class="">
-                <polygon points="2560 0 2560 100 0 100"></polygon>
-            </svg>
-        </div>
         <div class="bg-body-secondary p-3">
             <h1 class="fs-1">О нас</h1>
             <p class="fs-5">Виртуальное пространство, где инновации и знания сливаются в единое целое! Наш хостинг - это результат коллективных усилий университета, предоставляющий инфраструктуру для запуска и поддержки разнообразных проектов, подпроектов и исследовательских инициатив.Мы предоставляем пространство и ресурсы для развертывания разнообразных проектов, от исследовательских и учебных до инновационных и творческих инициатив.
@@ -229,33 +224,39 @@
     </section>
 
     <section id="metrics">
-        <h1 class="fs-1 mt-4 p-3">Единство Творческих Умов</h1>
-        <div class="container-fluid col-11">
-            <div class="row justify-content-around">
-                <div class="col-5 fs-4">
-                    <p>С гордостью объявляем, что наш хостинг поддерживает целое сообщество талантливых и преданных участников. Мы вдохновляем, обучаем и совершенствуемся вместе, создавая инновационные проекты, которые изменят мир.</p>
-                    <div class="row mt-4">
-                        <span class="col">99+</span>
-                        <span class="col">100K+</span>
-                        <span class="col">32K+</span>
+        <div class="shape shape-bottom shape-fluid-x text-gray-200">
+            <svg viewBox="0 0 1440 280" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill="#e9ecef"></path></svg>
+        </div>
+        <div class="container-fluid bg-body-secondary">
+            <h1 class="fs-1 p-3">Единство Творческих Умов</h1>
+            <div class="container-fluid col-11">
+                <div class="row justify-content-around">
+                    <div class="col-5 fs-4">
+                        <p>С гордостью объявляем, что наш хостинг поддерживает целое сообщество талантливых и преданных участников. Мы вдохновляем, обучаем и совершенствуемся вместе, создавая инновационные проекты, которые изменят мир.</p>
+                        <div class="row mt-4 fs-5">
+                            <div class="col-3">
+                                <span>99+</span>
+                                <span>Участников</span>
+                            </div>
+                            <div class="col-3 row-2 border-start border-end border-dark mx-4 px-4">
+                                <span>100K+</span>
+                                <span>Проектов</span>
+                            </div>
+                            <div class="col-3">
+                                <span>32K+</span>
+                                <span>Выполненных проектов</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <span class="col">Количество участников</span>
-                        <span class="col">Количество проектов</span>
-                        <span class="col">Количество выполненных проектов</span>
+                    <div class="col-6">
+                        <img src={% static "/img/logo-photo.jpg" %} width="60%" height="60%" alt="">
                     </div>
-                </div>
-                <div class="col-6">
-                    <img src={% static "/img/logo-photo.jpg" %} width="60%" height="60%" alt="">
                 </div>
             </div>
         </div>
     </section>
 
     <section id="buttons">
-        <div class="shape shape-bottom shape-fluid-x text-gray-200">
-            <svg viewBox="0 0 1440 280" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill="#e9ecef"></path></svg>
-        </div>
         <div class="container-fluid bg-body-secondary">
             <h1 class="fs-1 p-2">Есть что предложить нам?</h1>
             <div class="row justify-content-around p-3">
