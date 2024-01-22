@@ -106,7 +106,7 @@
 
     <div class="container my-5 bg-light-primary border border-2 rounded-4 g-0 p-3 shadow">
         <div class="form-floating d-flex rounded-start" role="search">
-            <input class="form-control border-0 rounded-start" type="search" id="floatingSearch" placeholder="Поиск проекта" aria-label="Search">
+            <input class="form-control border-0 shadow-none" type="search" id="floatingSearch" placeholder="Поиск проекта" aria-label="Search">
             <label for="floatingSearch">Поиск проекта</label>
             <div class="vr"></div>
             <button class="btn border-0" type="submit">Поиск</button>
@@ -127,7 +127,9 @@
                         <div class="card-body">
                             <h5 class="card-title">{{card.comp_project_name}}</h5>
                             <p class="card-text">{{card.comp_project_description}}</p>
-                            <a href="cinema/{{card.comp_project_id}}" class="btn btn-primary">Изучить проект</a>
+                            <div class="position-absolute bottom-0 py-2 d-flex justify-content-end">
+                                <a href="cinema/{{card.comp_project_id}}" class="btn btn-primary">Изучить проект</a>
+                            </div>
                         </div>
                     </div>
                 </div>
