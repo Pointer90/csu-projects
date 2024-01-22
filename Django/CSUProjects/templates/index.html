@@ -182,30 +182,30 @@
     </section>
 
     <section>
-        <div class="container-fluid">
-            <h1 class="fs-1 p-2">Проекты</h1>
-                <div class="grid mt-4 d-flex">
-                    <div class="row row-cols-2 gy-3 gx-0 justify-content-around">
-                        {% for card in cards%}
-                        <div class="card shadow-lg" style="max-width: 540px;">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    {% if card.mediaExists %}
-                                        <img class="rounded-start img-fluid h-100" src= {{card.project_preview.url}}>
-                                    {% endif %}
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{card.project_name}}</h5>
-                                        <p class="card-text">{{card.project_description}}</p>
-                                        <a href="subProjects/{{card.project_id}}" class="btn btn-primary">Изучить проект</a>
-                                    </div>
+        <h1 class="fs-1 p-2">Проекты</h1>
+        <div class="container">
+            <div class="grid mt-4">
+                <div class="row gy-3 gx-0 justify-content-around">
+                    {% for card in cards%}
+                    <div class="card shadow-lg col-6 align-items-stretch rounded-4" style="max-width: 540px;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                {% if card.mediaExists %}
+                                    <img class="rounded-start-4 img-fluid h-100" src= {{card.project_preview.url}}>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{card.project_name}}</h5>
+                                    <p class="card-text">{{card.project_description}}</p>
+                                    <a href="subProjects/{{card.project_id}}" class="btn btn-primary">Изучить проект</a>
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
+                    {% endfor %}
                 </div>
+            </div>
         </div>
     </section>
 
