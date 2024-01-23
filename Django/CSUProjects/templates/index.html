@@ -256,16 +256,31 @@
         </div>
     </section>
 
-    <section id="buttons">
+    <section id="invite">
         <div class="container-fluid bg-body-secondary">
-            <h1 class="fs-1 p-2">Есть что предложить нам?</h1>
-            <div class="row justify-content-around p-3">
-                <a class="btn btn-primary col-3 rounded-3" href={% url 'completedProjects' %}>Выполненные проекты</a>
-                <button type="button" class="btn btn-primary col-3 rounded-3" data-bs-toggle="modal" data-bs-target="#invite-prj">Предложить проект</button>
-            </div>
-            <p class="fs-6 bg-body-secondary p-4">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur, expedita nemo delectus minus nulla doloribus quo cum mollitia illum adipisci repellat ducimus voluptate quae iusto eius numquam libero ipsam blanditiis omnis molestiae, asperiores sit est. Ipsam consectetur qui, beatae libero quos quidem mollitia harum, commodi ab assumenda consequuntur sint? Illo, eum corrupti facilis voluptas eligendi in, amet dicta eaque soluta vel, dolores alias officia. Non rerum libero architecto vero iusto incidunt impedit. Enim provident, veniam modi minus perferendis corporis. Quos debitis minus sunt quod esse fugit aut consequatur accusamus, perferendis eligendi, asperiores sit voluptatem laudantium tempore eius, quasi voluptatibus provident.
-            </p>
+            <h1 class="fs-2 p-2 text-center">Хочешь поделиться идей или посмотреть что сделали другие?</h1>
+            <p class="p-2 fs-4 text-center">Ваш взгляд ценен! Предложите свои идеи или ознакомьтесь с тем, что уже сделали другие участники.</p>
+                <div class="row mt-5">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-3 mx-5 mb-3 mb-sm-0">
+                          <div class="card shadow-lg">
+                            <div class="card-body text-center">
+                              <p class="card-text fs-6 text-start">Здесь мы гордимся результатами творчества и инноваций в нашем университетском сообществе. Исследуйте наши успешно завершенные проекты, каждый из которых стал уникальным вкладом в наше общее научное и творческое наследие. Открывайте для себя идеи, вдохновляйтесь достижениями других участников, и подготовьтесь к собственным ярким шагам в мире инноваций.</p>
+                              <a class="btn btn-outline-dark rounded-3" href={% url 'completedProjects' %}>Выполненные проекты</a>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-3 mx-5 mb-3 mb-sm-0">
+                          <div class="card shadow-lg">
+                            <div class="card-body text-center">
+                              <p class="card-text fs-6 text-start">Это ваше пространство для творчества и инноваций! Нажмите на кнопку "Предложить свои проекты", чтобы внести свой вклад в уникальную мозаику идей и исследований нашего университетского хостинга. Здесь ваше видение может стать реальностью, а ваш проект - частью нашей вдохновляющей истории. Давайте вместе строить будущее, наполненное творчеством и инновациями!</p>
+                              <button type="button" class="btn btn-outline-dark rounded-3" data-bs-toggle="modal" data-bs-target="#invite-prj">Предложить проект</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </section>
 
