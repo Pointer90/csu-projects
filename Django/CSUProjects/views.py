@@ -73,9 +73,4 @@ def completedProjects(request):
 def cinema(request, comp_project_id):
     name = CompletedProjects.objects.get(comp_project_id=comp_project_id)
     data = WorkersInProject.objects.select_related('worker_id').filter(comp_project_id=comp_project_id)
-    size = 1000
-    for d in data:
-        size += 1500
-    print(size)
-    #! TODO решить проблему динамического изменения размера страницы
-    return render(request, 'cinema.html',context= {'nameProject': name, 'cards': data, 'size': size})
+    return render(request, 'cinema.html',context= {'nameProject': name, 'cards': data})
