@@ -95,35 +95,113 @@
 
 {% block content %}
     
-    <nav class="navbar navbar-expand-sm position-fixed-top border-bottom shadow-lg nav-underline user-select-none">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-sm position-fixed-top shadow-lg border-bottom nav-underline user-select-none bg-light">
+        <div class="container-fluid ">
             <h2 class="logo d-flex justify-content-center"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
         </div>
         <div class="collapse navbar-collapse overflow-auto justify-content-end col-8" id="navbarNav">
             <ul class="navbar-nav text-center align-items-center">
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'main' %}>Главная</a>
+                    <a class="nav-link text-dark" href={% url 'main' %}>Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'completedProjects' %}>Выполненные проекты</a>
+                    <a class="nav-link text-dark" href={% url 'completedProjects' %}>Выполненные проекты</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="grid mt-5 mb-5">
-        <div class="row gy-3 gx-0 justify-content-around">
-        {% for card in cards%}
-            <div class="card shadow-lg rounded-4 border-2" style="max-width: 540px;">
-                <div class="d-flex text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">{{card.subproject_name}}</h5>
-                        <p class="card-text">{{card.subproject_description}}</p>
-                        <button class="btn btn-sm btn-outline-dark rounded-3 subscribeButton">Записаться</button>
+    <section id="about-project">
+        <div class="bg-body-secondary p-3">
+            <h1 class="fs-1">Название проекта</h1>
+            <p class="fs-5">Здесь должно быть описание проекта</p>
+        </div>
+        <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class="">
+                <polygon points="2560 0 2560 100 0 100" fill="white"></polygon>
+            </svg>
+        </div>
+    </section>
+
+    <section id="subprojects">
+        <h1 class="fs-1 p-2">Подпроекты</h1>
+        <div class="container">
+            <div class="grid mt-5 mb-5">
+                <div class="row gy-3 gx-0 justify-content-around">
+                {% for card in cards%}
+                    <div class="card shadow-lg rounded-4 border-2" style="max-width: 540px;">
+                        <div class="d-flex text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">{{card.subproject_name}}</h5>
+                                <p class="card-text">{{card.subproject_description}}</p>
+                                <button type="button" class="btn btn-sm btn-outline-dark rounded-3" data-bs-toggle="modal" data-bs-target="#invite-prj">Записаться</button>
+                            </div>
+                        </div>
                     </div>
+                {% endfor %}
                 </div>
             </div>
-        {% endfor %}
+        </div>
+    </section>
+
+    <section id="contacts">
+        <div class="container-fluid bg-light mt-4">
+            <h1 class="fs-1 col text-start">Контакты</h1>
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <h6>Контакты</h6>
+                    <ul>
+                        <li>Телефон: +7(000)-000-00-00</li>
+                        <li>Адрес: Ул.Пушкина, д. Колотушкина</li>
+                        <li>Почта: user@example.com</li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <h6>Продукты</h6>
+                    <ul>
+                        <li>Наш университет</li>
+                        <li>Сайт цифровой школы</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Modal window -->
+    <div class="modal fade" id="invite-prj" tabindex="-1" aria-labelledby="label-invite-prj" aria-hidden="true" style="backdrop-filter: blur(10px)">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-3" id="label-invite-prj">Записаться на проект</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingTitle" placeholder="Название проекта">
+                        <label for="floatingTitle">Имя</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingOrganization" placeholder="Название организации">
+                        <label for="floatingOrganization">Фамилия</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingOrganization" placeholder="Название организации">
+                        <label for="floatingOrganization">Группа</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="email" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingEmail" placeholder="Email">
+                        <label for="floatingEmail">Email</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <textarea class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingDescription" rows="3" col="4" placeholder="Описание проекта" aria-describedby="descriptionHelp"></textarea>
+                        <label for="floatingDescription" class="form-label">О себе</label>
+                        <div id="descriptionHelp" class="form-text">Расскажите нам немного о себе</div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-outline-dark rounded-3 col">Записаться</button>
+                </div>
+            </div>
         </div>
     </div>
 
