@@ -39,12 +39,6 @@
             renderer.setSize(sizes.width, sizes.height);
             renderer.setClearColor(0x000000, 0);
             renderer.domElement.setAttribute("id", "CSULogo");
-            {% comment %} var el = document.createElement('a');
-            el.setAttribute("id", "title");
-            el.href = '{% url 'main' %}';
-            el.setAttribute("class", "button");
-            el.appendChild(document.createTextNode('Проекты ЧелГУ.'));
-            renderer.domElement.appendChild(el); {% endcomment %}
             canvas.insertBefore(renderer.domElement, canvas.firstChild);
     
             //Создаём пространственный свет
@@ -107,23 +101,23 @@
         <div class="d-flex container-fluid justify-content-center align-self-center align-items-center py-2 px-5 sticky-top">
             <div id="workersCarousel" class="carousel slide carousel-fade">
                 <div class="carousel-inner">
-                    <div class="carousel-item active d-flex justify-content-center">
+                    <div class="carousel-item active">
                         <img src="https://toruskit.com/assets/img/util/slider-magenta-01.svg" class="img-fluid w-100 rounded-5 user-select-none" alt="">
-                        <div class="carousel-caption d-flex-column">
-                            <h4>{{nameProject.comp_project_name}}</h4>
-                            <h5>{{nameProject.comp_project_description}}</h5>
+                        <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                            <h4 class="py-5">{{nameProject.comp_project_name}}</h4>
+                            <h5 class="pt-5">{{nameProject.comp_project_description}}</h5>
                         </div>
                     </div>
                     {% for card in cards %}
-                    <div class="carousel-item d-flex justify-content-center">
+                    <div class="carousel-item d-flex">
                         <img src="https://toruskit.com/assets/img/util/slider-violet-01.svg" class="img-fluid w-100 rounded-5 user-select-none" alt="">
-                        <div class="carousel-caption d-flex-column">
+                        <div class="carousel-caption d-flex flex-column justify-content-center h-100">
                             <div class="card shadow-lg rounded-4 border-2">
                                 <div class="row">
-                                    <div class="col-lg-4">
-                                        <img class="rounded-start-4" src= {{card.worker_id.worker_photo.url}}>
+                                    <div class="col-4">
+                                        <img class="d-flex rounded-start-4 img-fluid h-100 w-100 start-0" src= {{card.worker_id.worker_photo.url}}>
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-8">
                                         <div class="card-body">
                                             <h4>{{card.worker_post}}</h4>
                                             <h5>{{card.worker_id.worker_full_name}}</h5>
