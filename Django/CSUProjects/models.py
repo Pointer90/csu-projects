@@ -52,3 +52,24 @@ class Projects(models.Model):
     def display_year(self):
         return self.creation_date.year
     display_year.short_description = 'Год создания'
+
+
+class Workers(models.Model):
+    wid = models.AutoField(primary_key=True)
+    name = models.CharField(
+        'ФИО',
+        max_length=80,
+        blank=False
+    )
+    photo = models.ImageField(
+        'Фото',
+        upload_to='peoples/',
+        blank=False
+    )
+
+    def str(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name = 'Исполнитель'
+        verbose_name_plural = 'Исполнители'
