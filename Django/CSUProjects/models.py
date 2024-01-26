@@ -122,3 +122,29 @@ class Subprojects(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Vacancies(models.Model):
+    vid = models.AutoField(primary_key=True)
+    sid =models.ForeignKey(
+        Subprojects,
+        on_delete=models.CASCADE,
+        verbose_name='Название проекта'
+    )
+    post = models.CharField(
+        'Специальность',
+        max_length=80,
+        help_text='Требуемые профили обучения'
+    )
+    description = models.TextField(
+        'Требование к работнику',
+        max_length=255,
+        blank=False,
+        help_text='Краткое описание требований'
+    )
+
+    def str(self):
+        return self.description
+
+    class Meta:
+        verbose_name = 'Вакансия',
+        verbose_name_plural = 'Вакансии' 
