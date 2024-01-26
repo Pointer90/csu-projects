@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Projects, Workers, Subprojects, Vacancies
+from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects
 
 # Register your models here.
 @admin.register(Projects)
@@ -33,4 +33,9 @@ class SubProjectNeeds(admin.ModelAdmin):
     list_display = ['sid', 'post', 'description']
 
     fields = ('sid', 'post', 'description')
+
+@admin.register(WorkersInSubprojects)
+class WorkersInSubprojects(admin.ModelAdmin):
+
+    list_display = ['sid', 'wid', 'post', 'description']
 

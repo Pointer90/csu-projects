@@ -53,7 +53,6 @@ class Projects(models.Model):
         return self.creation_date.year
     display_year.short_description = 'Год создания'
 
-
 class Workers(models.Model):
     wid = models.AutoField(primary_key=True)
     name = models.CharField(
@@ -147,4 +146,38 @@ class Vacancies(models.Model):
 
     class Meta:
         verbose_name = 'Вакансия',
-        verbose_name_plural = 'Вакансии' 
+        verbose_name_plural = 'Вакансии'
+
+class WorkersInSubprojects(models.Model):
+    wsid = models.AutoField(primary_key=True)
+    sid = models.ForeignKey(
+        Projects,
+        verbose_name = 'Название проекта',
+        on_delete = models.CASCADE,
+        help_text='Необходимо указать к какому проекту принадлежит'
+    )
+    wid = models.ForeignKey(
+        Workers,
+        verbose_name = 'Имя участника',
+        on_delete = models.CASCADE,
+        help_text='Необходимо указать кто участвует в проекте'
+    )
+
+    post = models.CharField(
+        'Должность',
+        max_length = 80,
+        blank = False
+    )
+
+    description = models.TextField(
+        'Описание',
+        max_length = 255,
+        blank=False
+    )
+
+    def str(self):
+        return f'{self.wid} {self.sid}'
+
+    class Meta:
+        verbose_name = 'Исполнитель в подпроекте'
+        verbose_name_plural = 'Исполнители в подпроектах'
