@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Projects, Workers
+from .models import Projects, Workers, Subprojects
 
 # Register your models here.
 @admin.register(Projects)
@@ -15,4 +15,15 @@ class Projects(admin.ModelAdmin):
 class Workers(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name__startswith',]
+
+@admin.register(Subprojects)
+class SubProjects(admin.ModelAdmin):
+    list_filter = ('creation_date',)
+    list_display = ['pid',
+                    'title',
+                    'description',
+                    'creation_date'
+                    ]
+
+    fields = (('title', 'status'), 'photo', 'description')
 

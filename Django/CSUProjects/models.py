@@ -67,9 +67,58 @@ class Workers(models.Model):
         blank=False
     )
 
-    def str(self) -> str:
+    def __str__(self):
         return self.name
 
     class Meta:
         verbose_name = 'Исполнитель'
         verbose_name_plural = 'Исполнители'
+
+class Subprojects(models.Model):
+    sid = models.AutoField(primary_key=True)
+    pid = models.ForeignKey(
+        Projects,
+        on_delete=models.CASCADE,
+        help_text='Необходимо указать к какому проекту принадлежит',
+        verbose_name='Идентификатор проекта'
+    )
+    title = models.CharField(
+        'Название подпроекта',
+        max_length=80,
+        unique=True,
+        blank=False,
+        help_text='Название подпроекта'
+    )
+    description = models.TextField(
+        'Описание',
+        max_length=255,
+        help_text='Краткое описание проекта'
+    )
+    photo = models.ImageField(
+        upload_to='previews/',
+        blank=True,
+        help_text='*необязательное поле',
+        verbose_name='Превью проекта'
+    )
+    creation_date = models.DateTimeField(
+        'Дата создания',
+        auto_now_add=True
+    )
+    updation_date = models.DateTimeField(
+        'Дата изменения',
+        auto_now=True
+    )
+    status = models.CharField(
+        'Статус', 
+        max_length= 11, 
+        choices=ProjectStatusesEnum, 
+        default='process',
+        help_text='Ведите состояние (статус) проекта. По умолчанию статус - В процессе'
+    )
+
+    class Meta:
+        verbose_name = 'Подпроект'
+        verbose_name_plural = 'Подпроекты'
+
+    def __str__(self):
+        return self.title
