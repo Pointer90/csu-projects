@@ -187,7 +187,7 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 {% if card.mediaExists %}
-                                    <img class="rounded-start-4" style="width: 160px; height: 236px;" src= {{card.project_preview.url}}>
+                                    <img class="rounded-start-4" style="width: 160px; height: 236px;" src= {{card.photo.url}}>
                                 {% endif %}
                             </div>
                             <div class="col-lg-8">
@@ -210,9 +210,9 @@
                                             </svg>
                                         </div>
                                     </span>
-                                    <h5 class="card-title">{{card.project_name}}</h5>
-                                    <p class="card-text text-truncate">{{card.project_description}}</p>
-                                    <a href="subProjects/{{card.project_id}}" class="stretched-link"></a>
+                                    <h5 class="card-title">{{card.title}}</h5>
+                                    <p class="card-text text-truncate">{{card.description}}</p>
+                                    <a href="subProjects/{{card.pid}}" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div>
