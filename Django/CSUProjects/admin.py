@@ -1,23 +1,39 @@
 from django.contrib import admin
+from django import forms
+
+from django.db import models
 from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects, WorkersInSubprojects
+
+# TabularInlines
 
 class SubprojectsInline(admin.TabularInline):
     model = Subprojects
     extra = 0
 
     fields = ('title', 'status', 'description')
+    formfield_overrides = {
+        models.TextField: {'widget': forms.Textarea(attrs={'rows': 5, 'cols': 70})},
+    }
 
 class VacanciesInline(admin.TabularInline):
     model = Vacancies
     extra = 0
 
     fields = ('post', 'description')
+    formfield_overrides = {
+        models.TextField: {'widget': forms.Textarea(attrs={'rows': 5, 'cols': 70})},
+    }
 
 class WorkersInSubprojectsInlines(admin.TabularInline):
     model = WorkersInSubprojects
     extra = 0
 
-# Register your models here.
+    formfield_overrides = {
+        models.TextField: {'widget': forms.Textarea(attrs={'rows': 5, 'cols': 70})},
+    }
+
+# Register models
+    
 @admin.register(Projects)
 class Projects(admin.ModelAdmin):
 
@@ -56,4 +72,3 @@ class SubProjectNeeds(admin.ModelAdmin):
 class WorkersInSubprojects(admin.ModelAdmin):
 
     list_display = ['sid', 'wid', 'post', 'description']
-

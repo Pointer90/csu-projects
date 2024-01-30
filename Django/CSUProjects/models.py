@@ -1,5 +1,4 @@
 from django.db import models
-from django.urls import reverse
 
 ProjectStatusesEnum = (
     ('completed', 'Выполнен'),
@@ -32,7 +31,7 @@ class Projects(models.Model):
         max_length=14,
         choices=ProjectStatusesEnum,
         default='process',
-        help_text='Ведите состояние (статус) проекта. По умолчанию статус - В процессе'
+        help_text='Выберите состояние (статус) проекта.'
     )
     creation_date = models.DateTimeField(
         'Дата создания',
@@ -49,7 +48,7 @@ class Projects(models.Model):
     class Meta:
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
-    
+
     def display_year(self):
         return self.creation_date.year
     display_year.short_description = 'Год создания'
@@ -87,9 +86,6 @@ class Workers(models.Model):
         except:
             return False
         return True
-
-    def get_absolute_url(self):
-        return reverse('worker-detail', args=[str(self.wid)])
 
 class Subprojects(models.Model):
     sid = models.AutoField(primary_key=True)
@@ -130,7 +126,7 @@ class Subprojects(models.Model):
         max_length= 11, 
         choices=ProjectStatusesEnum, 
         default='process',
-        help_text='Ведите состояние (статус) проекта. По умолчанию статус - В процессе'
+        help_text='Выберите состояние (статус) проекта.'
     )
 
     class Meta:
@@ -141,7 +137,7 @@ class Subprojects(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse('subproject-detail', args=[str(self.sid)])
+        return f'/admin/CSUProjects/subprojects/{self.sid}'
     
 class Vacancies(models.Model):
     vid = models.AutoField(primary_key=True)
@@ -168,9 +164,6 @@ class Vacancies(models.Model):
     class Meta:
         verbose_name = 'Вакансия',
         verbose_name_plural = 'Вакансии'
-
-    def get_absolute_url(self):
-        return reverse('vacancy-detail', args=[str(self.vid)])
 
 class WorkersInSubprojects(models.Model):
     wsid = models.AutoField(primary_key=True)
@@ -201,6 +194,9 @@ class WorkersInSubprojects(models.Model):
 
     def str(self):
         return f'{self.wid} {self.sid}'
+    
+    def get_absolute_url(self):
+        return f'/admin/CSUProjects/workers/{self.wsid}'
 
     class Meta:
         verbose_name = 'Исполнитель в подпроекте'
