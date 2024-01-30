@@ -104,8 +104,8 @@
                     <div class="carousel-item active">
                         <img src="https://toruskit.com/assets/img/util/slider-magenta-01.svg" class="img-fluid w-100 rounded-5 user-select-none" alt="">
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100">
-                            <h4 class="py-5">{{nameProject.comp_project_name}}</h4>
-                            <h5 class="pt-5">{{nameProject.comp_project_description}}</h5>
+                            <h4 class="py-5">{{project.title}}</h4>
+                            <h5 class="pt-5">{{project.description}}</h5>
                         </div>
                     </div>
                     {% for card in cards %}
@@ -119,9 +119,9 @@
                                     </div>
                                     <div class="col-8">
                                         <div class="card-body">
-                                            <h4>{{card.worker_post}}</h4>
-                                            <h5>{{card.worker_id.worker_full_name}}</h5>
-                                            <p>{{card.worker_description}}</p>
+                                            <h4>{{card.wsid.post}}</h4>
+                                            <h5>{{card.wsid.name}}</h5>
+                                            <p>{{card.wsid.description}}</p>
                                         </div>
                                     </div>
                                 </div>

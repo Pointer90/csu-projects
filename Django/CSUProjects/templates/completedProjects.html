@@ -135,14 +135,14 @@
                         <div class="row">
                             <div class="col-md-4">
                                 {% if card.mediaExists %}
-                                    <img class="rounded-start" style="width: 160px; height: 240px;" src= {{card.comp_project_preview.url}}>
+                                    <img class="rounded-start" style="width: 160px; height: 240px;" src= {{card.photo.url}}>
                                 {% endif %}
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{card.comp_project_name}}</h5>
-                                    <p class="card-text">{{card.comp_project_description}}</p>
-                                    <a href="cinema/{{card.comp_project_id}}" class="stretched-link"></a>
+                                    <h5 class="card-title">{{card.title}}</h5>
+                                    <p class="card-text">{{card.description}}</p>
+                                    <a href="cinema/{{card.pid}}" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div>
