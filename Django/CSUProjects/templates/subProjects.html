@@ -113,8 +113,8 @@
 
     <section id="about-project">
         <div class="bg-body-secondary p-3">
-            <h1 class="fs-1">Название проекта</h1>
-            <p class="fs-5">Здесь должно быть описание проекта</p>
+            <h1 class="fs-1">{{project.title}}</h1>
+            <p class="fs-5">{{project.description}}</p>
         </div>
         <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100" xml:space="preserve" class="">
@@ -132,8 +132,8 @@
                     <div class="card shadow-lg rounded-4 border-2" style="max-width: 540px;">
                         <div class="d-flex text-center">
                             <div class="card-body">
-                                <h5 class="card-title">{{card.subproject_name}}</h5>
-                                <p class="card-text">{{card.subproject_description}}</p>
+                                <h5 class="card-title">{{card.title}}</h5>
+                                <p class="card-text">{{card.description}}</p>
                                 <button type="button" class="btn btn-sm btn-outline-dark rounded-3" data-bs-toggle="modal" data-bs-target="#invite-prj">Записаться</button>
                             </div>
                         </div>
@@ -145,7 +145,7 @@
     </section>
 
     <section id="contacts">
-        <div class="container-fluid bg-light mt-4">
+        <div class="container-fluid bg-light mt-4 fixed-bottom">
             <h1 class="fs-1 col text-start">Контакты</h1>
             <div class="row justify-content-center">
                 <div class="col-3">

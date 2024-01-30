@@ -1,90 +1,74 @@
 from django.contrib import admin
-from .models import *
+from django import forms
 
-# Register your models here.
+from django.db import models
+from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects, WorkersInSubprojects
 
+# TabularInlines
 
+class SubprojectsInline(admin.TabularInline):
+    model = Subprojects
+    extra = 0
+
+    fields = ('title', 'status', 'description')
+    formfield_overrides = {
+        models.TextField: {'widget': forms.Textarea(attrs={'rows': 5, 'cols': 70})},
+    }
+
+class VacanciesInline(admin.TabularInline):
+    model = Vacancies
+    extra = 0
+
+    fields = ('post', 'description')
+    formfield_overrides = {
+        models.TextField: {'widget': forms.Textarea(attrs={'rows': 5, 'cols': 70})},
+    }
+
+class WorkersInSubprojectsInlines(admin.TabularInline):
+    model = WorkersInSubprojects
+    extra = 0
+
+    formfield_overrides = {
+        models.TextField: {'widget': forms.Textarea(attrs={'rows': 5, 'cols': 70})},
+    }
+
+# Register models
+    
 @admin.register(Projects)
 class Projects(admin.ModelAdmin):
-    list_filter = ('project_created',)
 
-    list_display = ['project_name', 'project_description', 'project_created']
+    list_display = ['title', 'status', 'display_year', ]
+    list_filter = ['status',]
+    search_fields = ['creation_date', 'title__startswith', 'status']
 
-    fieldsets = (
-        (None, {
-            'fields': (('project_name', 'project_preview'),)
-        }),
-        (None, {
-            'fields': ('project_description',)
-        })
-    )
-
-
-@admin.register(SubProjects)
-class SubProjects(admin.ModelAdmin):
-    list_filter = ('subproject_created',)
-
-    list_display = ['project_id',
-                    'subproject_name',
-                    'subproject_description',
-                    'subproject_created'
-                    ]
-
-    fieldsets = (
-        (None, {
-            'fields': (('project_id', 'subproject_name'),)
-        }),
-        (None, {
-            'fields': ('subproject_description',)
-        })
-    )
-
-
-@admin.register(SubProjectNeeds)
-class SubProjectNeeds(admin.ModelAdmin):
-    list_filter = ('need_profiles',)
-    list_display = ['subproject_id', 'need_profiles', 'need_description']
-
-    fields = ('subproject_id', 'need_profiles', 'need_description')
-
-
-@admin.register(CompletedProjects)
-class CompletedProjects(admin.ModelAdmin):
-    list_filter = ('comp_project_created',)
-
-    list_display = ['comp_project_name',
-                    'comp_project_description',
-                    'comp_project_created'
-                    ]
-
-    fieldsets = (
-        (None, {
-            'fields': ('comp_project_name', 'comp_project_preview',)
-        }),
-        (None, {
-            'fields': ('comp_project_description',)
-        })
-    )
-
+    fields = (('title', 'status'), 'photo', 'description')
+    inlines = [SubprojectsInline]
 
 @admin.register(Workers)
 class Workers(admin.ModelAdmin):
-    list_display = ['worker_full_name']
+    list_display = ['name']
+    search_fields = ['name__startswith',]
 
-
-@admin.register(WorkersInProject)
-class WorkersInProject(admin.ModelAdmin):
-    list_filter = ('worker_post',)
-    list_display = ['worker_id',
-                    'worker_post',
-                    'comp_project_id',
-                    'worker_description'
+@admin.register(Subprojects)
+class SubProjects(admin.ModelAdmin):
+    list_filter = ('creation_date',)
+    list_display = ['pid',
+                    'title',
+                    'description',
+                    'creation_date'
                     ]
-    fieldsets = (
-        ('Данные работника', {
-            'fields': (('worker_id', 'worker_post'),)
-        }),
-        ('Данные проекта', {
-            'fields': ('comp_project_id', 'worker_description')
-        }),
-    )
+
+    fields = (('title', 'status'), 'photo', 'description')
+    inlines = [VacanciesInline, WorkersInSubprojectsInlines]
+
+# @admin.register(Vacancies)
+class SubProjectNeeds(admin.ModelAdmin):
+    list_filter = ('post',)
+    list_display = ['sid', 'post', 'description']
+
+    fields = ('sid', 'post', 'description')
+
+# @admin.register(WorkersInSubprojects)
+class WorkersInSubprojects(admin.ModelAdmin):
+
+    list_display = ['sid', 'wid', 'post', 'description']
