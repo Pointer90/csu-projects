@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from .models import *
+from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects
 
 # Create your views here.
 
@@ -59,18 +59,18 @@ dataCinemaPage = {
 }
 
 def main(request):
-    data = Projects.objects.all()
+    data = Projects.objects.exclude(status='completed').exclude(status='frozen')
     return render(request, 'index.html', context={"cards": data})
 
 def subProjects(request, project_id):
-    data = SubProjects.objects.filter(project_id=project_id)
+    data = Subprojects.objects.filter(pid=project_id)
     return render(request, 'subProjects.html', context= {"cards" : data})
 
 def completedProjects(request):
-    data = CompletedProjects.objects.all()
+    data = Projects.objects.filter(status='completed')
     return render(request, 'completedProjects.html', context= {"cards": data})
 
 def cinema(request, comp_project_id):
-    name = CompletedProjects.objects.get(comp_project_id=comp_project_id)
-    data = WorkersInProject.objects.select_related('worker_id').filter(comp_project_id=comp_project_id)
+    name = Projects.objects.get(pid=comp_project_id)
+    data = WorkersInSubprojects.objects.select_related('worker_id').filter(pid=comp_project_id)
     return render(request, 'cinema.html',context= {'nameProject': name, 'cards': data})

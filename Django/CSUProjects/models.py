@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 ProjectStatusesEnum = (
     ('completed', 'Выполнен'),
@@ -53,6 +54,13 @@ class Projects(models.Model):
         return self.creation_date.year
     display_year.short_description = 'Год создания'
 
+    def mediaExists(self):
+        try:
+            result = self.photo.url
+        except:
+            return False
+        return True
+
 class Workers(models.Model):
     wid = models.AutoField(primary_key=True)
     name = models.CharField(
@@ -72,6 +80,16 @@ class Workers(models.Model):
     class Meta:
         verbose_name = 'Исполнитель'
         verbose_name_plural = 'Исполнители'
+
+    def mediaExists(self):
+        try:
+            result = self.photo.url
+        except:
+            return False
+        return True
+
+    def get_absolute_url(self):
+        return reverse('worker-detail', args=[str(self.wid)])
 
 class Subprojects(models.Model):
     sid = models.AutoField(primary_key=True)
@@ -122,6 +140,9 @@ class Subprojects(models.Model):
     def __str__(self):
         return self.title
     
+    def get_absolute_url(self):
+        return reverse('subproject-detail', args=[str(self.sid)])
+    
 class Vacancies(models.Model):
     vid = models.AutoField(primary_key=True)
     sid =models.ForeignKey(
@@ -147,6 +168,9 @@ class Vacancies(models.Model):
     class Meta:
         verbose_name = 'Вакансия',
         verbose_name_plural = 'Вакансии'
+
+    def get_absolute_url(self):
+        return reverse('vacancy-detail', args=[str(self.vid)])
 
 class WorkersInSubprojects(models.Model):
     wsid = models.AutoField(primary_key=True)
