@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('wsid', models.AutoField(primary_key=True, serialize=False)),
                 ('post', models.CharField(max_length=80, verbose_name='Должность')),
                 ('description', models.TextField(max_length=255, verbose_name='Описание')),
-                ('sid', models.ForeignKey(help_text='Необходимо указать к какому проекту принадлежит', on_delete=django.db.models.deletion.CASCADE, to='CSUProjects.projects', verbose_name='Название проекта')),
+                ('sid', models.ForeignKey(help_text='Необходимо указать к какому проекту принадлежит', on_delete=django.db.models.deletion.CASCADE, to='CSUProjects.subprojects', verbose_name='Название проекта')),
                 ('wid', models.ForeignKey(help_text='Необходимо указать кто участвует в проекте', on_delete=django.db.models.deletion.CASCADE, to='CSUProjects.workers', verbose_name='Имя участника')),
             ],
             options={
