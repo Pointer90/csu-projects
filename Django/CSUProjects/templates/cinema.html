@@ -101,7 +101,7 @@
         <div class="d-flex container-fluid justify-content-center align-self-center align-items-center py-2 px-5 sticky-top">
             <div id="workersCarousel" class="carousel slide carousel-fade">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active d-flex">
                         <img src="https://toruskit.com/assets/img/util/slider-magenta-01.svg" class="img-fluid w-100 rounded-5 user-select-none" alt="">
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100">
                             <h4 class="py-5">{{project.title}}</h4>
@@ -115,13 +115,13 @@
                             <div class="card shadow-lg rounded-4 border-2">
                                 <div class="row">
                                     <div class="col-4">
-                                        <img class="d-flex rounded-start-4 img-fluid h-100 w-100 start-0" src= {{card.worker_id.worker_photo.url}}>
+                                        <img class="d-flex rounded-start-4 img-fluid h-100 w-100 start-0" src= {{card.wid.photo.url}}>
                                     </div>
                                     <div class="col-8">
                                         <div class="card-body">
-                                            <h4>{{card.wsid.post}}</h4>
-                                            <h5>{{card.wsid.name}}</h5>
-                                            <p>{{card.wsid.description}}</p>
+                                            <h4>{{card.post}}</h4>
+                                            <h5>{{card.wid.name}}</h5>
+                                            <p>{{card.description}}</p>
                                         </div>
                                     </div>
                                 </div>
