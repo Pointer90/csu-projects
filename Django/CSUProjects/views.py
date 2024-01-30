@@ -68,10 +68,10 @@ def subProjects(request, pid):
     return render(request, 'subProjects.html', context= {"project" : name, "cards" : data})
 
 def completedProjects(request):
-    data = Projects.objects.filter(status='completed')
+    data = Subprojects.objects.select_related('pid').filter(status='completed')
     return render(request, 'completedProjects.html', context= {"cards": data})
 
 def cinema(request, pid):
     name = Projects.objects.get(pid=pid)
-    data = WorkersInSubprojects.objects.select_related('sid').filter(pid=pid)
+    data = WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid)
     return render(request, 'cinema.html',context= {'project': name, 'cards': data})
