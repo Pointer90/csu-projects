@@ -175,7 +175,7 @@ class Vacancies(models.Model):
 class WorkersInSubprojects(models.Model):
     wsid = models.AutoField(primary_key=True)
     sid = models.ForeignKey(
-        Projects,
+        Subprojects,
         verbose_name = 'Название проекта',
         on_delete = models.CASCADE,
         help_text='Необходимо указать к какому проекту принадлежит'
