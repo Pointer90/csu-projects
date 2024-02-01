@@ -188,6 +188,8 @@
                             <div class="col-lg-4">
                                 {% if card.mediaExists %}
                                     <img class="rounded-start-4" style="width: 160px; height: 236px;" src= {{card.photo.url}}>
+                                {% else %}
+                                    <img class="rounded-start-4" style="width: 160px; height: 236px;" src={% static "/img/logo-photo.jpg" %}>
                                 {% endif %}
                             </div>
                             <div class="col-lg-8">
