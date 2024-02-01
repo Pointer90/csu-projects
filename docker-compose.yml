@@ -1,0 +1,10 @@
+version: '3.11'
+
+services:
+  web:
+    build: ./Django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./Django/:/usr/src/app/
+    ports:
+      - 8000:8000
