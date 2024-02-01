@@ -14,9 +14,10 @@ def main(request):
                                                   "cpcount": completed_projects_count})
 
 def subProjects(request, pid):
-    data = Subprojects.objects.filter(pid=pid)
     name = Projects.objects.get(pid=pid)
-    return render(request, 'subProjects.html', context= {"project" : name, "cards" : data})
+    data = Subprojects.objects.filter(pid=pid)
+    vacs = Vacancies.objects.select_related('sid').filter(sid__pid=pid).values("vid", "post", "description")
+    return render(request, 'subProjects.html', context= {"project" : name, "cards" : data, "vacancies": vacs})
 
 def completedProjects(request):
     data = Subprojects.objects.select_related('pid').filter(status='completed').values('pid', 'pid__title', 'pid__description').distinct()

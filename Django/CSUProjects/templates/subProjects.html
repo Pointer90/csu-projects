@@ -129,7 +129,7 @@
             <div class="grid mt-5 mb-5">
                 <div class="row gy-3 gx-0 justify-content-between">
                 {% for card in cards%}
-                    <div class="card shadow-lg rounded-4 border-2" style="max-width: 540px;">
+                    <div class="card shadow-lg rounded-4 border-2" id="{{card.sid}}" style="max-width: 540px;">
                         <div class="d-flex text-center">
                             <div class="card-body">
                                 <h5 class="card-title">{{card.title}}</h5>
@@ -191,6 +191,19 @@
                     <div class="form-floating mb-4">
                         <input type="email" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingEmail" placeholder="Email">
                         <label for="floatingEmail">Email</label>
+                    </div>
+                    <div class="form-floating">
+                        <select class="form-select mb-4" id="floatingSelect" aria-label="select">
+                            <option selected>-----------------------</option>
+                            {% for card in cards %}
+                            <option value="{{vacancy.vid}}">{{card.title}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingSelect">Выберете интересующий вас подпроект</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="email" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingSubproject" placeholder="Email">
+                        <label for="floatingSubproject">Введите интересующую вас вакансию</label>
                     </div>
                     <div class="form-floating mb-4">
                         <textarea class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingDescription" rows="3" col="4" placeholder="Описание проекта" aria-describedby="descriptionHelp"></textarea>
