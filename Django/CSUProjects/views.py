@@ -19,7 +19,7 @@ def subProjects(request, pid):
     return render(request, 'subProjects.html', context= {"project" : name, "cards" : data})
 
 def completedProjects(request):
-    data = Subprojects.objects.select_related('pid').filter(status='completed')
+    data = Subprojects.objects.select_related('pid').filter(status='completed').values('pid', 'pid__title', 'pid__description').distinct()
     return render(request, 'completedProjects.html', context= {"cards": data})
 
 def cinema(request, pid):

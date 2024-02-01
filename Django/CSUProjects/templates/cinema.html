@@ -115,7 +115,11 @@
                             <div class="card shadow-lg rounded-4 border-2">
                                 <div class="row">
                                     <div class="col-4">
+                                    {% if card.wid.mediaExists %}
                                         <img class="d-flex rounded-start-4 img-fluid h-100 w-100 start-0" src= {{card.wid.photo.url}}>
+                                    {% else %}
+                                        <img class="d-flex rounded-start-4 img-fluid h-100 w-100 start-0"src={% static "/img/worker-photo.jpg" %}>
+                                    {% endif %}
                                     </div>
                                     <div class="col-8">
                                         <div class="card-body">

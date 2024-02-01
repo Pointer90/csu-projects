@@ -128,21 +128,23 @@
     <section id="projects">
         <h1 class="fs-1 p-2">Проекты</h1>
         <div class="container">
-            <div class="grid mt-4">
-                <div class="row gy-3 gx-0 justify-content-around">
+            <div class="grid mt-4 mb-4">
+                <div class="row gy-3 gx-0 justify-content-between">
                 {% for card in cards%}
                      <div class="card shadow-lg col-6 rounded-4 border-2" style="max-width: 540px;">
                         <div class="row">
                             <div class="col-md-4">
-                                {% if card.mediaExists %}
-                                    <img class="rounded-start" style="width: 160px; height: 240px;" src= {{card.pid.photo.url}}>
+                                {% if card.pid.mediaExists %}
+                                    <img class="rounded-start" style="width: 160px; height: 240px;" src= {{card.photo.url}}>
+                                {% else %}
+                                    <img class="rounded-start-4" style="width: 160px; height: 236px;" src={% static "/img/logo-photo.jpg" %}>
                                 {% endif %}
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{card.pid.title}}</h5>
-                                    <p class="card-text">{{card.pid.description}}</p>
-                                    <a href="cinema/{{card.pid.pid}}" class="stretched-link"></a>
+                                    <h5 class="card-title">{{card.pid__title}}</h5>
+                                    <p class="card-text">{{card.pid__description}}</p>
+                                    <a href="cinema/{{card.pid}}" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +156,7 @@
     </section>
 
     <section id="contacts">
-        <div class="container-fluid bg-light mt-4 fixed-bottom">
+        <div class="container-fluid bg-light mt-4 sticky-bottom">
             <h1 class="fs-1 col text-start">Контакты</h1>
             <div class="row justify-content-center">
                 <div class="col-3">
