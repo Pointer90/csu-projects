@@ -31,7 +31,7 @@ class Projects(models.Model):
         max_length=14,
         choices=ProjectStatusesEnum,
         default='process',
-        help_text='Выберите состояние (статус) проекта.'
+        help_text='Выберите состояние (статус) проекта'
     )
     creation_date = models.DateTimeField(
         'Дата создания',
@@ -70,7 +70,7 @@ class Workers(models.Model):
     photo = models.ImageField(
         'Фото',
         upload_to='peoples/',
-        blank=False
+        blank=True
     )
 
     def __str__(self):
@@ -105,7 +105,7 @@ class Subprojects(models.Model):
     description = models.TextField(
         'Описание',
         max_length=255,
-        help_text='Краткое описание проекта'
+        help_text='Краткое описание подпроекта'
     )
     photo = models.ImageField(
         upload_to='previews/',
@@ -123,10 +123,10 @@ class Subprojects(models.Model):
     )
     status = models.CharField(
         'Статус', 
-        max_length= 11, 
+        max_length=14, 
         choices=ProjectStatusesEnum, 
         default='process',
-        help_text='Выберите состояние (статус) проекта.'
+        help_text='Выберите состояние (статус) подпроекта'
     )
 
     class Meta:
@@ -144,7 +144,7 @@ class Vacancies(models.Model):
     sid =models.ForeignKey(
         Subprojects,
         on_delete=models.CASCADE,
-        verbose_name='Название проекта'
+        verbose_name='Название подпроекта'
     )
     post = models.CharField(
         'Специальность',
@@ -169,9 +169,9 @@ class WorkersInSubprojects(models.Model):
     wsid = models.AutoField(primary_key=True)
     sid = models.ForeignKey(
         Subprojects,
-        verbose_name = 'Название проекта',
+        verbose_name = 'Название подпроекта',
         on_delete = models.CASCADE,
-        help_text='Необходимо указать к какому проекту принадлежит'
+        help_text='Необходимо указать к какому подпроекту принадлежит'
     )
     wid = models.ForeignKey(
         Workers,
