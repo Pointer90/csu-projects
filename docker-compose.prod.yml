@@ -1,0 +1,18 @@
+version: '3.11'
+
+services:
+  web:
+    build: ./Django
+    volumes:
+      - ${ROOT}:/usr/src/app/static
+    expose:
+      - 8000
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - ${ROOT}:/home/app/web/static
+    ports:
+      - ${PORT}:80
+    depends_on:
+      - web
