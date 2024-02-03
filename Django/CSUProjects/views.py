@@ -1,5 +1,6 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects
+from .smtp_server import send_form
 
 # Create your views here.
 
@@ -8,6 +9,16 @@ def main(request):
     workers_count = Workers.objects.count()
     projects_count = Projects.objects.count()
     completed_projects_count = Projects.objects.filter(status='completed').count()
+
+    # Отправка почты
+    if request.method == "POST":
+        data = dict()
+        form_names = ['title_project', 'title_organization', 'email', 'vacancy', 'description']
+
+        for name in form_names:
+            data[name] = request.POST.get(name)
+            send_form(data)
+
     return render(request, 'index.html', context={"cards": data,
                                                   "wcount" : workers_count,
                                                   "pcount": projects_count,
@@ -17,6 +28,18 @@ def subProjects(request, pid):
     name = Projects.objects.get(pid=pid)
     data = Subprojects.objects.filter(pid=pid)
     vacs = Vacancies.objects.select_related('sid').filter(sid__pid=pid).values("vid", "post", "description")
+
+    # Отправка почты
+    if request.method == "POST":
+        data = dict()
+        form_names = ['name', 'second_name', 'group', 'email', 'subporject_name', 'vacancy', 'description']
+
+        for name in form_names:
+            data[name] = request.POST.get(name)
+            send_form(data)
+
+        
+
     return render(request, 'subProjects.html', context= {"project" : name, "cards" : data, "vacancies": vacs})
 
 def completedProjects(request):
