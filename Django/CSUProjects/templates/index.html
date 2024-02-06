@@ -99,6 +99,7 @@
     <script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_constants.js" %} defer></script>
 	<script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_engine.js" %} defer></script>
     <script type="text/javascript" src={% static "/src/JScripts/themeToggle.js" %} defer></script>
+    <script type="text/javascript" src= {% static "/src/JScripts/search.js" %} defer></script>
     {% comment %} <script type="text/javascript" src={% static "/src/JScripts/CSULogo.js" %} defer></script> {% endcomment %}
 
 	<link rel="stylesheet" href={% static "/css/vortex.css" %}>
@@ -210,6 +211,18 @@
 
     <section id="projects">
         <h1 class="fs-1 p-2">Проекты</h1>
+
+            <div class="container my-5 bg-light-primary border border-2 rounded-4 g-0 p-3 shadow">
+                <form>
+                    <div class="form-floating d-flex rounded-start" role="search">
+                        <input name="search-text" class="form-control border-0 shadow-none" type="search" id="floatingSearch" placeholder="Поиск проекта" aria-label="Search">
+                        <label for="floatingSearch">Поиск проекта</label>
+                        <div class="vr"></div>
+                        <button class="btn border-0" type="submit">Поиск</button>
+                    </div>
+                </form>
+            </div>
+
         <div class="container">
             <div class="grid mt-4">
                 <div class="row gy-5 gx-0 justify-content-between">
@@ -383,33 +396,36 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <h1 class="modal-title fs-3" id="label-invite-prj">Предложить проект</h1>
             </div>
-            <div class="modal-body">
-                <div class="form-floating mb-4">
-                    <input type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingTitle" placeholder="Название проекта">
-                    <label for="floatingTitle">Название проекта</label>
+            <form method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-floating mb-4">
+                        <input name="title_project" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingTitle" placeholder="Название проекта">
+                        <label for="floatingTitle">Название проекта</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input name="title_organization" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingOrganization" placeholder="Название организации">
+                        <label for="floatingOrganization">Название организации</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input name="email" type="email" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingEmail" placeholder="Email">
+                        <label for="floatingEmail">Email</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input name="vacancy" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingVacancy" placeholder="Кто необходим" aria-describedby="vacancyHelp">
+                        <label for="floatingVacancy" class="form-label">Кто необходим</label>
+                        <div id="vacancyHelp" class="form-text">Перечислите должности участников.</div>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <textarea name="description" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingDescription" rows="3" col="4" placeholder="Описание проекта" aria-describedby="descriptionHelp"></textarea>
+                        <label for="floatingDescription" class="form-label">Описание</label>
+                        <div id="descriptionHelp" class="form-text">Кратко опишите идею своего проекта.</div>
+                    </div>
                 </div>
-                <div class="form-floating mb-4">
-                    <input type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingOrganization" placeholder="Название организации">
-                    <label for="floatingOrganization">Название организации</label>
+                <div class="modal-footer justify-content-center border-0">
+                    <button type="submit" class="btn btn-outline-dark rounded-3 col">Отправить</button>
                 </div>
-                <div class="form-floating mb-4">
-                    <input type="email" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingEmail" placeholder="Email">
-                    <label for="floatingEmail">Email</label>
-                </div>
-                <div class="form-floating mb-4">
-                    <input type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingVacancy" placeholder="Кто необходим" aria-describedby="vacancyHelp">
-                    <label for="floatingVacancy" class="form-label">Кто необходим</label>
-                    <div id="vacancyHelp" class="form-text">Перечислите должности участников.</div>
-                </div>
-                <div class="form-floating mb-4">
-                    <textarea class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingDescription" rows="3" col="4" placeholder="Описание проекта" aria-describedby="descriptionHelp"></textarea>
-                    <label for="floatingDescription" class="form-label">Описание</label>
-                    <div id="descriptionHelp" class="form-text">Кратко опишите идею своего проекта.</div>
-                </div>
-            </div>
-            <div class="modal-footer justify-content-center border-0">
-                <button type="button" class="btn btn-outline-dark rounded-3 col">Отправить</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
