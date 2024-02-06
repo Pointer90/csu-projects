@@ -84,6 +84,7 @@
     </script>
 
     <script type="text/javascript" src= {% static "/src/JScripts/gen_word_engine.js" %} defer> </script>
+    <script type="text/javascript" src= {% static "/src/JScripts/search.js" %} defer></script>
 
 {% endblock cssAndScripts %}
 
@@ -117,12 +118,14 @@
     </section>
 
     <div class="container my-5 bg-light-primary border border-2 rounded-4 g-0 p-3 shadow">
-        <div class="form-floating d-flex rounded-start" role="search">
-            <input class="form-control border-0 shadow-none" type="search" id="floatingSearch" placeholder="Поиск проекта" aria-label="Search">
-            <label for="floatingSearch">Поиск проекта</label>
-            <div class="vr"></div>
-            <button class="btn border-0" type="submit">Поиск</button>
-        </div>
+        <form>
+            <div class="form-floating d-flex rounded-start" role="search">
+                <input name="search-text" class="form-control border-0 shadow-none" type="search" id="floatingSearch" placeholder="Поиск проекта" aria-label="Search">
+                <label for="floatingSearch">Поиск проекта</label>
+                <div class="vr"></div>
+                <button class="btn border-0" type="submit">Поиск</button>
+            </div>
+        </form>
     </div>
 
     <section id="projects">
