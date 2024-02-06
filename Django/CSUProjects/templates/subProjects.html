@@ -208,36 +208,36 @@
                     {% csrf_token %}
                     <div class="modal-body">
                         <div class="form-floating mb-4">
-                            <input name="name" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingTitle" placeholder="Название проекта">
-                            <label for="floatingTitle">Имя</label>
+                            <input name="name" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingName" placeholder="Имя">
+                            <label for="floatingName">Имя</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input name="second_name" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingOrganization" placeholder="Название организации">
-                            <label for="floatingOrganization">Фамилия</label>
+                            <input name="second_name" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingSecondName" placeholder="Фамилия">
+                            <label for="floatingSecondName">Фамилия</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input name="group" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingOrganization" placeholder="Название организации">
-                            <label for="floatingOrganization">Группа</label>
+                            <input name="group" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingGroup" placeholder="Группа">
+                            <label for="floatingGroup">Группа</label>
                         </div>
                         <div class="form-floating mb-4">
                             <input name="email" type="email" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingEmail" placeholder="Email">
                             <label for="floatingEmail">Email</label>
                         </div>
                         <div class="form-floating">
-                            <select name="subporject_name" class="form-select mb-4" id="floatingSelect" aria-label="select">
+                            <select name="subporject_name" class="form-select mb-4" id="floatingSubproject" aria-label="select">
                                 <option selected>-----------------------</option>
                                 {% for card in cards %}
                                 <option value="{{vacancy.vid}}">{{card.title}}</option>
                                 {% endfor %}
                             </select>
-                            <label for="floatingSelect">Выберете интересующий вас подпроект</label>
+                            <label for="floatingSubproject">Выберете интересующий вас подпроект</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input name="vacancy" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingSubproject" placeholder="Email">
-                            <label for="floatingSubproject">Введите интересующую вас вакансию</label>
+                            <input name="vacancy" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingVacancy" placeholder="Вакансия">
+                            <label for="floatingVacancy">Введите интересующую вас вакансию</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <textarea name="description" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingDescription" rows="3" col="4" placeholder="Описание проекта" aria-describedby="descriptionHelp"></textarea>
+                            <textarea name="description" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingDescription" rows="3" col="4" placeholder="О себе" aria-describedby="descriptionHelp"></textarea>
                             <label for="floatingDescription" class="form-label">О себе</label>
                             <div id="descriptionHelp" class="form-text">Расскажите нам немного о себе</div>
                         </div>
