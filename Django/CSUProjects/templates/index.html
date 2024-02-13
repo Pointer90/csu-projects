@@ -240,8 +240,8 @@
                                 <div class="card-body">
                                     <span class="d-flex badge justify-content-end">
                                         {% if card.status == 'full' %}
-                                            <div class="d-flex py-1 px-2 rounded-pill border-1 text-bg-success">
-                                                <div class="px-1">Набор окончен</div>
+                                            <div class="position-absolute d-flex top-0 translate-middle-y px-1 py-1 rounded-pill border-1 text-bg-success">
+                                                <div class="px-1 fs-3">Набор окончен</div>
                                                 <div class="vr mx-1"></div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
                                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -250,7 +250,7 @@
                                             </div>
                                         {% endif %}
                                         {% if card.status == 'process' %}
-                                            <div class="d-flex py-1 px-2 rounded-pill border-1 text-bg-warning">
+                                            <div class="position-absolute d-flex top-0 translate-middle-y px-1 py-1 rounded-pill border-1 text-bg-warning">
                                                 <div class="px-1">В процессе</div>
                                                 <div class="vr mx-1"></div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hourglass-split" viewBox="0 0 16 16">
@@ -259,7 +259,7 @@
                                             </div>
                                         {% endif %}
                                         {% if card.status == 'quickly' %}
-                                            <div class="d-flex py-1 px-2 rounded-pill border-1 text-bg-danger">
+                                            <div class="position-absolute d-flex top-0 translate-middle-y px-1 py-1 rounded-pill border-1 text-bg-danger">
                                                 <div class="px-1">Срочно!</div>
                                                 <div class="vr mx-1"></div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
@@ -269,7 +269,7 @@
                                             </div>
                                         {% endif %}
                                         {% if card.status == 'frozen' %}
-                                            <div class="d-flex py-1 px-2 rounded-pill border-1 text-bg-primary">
+                                            <div class="position-absolute d-flex top-0 translate-middle-y px-1 py-1 rounded-pill border-1 text-bg-primary">
                                                 <div class="px-1">Заморожен</div>
                                                 <div class="vr mx-1"></div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">
@@ -279,7 +279,7 @@
                                             </div>
                                         {% endif %}
                                     </span>
-                                    <h5 class="card-title">{{card.title}}</h5>
+                                    <h5 class="card-title text-center">{{card.title}}</h5>
                                     <p class="card-text text-truncate">{{card.description}}</p>
                                     <a href="subProjects/{{card.pid}}" class="stretched-link"></a>
                                 </div>
@@ -333,7 +333,7 @@
 
     <section id="invite">
         <div class="container-fluid bg-body-secondary">
-            <h1 class="fs-2 p-2 text-center">Хочешь поделиться идей или посмотреть что сделали другие?</h1>
+            <h1 class="fs-2 p-2 text-center">Хочешь поделиться идеей или посмотреть что сделали другие?</h1>
             <p class="p-2 fs-4 text-center">Ваш взгляд ценен! Предложите свои идеи или ознакомьтесь с тем, что уже сделали другие участники.</p>
             <div class="row mt-5">
                 <div class="row justify-content-center mb-5">
@@ -372,16 +372,20 @@
                 <div class="col-3">
                     <h6>Контакты</h6>
                     <ul>
-                        <li>Телефон: +7(000)-000-00-00</li>
-                        <li>Адрес: Ул.Пушкина, д. Колотушкина</li>
+                        <li>Телефон: 8(351)799-71-01</li>
+                        <li>Адрес: г. Челябинск, ул. Братьев Кашириных, д. 129</li>
                         <li>Почта: user@example.com</li>
                     </ul>
                 </div>
                 <div class="col-3">
                     <h6>Продукты</h6>
                     <ul>
-                        <li>Наш университет</li>
-                        <li>Сайт цифровой школы</li>
+                        <li>
+                            <a href="https://www.csu.ru/" class="nav-link">Официальный сайт</a>
+                        </li>
+                        <li>
+                            <a href="https://moodle.uio.csu.ru/" class="nav-link">Moodle университета</a>
+                        </li>
                     </ul>
                 </div>
             </div>
