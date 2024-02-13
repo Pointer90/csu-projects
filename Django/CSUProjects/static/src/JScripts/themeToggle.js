@@ -12,19 +12,6 @@ function setCookies(mode)
     document.cookie = theme;
 }
 
-function getCookies()
-{
-    cookie = document.cookie.split(";")
-    data = new Map()
-    for (let i = 0; i < cookie.lenght; i++)
-    {
-        elem = cookie[i].split("=")
-        data.set(elem[0], elem[1])
-    }
-
-    return data
-}
-
 function lightThemeActivation()
 {
     lightTheme.setAttribute('class', "dropdown-item active rounded-3");
@@ -61,10 +48,7 @@ else{
 
 lightTheme.addEventListener("click", function ()
 {
-
-    cookie = getCookies();
-    cookie['theme'] = themeMode.LIGHT;
-    //setCookies(themeMode.LIGHT);
+    setCookies(themeMode.LIGHT);
     lightThemeActivation();
 });
 

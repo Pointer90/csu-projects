@@ -49,7 +49,6 @@ def subProjects(request, pid):
             send_form(data)
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
-    print(context['theme'])
     response = render(request, 'subProjects.html', context=context)
     response = set_cookie(response, theme=context['theme'])
 
