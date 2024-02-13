@@ -4,6 +4,12 @@ from .smtp_server import send_form
 
 # Create your views here.
 
+def set_cookie(response, **kwargs):
+    for key, value in kwargs.items():
+        response.set_cookie(key, value)
+    
+    return response
+
 def main(request):
     data = Projects.objects.exclude(status='completed').exclude(status='frozen')
     workers_count = Workers.objects.count()
@@ -19,15 +25,19 @@ def main(request):
             data[name] = request.POST.get(name)
             send_form(data)
 
-    return render(request, 'index.html', context={"cards": data,
-                                                  "wcount" : workers_count,
-                                                  "pcount": projects_count,
-                                                  "cpcount": completed_projects_count})
+    context = {"cards": data, "wcount" : workers_count, "pcount": projects_count, "cpcount": completed_projects_count}
+
+    context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
+    response = render(request, 'index.html', context=context)
+    set_cookie(response, theme=context['theme'])
+
+    return response
 
 def subProjects(request, pid):
     name = Projects.objects.get(pid=pid)
     data = Subprojects.objects.filter(pid=pid)
     vacs = Vacancies.objects.select_related('sid').filter(sid__pid=pid).values("vid", "post", "description")
+    context= {"project" : name, "cards" : data, "vacancies": vacs}
 
     # Отправка почты
     if request.method == "POST":
@@ -38,15 +48,29 @@ def subProjects(request, pid):
             data[name] = request.POST.get(name)
             send_form(data)
 
-        
+    context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
+    response = render(request, 'subProjects.html', context=context)
+    set_cookie(response, theme=context['theme'])    
 
-    return render(request, 'subProjects.html', context= {"project" : name, "cards" : data, "vacancies": vacs})
+    return response
 
 def completedProjects(request):
     data = Subprojects.objects.select_related('pid').filter(status='completed').values('pid', 'pid__title', 'pid__description').distinct()
-    return render(request, 'completedProjects.html', context= {"cards": data})
+    context= {"cards": data}
+
+    context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
+    response = render(request, 'completedProjects.html', context=context)
+    set_cookie(response, theme=context['theme'])
+
+    return response
 
 def cinema(request, pid):
     name = Projects.objects.get(pid=pid)
     data = WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid)
-    return render(request, 'cinema.html',context= {'project': name, 'cards': data})
+    context= {'project': name, 'cards': data}
+
+    context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
+    response = render(request, 'cinema.html', context=context)
+    set_cookie(response, theme=context['theme'])
+
+    return response
