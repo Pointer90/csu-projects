@@ -3,18 +3,30 @@ const darkTheme = document.querySelector('button#darkBtn');
 const bodyTag = document.querySelector('[data-tag="body"]');
 const svgs = document.querySelectorAll('.svgObj');
 const btns = document.querySelectorAll('.lastBtn');
-const cookie = document.cookie
 
 themeMode = {DARK: 'dark', LIGHT: 'light'}
 
 function setCookies(mode)
 {
-    theme = encodeURIComponent('theme') + '=' + encodeURIComponent(mode)
-    cookie = theme
+    theme = encodeURIComponent('theme') + '=' + encodeURIComponent(mode);
+    document.cookie = theme;
 }
 
-lightTheme.addEventListener("click", function () {
+function getCookies()
+{
+    cookie = document.cookie.split(";")
+    data = new Map()
+    for (let i = 0; i < cookie.lenght; i++)
+    {
+        elem = cookie[i].split("=")
+        data.set(elem[0], elem[1])
+    }
 
+    return data
+}
+
+function lightThemeActivation()
+{
     lightTheme.setAttribute('class', "dropdown-item active rounded-3");
     darkTheme.setAttribute('class', "dropdown-item rounded-3");
     bodyTag.setAttribute('data-bs-theme', "light");
@@ -24,9 +36,10 @@ lightTheme.addEventListener("click", function () {
     btns.forEach(btn =>{
         btn.setAttribute('class', "btn btn-outline-dark rounded-3 lastBtn");
     });
-});
+}
 
-darkTheme.addEventListener("click", function () {
+function darkThemeActivation()
+{
     lightTheme.setAttribute('class', "dropdown-item rounded-3");
     darkTheme.setAttribute('class', "dropdown-item active rounded-3");
     bodyTag.setAttribute('data-bs-theme', "dark");
@@ -36,4 +49,27 @@ darkTheme.addEventListener("click", function () {
     btns.forEach(btn =>{
         btn.setAttribute('class', "btn btn-outline-light rounded-3 lastBtn");
     });
+}
+
+if (bodyTag.getAttribute('data-bs-theme') == themeMode.LIGHT)
+{
+    lightThemeActivation();
+}
+else{
+    darkThemeActivation();
+}
+
+lightTheme.addEventListener("click", function ()
+{
+
+    cookie = getCookies();
+    cookie['theme'] = themeMode.LIGHT;
+    //setCookies(themeMode.LIGHT);
+    lightThemeActivation();
+});
+
+darkTheme.addEventListener("click", function ()
+{
+    setCookies(themeMode.DARK);
+    darkThemeActivation();
 });

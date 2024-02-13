@@ -29,7 +29,7 @@ def main(request):
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
     response = render(request, 'index.html', context=context)
-    set_cookie(response, theme=context['theme'])
+    response = set_cookie(response, theme=context['theme'])
 
     return response
 
@@ -49,8 +49,9 @@ def subProjects(request, pid):
             send_form(data)
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
+    print(context['theme'])
     response = render(request, 'subProjects.html', context=context)
-    set_cookie(response, theme=context['theme'])    
+    response = set_cookie(response, theme=context['theme'])
 
     return response
 
@@ -60,7 +61,7 @@ def completedProjects(request):
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
     response = render(request, 'completedProjects.html', context=context)
-    set_cookie(response, theme=context['theme'])
+    response = set_cookie(response, theme=context['theme'])
 
     return response
 
@@ -71,6 +72,6 @@ def cinema(request, pid):
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
     response = render(request, 'cinema.html', context=context)
-    set_cookie(response, theme=context['theme'])
+    response = set_cookie(response, theme=context['theme'])
 
     return response
