@@ -14,8 +14,10 @@ function setCookies(mode)
 
 function lightThemeActivation()
 {
-    lightTheme.setAttribute('class', "dropdown-item active rounded-3");
-    darkTheme.setAttribute('class', "dropdown-item rounded-3");
+    if (lightTheme && darkTheme){
+        lightTheme.setAttribute('class', "dropdown-item active rounded-3");
+        darkTheme.setAttribute('class', "dropdown-item rounded-3");
+    }
     bodyTag.setAttribute('data-bs-theme', "light");
     svgs.forEach(svg => {
         svg.setAttribute('fill', "white");
@@ -27,8 +29,10 @@ function lightThemeActivation()
 
 function darkThemeActivation()
 {
-    lightTheme.setAttribute('class', "dropdown-item rounded-3");
-    darkTheme.setAttribute('class', "dropdown-item active rounded-3");
+    if (lightTheme && darkTheme){
+        lightTheme.setAttribute('class', "dropdown-item rounded-3");
+        darkTheme.setAttribute('class', "dropdown-item active rounded-3");
+    }
     bodyTag.setAttribute('data-bs-theme', "dark");
     svgs.forEach(svg => {
         svg.setAttribute("fill", "#212529");
@@ -46,14 +50,17 @@ else{
     darkThemeActivation();
 }
 
-lightTheme.addEventListener("click", function ()
-{
-    setCookies(themeMode.LIGHT);
-    lightThemeActivation();
-});
+if (lightTheme && darkTheme){
 
-darkTheme.addEventListener("click", function ()
-{
-    setCookies(themeMode.DARK);
-    darkThemeActivation();
-});
+    lightTheme.addEventListener("click", function ()
+    {
+        setCookies(themeMode.LIGHT);
+        lightThemeActivation();
+    });
+
+    darkTheme.addEventListener("click", function ()
+    {
+        setCookies(themeMode.DARK);
+        darkThemeActivation();
+    });
+}
