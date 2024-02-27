@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-t0c&uj*!-8w6l@ws3(yv(qk1ujsn1h*f1hkv*kinhhdh)d5tp)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -50,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost:1337',]
 
 ROOT_URLCONF = 'Django.urls'
 
@@ -78,7 +80,7 @@ WSGI_APPLICATION = 'Django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR /'db'/'db.sqlite3',
     }
 }
 

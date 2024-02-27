@@ -6,5 +6,8 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./Django/:/usr/src/app/
+      - ${ROOT}:/usr/src/app/static
+      - ${ROOT}\db:/usr/src/app/db
+      - ${ROOT}:/usr/src/app/media
     ports:
       - 8000:8000

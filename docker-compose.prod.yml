@@ -5,6 +5,8 @@ services:
     build: ./Django
     volumes:
       - ${ROOT}:/usr/src/app/static
+      - ${ROOT}\db:/usr/src/app/db
+      - ${ROOT}:/usr/src/app/media
     expose:
       - 8000
 
@@ -12,6 +14,7 @@ services:
     build: ./nginx
     volumes:
       - ${ROOT}:/home/app/web/static
+      - ${ROOT}:/usr/src/app/media
     ports:
       - ${PORT}:80
     depends_on:
