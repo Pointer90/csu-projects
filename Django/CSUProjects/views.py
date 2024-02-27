@@ -36,7 +36,7 @@ def main(request):
 def subProjects(request, pid):
     name = Projects.objects.get(pid=pid)
     data = Subprojects.objects.filter(pid=pid)
-    vacs = Vacancies.objects.select_related('sid').filter(sid__pid=pid).values("vid", "post", "description")
+    vacs = Vacancies.objects.select_related('sid').filter(sid__pid=pid).values("vid", "post", "sid", "description")
     context= {"project" : name, "cards" : data, "vacancies": vacs}
 
     # Отправка почты
