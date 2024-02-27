@@ -3,6 +3,7 @@ const darkTheme = document.querySelector('button#darkBtn');
 const bodyTag = document.querySelector('[data-tag="body"]');
 const svgs = document.querySelectorAll('.svgObj');
 const btns = document.querySelectorAll('.lastBtn');
+const modalBtn = document.querySelector('.modalBtn');
 
 themeMode = {DARK: 'dark', LIGHT: 'light'}
 
@@ -25,6 +26,9 @@ function lightThemeActivation()
     btns.forEach(btn =>{
         btn.setAttribute('class', "btn btn-outline-dark rounded-3 lastBtn");
     });
+    if (modalBtn){
+        modalBtn.setAttribute("class","btn btn-outline-dark rounded-3 col modalBtn")
+    };
 }
 
 function darkThemeActivation()
@@ -40,6 +44,9 @@ function darkThemeActivation()
     btns.forEach(btn =>{
         btn.setAttribute('class', "btn btn-outline-light rounded-3 lastBtn");
     });
+    if (modalBtn){
+        modalBtn.setAttribute("class","btn btn-outline-light rounded-3 col modalBtn");
+    };
 }
 
 if (bodyTag.getAttribute('data-bs-theme') == themeMode.LIGHT)
