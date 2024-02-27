@@ -151,7 +151,7 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">{{card.pid__title}}</h5>
-                                    <p class="card-text text-truncate">{{card.pid__description}}</p>
+                                    <p class="card-text">{{card.pid__description|truncatechars:140}}</p>
                                     <a href="cinema/{{card.pid}}" class="stretched-link"></a>
                                 </div>
                             </div>
