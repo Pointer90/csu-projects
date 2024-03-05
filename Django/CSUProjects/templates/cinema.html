@@ -84,29 +84,29 @@
 
     <nav class="navbar navbar-expand-sm position-fixed-top shadow-lg border-bottom nav-underline user-select-none">
         <div class="container-fluid ">
-            <h2 class="logo d-flex justify-content-center"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
+            <h2 class="logo d-flex justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
         </div>
         <div class="collapse navbar-collapse justify-content-end col-8" id="navbarNav">
             <ul class="navbar-nav text-center align-items-center">
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'main' %}>Главная</a>
+                    <a class="nav-link fs-5" href={% url 'main' %}>Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'completedProjects' %}>Выполненные проекты</a>
+                    <a class="nav-link fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <section id="slides" class="d-flex justify-content-center">
-        <div class="z-0 d-flex container-fluid justify-content-center align-self-center align-items-center py-1 px-5 sticky-top">
+        <div class="z-0 d-flex container-fluid justify-content-center align-self-center align-items-center py-1 px-5 sticky-top mt-3">
             <div id="workersCarousel" class="carousel slide carousel-fade">
                 <div class="carousel-inner">
                     <div class="carousel-item active d-flex">
                         <img src={% static "/img/slide-background.png" %} class="img-fluid w-100 rounded-5 user-select-none" alt="">
                         <div class="carousel-caption d-flex flex-column justify-content-center h-100">
-                            <h2 class="py-5 text-light">{{project.title}}</h2>
-                            <h4 class="pt-5 text-light">{{project.description}}</h4>
+                            <h2 class="py-5 fs-1 text-center">{{project.title}}</h2>
+                            <h4 class="pt-5 lead fs-4 text-center">{{project.description}}</h4>
                         </div>
                     </div>
                     {% for card in cards %}
@@ -124,9 +124,9 @@
                                     </div>
                                     <div class="col-8 ps-0">
                                         <div class="card-body px-0">
-                                            <h1 class="pt-3 pb-4 border-bottom border-2">{{card.post}}</h1>
-                                            <h3 class="pt-2 pb-3 text-start">{{card.wid.name}}</h3>
-                                            <div class="fs-4 fst-normal text-start">{{card.description}}</div>
+                                            <h1 class="pt-3 pb-4 border-bottom border-2 fs-2">{{card.post}}</h1>
+                                            <h3 class="pt-2 pb-3 text-start lead fs-4 fw-medium">{{card.wid.name}}</h3>
+                                            <div class="fs-5 px-3 text-start fw-light">{{card.description}}</div>
                                         </div>
                                     </div>
                                 </div>

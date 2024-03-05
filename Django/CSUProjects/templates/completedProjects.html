@@ -92,15 +92,15 @@
 {% block content %}
     <nav class="navbar navbar-expand-sm position-fixed-top shadow-lg border-bottom nav-underline user-select-none">
         <div class="container-fluid ">
-            <h2 class="logo d-flex justify-content-center"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
+            <h2 class="logo d-flex justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
         </div>
         <div class="collapse navbar-collapse justify-content-end col-8" id="navbarNav">
-            <ul class="navbar-nav text-center align-items-center">
+            <ul class="navbar-nav text-center align-items-center px-3">
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'main' %}>Главная</a>
+                    <a class="nav-link fs-5" href={% url 'main' %}>Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'completedProjects' %}>Выполненные проекты</a>
+                    <a class="nav-link fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
                 </li>
             </ul>
         </div>
@@ -108,8 +108,8 @@
 
     <section id="info">
         <div class="bg-body-secondary p-3">
-            <h1 class="fs-1">Выполненные проекты</h1>
-            <p class="fs-5">Здесь мы гордимся результатами наших талантливых участников, представляя уникальные и инновационные проекты, которые вдохновляют и двигают вперед. Исследуйте наше портфолио, погружайтесь в разнообразие идей и готовьтесь к собственным творческим достижениям.</p>
+            <h1 class="fs-1 px-3">Выполненные проекты</h1>
+            <p class="text-body-secondary fs-5 px-5">Здесь мы гордимся результатами наших талантливых участников, представляя уникальные и инновационные проекты, которые вдохновляют и двигают вперед. Исследуйте наше портфолио, погружайтесь в разнообразие идей и готовьтесь к собственным творческим достижениям.</p>
         </div>
         <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">
@@ -150,8 +150,8 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">{{card.pid__title}}</h5>
-                                    <p class="card-text">{{card.pid__description|truncatechars:140}}</p>
+                                    <h5 class="card-title text-center fs-5">{{card.pid__title}}</h5>
+                                    <p class="card-text fs-6 fw-light">{{card.pid__description|truncatechars:140}}</p>
                                     <a href="cinema/{{card.pid}}" class="stretched-link"></a>
                                 </div>
                             </div>
@@ -167,8 +167,8 @@
         <div class="container-fluid mt-4 sticky-bottom bg-body-secondary border-top border-3">
             <h1 class="fs-1 col text-start">Контакты</h1>
             <div class="row justify-content-center">
-                <div class="col-3">
-                    <h6>Контакты</h6>
+                <div class="col-4">
+                    <h6 class="fw-normal fs-4 mt-3">Контакты</h6>
                     <ul>
                         <li>Телефон: 8(351)799-71-01</li>
                         <li>Адрес: г. Челябинск, ул. Братьев Кашириных, д. 129</li>
@@ -176,7 +176,7 @@
                     </ul>
                 </div>
                 <div class="col-3">
-                    <h6>Продукты</h6>
+                    <h6 class="fw-normal fs-4 mt-3">Продукты</h6>
                     <ul>
                         <li>
                             <a href="https://www.csu.ru/" class="nav-link">Официальный сайт</a>
