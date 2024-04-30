@@ -21,6 +21,8 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=[('completed', 'Выполнен'), ('quickly', 'Срочно'), ('full', 'Набор окончен'), ('process', 'В процессе'), ('frozen', 'Заморожен')], default='process', help_text='Ведите состояние (статус) проекта. По умолчанию статус - В процессе', max_length=14, verbose_name='Статус')),
                 ('creation_date', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')),
                 ('updation_date', models.DateTimeField(auto_now=True, verbose_name='Дата изменения')),
+                ('phone', models.CharField(verbose_name='Номер телефона руководителя', blank=False, max_length=14)),
+                ('link', models.URLField(verbose_name='Ссылка на сайт проекта', blank=True, help_text='*необязательное поле')),
             ],
             options={
                 'verbose_name': 'Проект',

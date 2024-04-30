@@ -94,13 +94,13 @@
         <div class="container-fluid">
             <h2 class="logo d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
         </div>
-        <div class="collapse navbar-collapse justify-content-md-end col-md-8 col-10" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-md-end col-md-8 col-10 me-4" id="navbarNav">
             <ul class="navbar-nav text-center align-items-center px-3">
                 <li class="nav-item">
                     <a class="nav-link fs-5" href={% url 'main' %}>Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
+                    <a class="nav-link active fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
                 </li>
             </ul>
         </div>
@@ -180,10 +180,10 @@
                     <h6 class="fw-normal fs-4 mt-3">Продукты</h6>
                     <ul>
                         <li>
-                            <a href="https://www.csu.ru/" class="nav-link">Официальный сайт</a>
+                            <a href="https://www.csu.ru/" class="link-body-emphasis opacity-75">Официальный сайт</a>
                         </li>
                         <li>
-                            <a href="https://moodle.uio.csu.ru/" class="nav-link">Moodle университета</a>
+                            <a href="https://moodle.uio.csu.ru/" class="link-body-emphasis opacity-75">Moodle университета</a>
                         </li>
                     </ul>
                 </div>

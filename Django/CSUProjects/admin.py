@@ -41,7 +41,7 @@ class Projects(admin.ModelAdmin):
     list_filter = ['status',]
     search_fields = ['creation_date', 'title__startswith', 'status']
 
-    fields = (('title', 'status'), 'photo', 'description')
+    fields = (('title', 'status'),'phone', 'link', 'photo', 'description')
     inlines = [SubprojectsInline]
 
 @admin.register(Workers)
