@@ -41,6 +41,17 @@ class Projects(models.Model):
         'Дата изменения',
         auto_now=True
     )
+    phone = models.CharField(
+        'Номер телефона руководителя',
+        blank=False,
+        max_length=14
+    )
+    link = models.URLField(
+        'Ссылка на сайт проекта',
+        blank=True,
+        help_text='*необязательное поле'
+    )
+
 
     def __str__(self):
         return self.title
