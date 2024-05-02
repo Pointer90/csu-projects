@@ -90,21 +90,6 @@
 {% endblock cssAndScripts %}
 
 {% block content %}
-    <nav class="navbar navbar-expand position-fixed-top shadow-lg border-bottom nav-underline user-select-none">
-        <div class="container-fluid">
-            <h2 class="logo d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
-        </div>
-        <div class="collapse navbar-collapse justify-content-md-end col-md-8 col-10 me-4" id="navbarNav">
-            <ul class="navbar-nav text-center align-items-center px-3">
-                <li class="nav-item">
-                    <a class="nav-link fs-5" href={% url 'main' %}>Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
     <section id="info">
         <div class="bg-body-secondary p-3">
@@ -159,33 +144,6 @@
                         </div>
                     </div>
                 {% endfor %}
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacts">
-        <div class="container-fluid mt-4 sticky-bottom bg-body-secondary border-top border-3">
-            <h1 class="fw-normal fs-4 mt-3">Контакты</h1>
-            <div class="row justify-content-center">
-                <div class="col-lg-3 col-6">
-                    <h6>Контакты</h6>
-                    <ul>
-                        <li>Телефон: 8(351)799-71-01</li>
-                        <li>Адрес: г. Челябинск, ул. Братьев Кашириных, д. 129</li>
-                        <li>Почта: user@example.com</li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-4">
-                    <h6 class="fw-normal fs-4 mt-3">Продукты</h6>
-                    <ul>
-                        <li>
-                            <a href="https://www.csu.ru/" class="link-body-emphasis opacity-75">Официальный сайт</a>
-                        </li>
-                        <li>
-                            <a href="https://moodle.uio.csu.ru/" class="link-body-emphasis opacity-75">Moodle университета</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
