@@ -29,7 +29,7 @@ def main(request):
             data[name] = request.POST.get(name)
             send_form(data)
 
-    context = {"cards": data, "wcount" : workers_count, "pcount": projects_count, "cpcount": completed_projects_count}
+    context = {"template_name" : 'index.html', "cards": data, "wcount" : workers_count, "pcount": projects_count, "cpcount": completed_projects_count}
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
     response = render(request, 'index.html', context=context)
@@ -39,7 +39,7 @@ def main(request):
 
 def subProjects(request, pid):
     name = Projects.objects.get(pid=pid)
-    data = Subprojects.objects.filter(pid=pid)
+    data = Subprojects.objects.filter(pid=pid).filter(status='completed')
     vacs = Vacancies.objects.select_related('sid').filter(sid__pid=pid).values("vid", "post", "sid", "description")
     context= {"project" : name, "cards" : data, "vacancies": vacs}
 
@@ -60,7 +60,7 @@ def subProjects(request, pid):
 
 def completedProjects(request):
     data = Subprojects.objects.select_related('pid').filter(status='completed').values('pid', 'pid__title', 'pid__description').distinct()
-    context= {"cards": data}
+    context= {"template_name" : 'completedProjects.html', "cards": data}
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
     response = render(request, 'completedProjects.html', context=context)
@@ -71,7 +71,7 @@ def completedProjects(request):
 def cinema(request, pid):
     name = Projects.objects.get(pid=pid)
     data = WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid)
-    context= {'project': name, 'cards': data}
+    context = {'project': name, 'cards': data}
 
     name.phone = format_phone(name)
 

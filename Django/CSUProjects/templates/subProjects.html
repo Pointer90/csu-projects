@@ -94,22 +94,6 @@
 {% endblock cssAndScripts %}
 
 {% block content %}
-    
-    <nav class="navbar navbar-expand position-fixed-top shadow-lg border-bottom nav-underline user-select-none">
-        <div class="container-fluid">
-            <h2 class="logo d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
-        </div>
-        <div class="collapse navbar-collapse justify-content-md-end col-md-8 col-10 me-4" id="navbarNav">
-            <ul class="navbar-nav text-center align-items-center">
-                <li class="nav-item">
-                    <a class="nav-link fs-5" href={% url 'main' %}>Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
     <section id="about-project">
         <div class="bg-body-secondary p-3">
@@ -134,19 +118,19 @@
             <div class="grid mt-5 mb-5">
                 <div class="row gy-4 gx-0 justify-content-lg-between justify-content-center align-items-center">
                 {% for card in cards%}
-                    <div class="card shadow-lg rounded-4 border-2"
+                    <div class="card shadow-lg rounded-4 border-2 bg-body-tertiary"
                          id="{{card.sid}}"
                          style="max-width: 540px;">
                         <div class="d-flex text-center align-items-center">
                             <div class="card-body px-0">
-                                <h5 class="card-title pb-3 border-bottom border-2 fs-5">{{card.title}}</h5>
+                                <h5 class="card-title pb-3 border-bottom border-2 text-center fs-5 text-danger">{{card.title}}</h5>
                                 <div class="card-text collapse multiCollapse{{card.sid}}" id="collapse{{card.sid}} description{{card.sid}}">
                                     <table class="table table-striped table-borderless w-100">
                                         <thead class="align-middle px-5">
-                                            <th>Требования к студенту</th>
-                                            <th>Требуемые направления обучения</th>
+                                            <th>Навыки</th>
+                                            <th>Направления обучения</th>
                                         </thead>
-                                        <tbody class="align-middle fs-6">
+                                        <tbody class="align-middle fs-6 fw-semibold">
                                             {% for vacancy in vacancies %}
                                                 {% if vacancy.sid == card.sid %}
                                                     <tr>
@@ -158,7 +142,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <p class="card-text px-4 collapse show multiCollapse{{card.sid}} fs-6" id="description{{card.sid}}">{{card.description}}</p>
+                                <p class="card-text px-4 collapse show multiCollapse{{card.sid}} fs-6 fw-semibold" id="description{{card.sid}}">{{card.description}}</p>
                                 <div class="d-flex pt-3 pe-2 border-top border-1 justify-content-around">
                                     <button class="btn btn-sm btn-outline-dark rounded-3 lastBtn"
                                         type="button"
@@ -179,33 +163,6 @@
                         </div>
                     </div>
                 {% endfor %}
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacts">
-        <div class="container-fluid mt-4 sticky-bottom bg-body-secondary border-top border-3">
-            <h1 class="fs-1 col text-start">Контакты</h1>
-            <div class="row justify-content-center">
-                <div class="col-lg-3 col-6">
-                    <h6 class="fw-normal fs-4 mt-3">Контакты</h6>
-                    <ul>
-                        <li>Телефон: 8(351)799-71-01</li>
-                        <li>Адрес: г. Челябинск, ул. Братьев Кашириных, д. 129</li>
-                        <li>Почта: user@example.com</li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-4">
-                    <h6 class="fw-normal fs-4 mt-3">Продукты</h6>
-                    <ul>
-                        <li>
-                            <a href="https://www.csu.ru/" class="link-body-emphasis opacity-75">Официальный сайт</a>
-                        </li>
-                        <li>
-                            <a href="https://moodle.uio.csu.ru/" class="link-body-emphasis opacity-75">Moodle университета</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>

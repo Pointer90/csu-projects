@@ -90,26 +90,11 @@
 {% endblock cssAndScripts %}
 
 {% block content %}
-    <nav class="navbar navbar-expand position-fixed-top shadow-lg border-bottom nav-underline user-select-none">
-        <div class="container-fluid">
-            <h2 class="logo d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
-        </div>
-        <div class="collapse navbar-collapse justify-content-md-end col-md-8 col-10 me-4" id="navbarNav">
-            <ul class="navbar-nav text-center align-items-center px-3">
-                <li class="nav-item">
-                    <a class="nav-link fs-5" href={% url 'main' %}>Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
     <section id="info">
         <div class="bg-body-secondary p-3">
             <h1 class="fs-1 px-3">Выполненные проекты</h1>
-            <p class="text-body-secondary fs-5 px-5">Здесь мы гордимся результатами наших талантливых участников, представляя уникальные и инновационные проекты, которые вдохновляют и двигают вперед. Исследуйте наше портфолио, погружайтесь в разнообразие идей и готовьтесь к собственным творческим достижениям.</p>
+            <p class="text-body-secondary fs-5 px-5">Мы гордимся результатами наших талантливых участников, представляя уникальные и инновационные проекты, которые вдохновляют и двигают вперед. Исследуйте наше портфолио, погружайтесь в разнообразие идей и готовьтесь к собственным творческим достижениям.</p>
         </div>
         <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">
@@ -139,7 +124,7 @@
             <div class="grid mt-4 mb-4">
                 <div class="row gy-5 gx-0 justify-content-between">
                     {% for card in cards%}
-                    <div class="card shadow-lg col-sm-6 rounded-4 border-2" style=" max-height: 240px;">
+                    <div class="card shadow-lg col-sm-6 rounded-4 border-2 bg-body-tertiary" style=" max-height: 240px;">
                         <div class="row">
                             <div class="col-4">
                                 {% if card.mediaExists %}
@@ -149,43 +134,16 @@
                                 {% endif %}
                             </div>
                             <div class="col-8">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center fs-5">{{card.pid__title}}</h5>
-                                    <p class="card-text d-lg-block d-none" fs-6 fw-light">{{card.pid__description|truncatechars:140}}</p>
-                                    <p class="card-text d-lg-none d-block"">{{card.pid__description|truncatechars:60}}</p>
+                                <div class="card-body w-100 h-100">
+                                    <h5 class="card-title text-center fs-5 text-danger">{{card.pid__title}}</h5>
+                                    <p class="card-text d-lg-block d-none fs-6 fw-semibold">{{card.pid__description|truncatechars:140}}</p>
+                                    <p class="card-text d-lg-none d-block fs-6 fw-semibold">{{card.pid__description|truncatechars:60}}</p>
                                     <a href="cinema/{{card.pid}}" class="stretched-link"></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacts">
-        <div class="container-fluid mt-4 sticky-bottom bg-body-secondary border-top border-3">
-            <h1 class="fw-normal fs-4 mt-3">Контакты</h1>
-            <div class="row justify-content-center">
-                <div class="col-lg-3 col-6">
-                    <h6>Контакты</h6>
-                    <ul>
-                        <li>Телефон: 8(351)799-71-01</li>
-                        <li>Адрес: г. Челябинск, ул. Братьев Кашириных, д. 129</li>
-                        <li>Почта: user@example.com</li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-4">
-                    <h6 class="fw-normal fs-4 mt-3">Продукты</h6>
-                    <ul>
-                        <li>
-                            <a href="https://www.csu.ru/" class="link-body-emphasis opacity-75">Официальный сайт</a>
-                        </li>
-                        <li>
-                            <a href="https://moodle.uio.csu.ru/" class="link-body-emphasis opacity-75">Moodle университета</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
