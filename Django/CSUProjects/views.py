@@ -10,6 +10,10 @@ def set_cookie(response, **kwargs):
     
     return response
 
+def format_phone(prj: Projects) -> str:
+    return f'{prj.phone[0]}({prj.phone[1:4]})-{prj.phone[4:7]}-{prj.phone[7:9]}-{prj.phone[9:]}'
+
+
 def main(request):
     data = Projects.objects.exclude(status='completed').exclude(status='frozen')
     workers_count = Workers.objects.count()
@@ -68,6 +72,8 @@ def cinema(request, pid):
     name = Projects.objects.get(pid=pid)
     data = WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid)
     context= {'project': name, 'cards': data}
+
+    name.phone = format_phone(name)
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
     response = render(request, 'cinema.html', context=context)
