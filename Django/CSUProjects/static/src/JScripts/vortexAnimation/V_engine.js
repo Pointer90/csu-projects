@@ -101,8 +101,8 @@ function draw()
     
     vCTX.clearRect(-vWIDTH, -vHEIGHT,vWIDTH * 2, vHEIGHT * 2);
     keyframes();
-    drawVortex(grdLogo);
-    //drawLogo(grdVortex);
+    drawVortex(grdVortex);
+    //drawLogo(grdLogo);
 }
 
 

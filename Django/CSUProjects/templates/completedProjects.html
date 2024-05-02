@@ -94,7 +94,7 @@
     <section id="info">
         <div class="bg-body-secondary p-3">
             <h1 class="fs-1 px-3">Выполненные проекты</h1>
-            <p class="text-body-secondary fs-5 px-5">Здесь мы гордимся результатами наших талантливых участников, представляя уникальные и инновационные проекты, которые вдохновляют и двигают вперед. Исследуйте наше портфолио, погружайтесь в разнообразие идей и готовьтесь к собственным творческим достижениям.</p>
+            <p class="text-body-secondary fs-5 px-5">Мы гордимся результатами наших талантливых участников, представляя уникальные и инновационные проекты, которые вдохновляют и двигают вперед. Исследуйте наше портфолио, погружайтесь в разнообразие идей и готовьтесь к собственным творческим достижениям.</p>
         </div>
         <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">
@@ -124,7 +124,7 @@
             <div class="grid mt-4 mb-4">
                 <div class="row gy-5 gx-0 justify-content-between">
                     {% for card in cards%}
-                    <div class="card shadow-lg col-sm-6 rounded-4 border-2" style=" max-height: 240px;">
+                    <div class="card shadow-lg col-sm-6 rounded-4 border-2 bg-body-tertiary" style=" max-height: 240px;">
                         <div class="row">
                             <div class="col-4">
                                 {% if card.mediaExists %}
@@ -134,10 +134,10 @@
                                 {% endif %}
                             </div>
                             <div class="col-8">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center fs-5">{{card.pid__title}}</h5>
-                                    <p class="card-text d-lg-block d-none" fs-6 fw-light">{{card.pid__description|truncatechars:140}}</p>
-                                    <p class="card-text d-lg-none d-block"">{{card.pid__description|truncatechars:60}}</p>
+                                <div class="card-body w-100 h-100">
+                                    <h5 class="card-title text-center fs-5 text-danger">{{card.pid__title}}</h5>
+                                    <p class="card-text d-lg-block d-none fs-6 fw-semibold">{{card.pid__description|truncatechars:140}}</p>
+                                    <p class="card-text d-lg-none d-block fs-6 fw-semibold">{{card.pid__description|truncatechars:60}}</p>
                                     <a href="cinema/{{card.pid}}" class="stretched-link"></a>
                                 </div>
                             </div>

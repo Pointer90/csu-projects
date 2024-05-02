@@ -110,11 +110,11 @@
 
 {% block content %}
 
-	<section id="preview" class="mb-5">
-		<div class="container-fluid row-2 text-center">
+	<section id="preview">
+		<div class="container-fluid row-2 text-center bg-body-tertiary">
             <canvas id="vortex" class="img-fluid" width="800" height="300">
             </canvas>
-            <h1 class="fs-1">Проекты ЧелГУ</h1>
+            <h1 class="fs-1 mb-5">Проекты ЧелГУ</h1>
         </div>
 	</section>
 
@@ -143,8 +143,8 @@
                             <path d="M6 1v3H1V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zm14 12v3h-5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zM6 8v7H1V8zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zm14-6v7h-5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"/>
                         </svg>
                     </span>
-                    <h3 class="fw-normal fs-4 mt-3">Какие проекты могут размещаться на вашем хостинге?</h3>
-                    <p class="text-body-secondary fs-6">
+                    <h3 class="fw-normal fs-3 mt-3 text-danger">Многообразие проектов:</h3>
+                    <p class="text-body-secondary fs-6 fw-semibold">
                         Мы приветствуем широкий спектр проектов, включая исследования, учебные инициативы, творческие проекты и инновационные стартапы. Важно, чтобы ваш проект отражал ценности университетского сообщества.
                     </p>
                 </div>
@@ -154,9 +154,9 @@
                             <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
                         </svg>
                     </span>
-                    <h3 class="fw-normal fs-4 mt-3">Каковы преимущества размещения проекта на вашем хостинге?</h3>
-                    <p class="text-body-secondary fs-6">
-                        Наш хостинг предоставляет надежное виртуальное пространство с высокой производительностью, а также поддержку исследовательских и образовательных инициатив. Вы также будете частью активного сообщества, обмен информацией и идеями с другими проектами.
+                    <h3 class="fw-normal fs-3 mt-3 text-danger">Польза от размещения:</h3>
+                    <p class="text-body-secondary fs-6 fw-semibold">
+                        Наша платформа предоставляет виртуальное пространство для подбора исполнителей проекта среди студентов университета разных направлений обучения. Работодатели могут найти исполнителей среди студентов, участники - приобрести опыт работы в команде.
                     </p>
                 </div>
                 <div class="col-md-3 p-4">
@@ -165,8 +165,8 @@
                             <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
                         </svg>
                     </span>
-                    <h3 class="fw-normal fs-4 mt-3">Как получить поддержку для своего проекта на вашем хостинге?</h3>
-                    <p class="text-body-secondary fs-6">
+                    <h3 class="fw-normal fs-3 mt-3 text-danger">Поддержка проектов:</h3>
+                    <p class="text-body-secondary fs-6 fw-semibold">
                         Мы предоставляем техническую поддержку и консультации по настройке проекта. Кроме того, у нас есть сеть сообщества, где вы можете обсудить свои идеи, найти партнеров и получить обратную связь от опытных участников.
                     </p>
                 </div>
@@ -176,9 +176,9 @@
                             <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707"/>
                         </svg>
                     </span>
-                    <h3 class="fw-normal fs-4 mt-3">Какие возможности для масштабирования предоставляет ваш хостинг?</h3>
-                    <p class="text-body-secondary fs-6">
-                        Наш хостинг гибко растет вместе с вашим проектом. Вы можете легко масштабировать ресурсы, добавлять новые функции и адаптировать свой проект к изменяющимся требованиям, обеспечивая его долгосрочное развитие.
+                    <h3 class="fw-normal fs-3 mt-3 text-danger">Перспективы:</h3>
+                    <p class="text-body-secondary fs-6 fw-semibold">
+                        Работодатели могут найти на нашей платформе исполнителей среди студентов.  Исполнители проектов приобретут опыт работы в команде. Выпускники смогут продемонстрировать свою работу на нашей платформе при поиске работы.
                     </p>
                 </div>
             </div>
@@ -203,7 +203,7 @@
             <div class="grid mt-4">
                 <div class="row gy-5 gx-0 justify-content-between">
                     {% for card in cards%}
-                    <div class="card shadow-lg col-sm-6 rounded-4 border-2" style=" max-height: 240px;">
+                    <div class="card shadow-lg col-sm-6 rounded-4 border-2 bg-body-tertiary" style=" max-height: 240px;">
                         <div class="row">
                             <div class="col-4">
                                 {% if card.mediaExists %}
@@ -213,7 +213,7 @@
                                 {% endif %}
                             </div>
                             <div class="col-8">
-                                <div class="card-body">
+                                <div class="card-body w-100 h-100">
                                     <span class="d-flex badge justify-content-end">
                                         {% if card.status == 'full' %}
                                             <div class="position-absolute d-flex top-0 translate-middle-y px-1 py-1 rounded-pill border-1 text-bg-success">
@@ -255,8 +255,8 @@
                                             </div>
                                         {% endif %}
                                     </span>
-                                    <h5 class="card-title text-center fs-5">{{card.title}}</h5>
-                                    <p class="card-text d-lg-block d-none fs-6 fw-light">{{card.description|truncatechars:140}}</p>
+                                    <h5 class="card-title text-center fs-5 text-danger">{{card.title}}</h5>
+                                    <p class="card-text d-lg-block d-none fs-6 fw-semibold">{{card.description|truncatechars:140}}</p>
                                     <p class="card-text d-lg-none d-block">{{card.description|truncatechars:60}}</p>
                                     <a href="subProjects/{{card.pid}}" class="stretched-link"></a>
                                 </div>
@@ -317,7 +317,7 @@
                     <div class="col-lg-3 col-sm-5 mb-3 mb-sm-0 px-3">
                         <div class="card shadow-lg p-3 h-100">
                             <div class="card-body text-center d-flex flex-column">
-                                <p class="card-text d-lg-block d-none pb-5 fs-6 text-start">Здесь мы гордимся результатами творчества и инноваций в нашем университетском сообществе. Исследуйте наши успешно завершенные проекты, каждый из которых стал уникальным вкладом в наше общее научное и творческое наследие. Открывайте для себя идеи, вдохновляйтесь достижениями других участников, и подготовьтесь к собственным ярким шагам в мире инноваций.</p>
+                                <p class="card-text d-lg-block d-none pb-5 fs-6 text-start">Мы гордимся результатами творчества и инноваций в нашем университетском сообществе. Исследуйте наши успешно завершенные проекты, каждый из которых стал уникальным вкладом в наше общее научное и творческое наследие. Открывайте для себя идеи, вдохновляйтесь достижениями других участников, и подготовьтесь к собственным ярким шагам в мире инноваций.</p>
                                 <p class="card-text d-lg-none d-block pb-5 fs-6">Здесь мы гордимся результатами творчества и инноваций в нашем университетском сообществе. Исследуйте наши успешно завершенные проекты, каждый из которых стал уникальным вкладом в наше общее научное и творческое наследие.</p>
                                 <div class="position-absolute bottom-0 start-50 translate-middle-x pb-3">
                                     <a class="btn btn-outline-dark rounded-3 lastBtn" href={% url 'completedProjects' %}>Выполненные проекты</a>

@@ -72,4 +72,4 @@ const grdLogo = vCTX.createRadialGradient(0, 0, 100, 0, 0, 250),
 grdLogo.addColorStop(0,"white");
 grdLogo.addColorStop(1,"#8b0000");
 grdVortex.addColorStop(0,'#e41b1b');
-grdVortex.addColorStop(1,"white");
+grdVortex.addColorStop(1,"#6b0804");

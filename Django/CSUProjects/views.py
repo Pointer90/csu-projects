@@ -35,7 +35,7 @@ def main(request):
 
 def subProjects(request, pid):
     name = Projects.objects.get(pid=pid)
-    data = Subprojects.objects.filter(pid=pid)
+    data = Subprojects.objects.filter(pid=pid).filter(status='completed')
     vacs = Vacancies.objects.select_related('sid').filter(sid__pid=pid).values("vid", "post", "sid", "description")
     context= {"project" : name, "cards" : data, "vacancies": vacs}
 
@@ -67,7 +67,7 @@ def completedProjects(request):
 def cinema(request, pid):
     name = Projects.objects.get(pid=pid)
     data = WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid)
-    context= {'project': name, 'cards': data}
+    context = {'project': name, 'cards': data}
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
     response = render(request, 'cinema.html', context=context)
