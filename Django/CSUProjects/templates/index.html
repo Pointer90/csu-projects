@@ -20,9 +20,11 @@
         let logo = null,                                              //Хранилище логотипа
             canvas = document.querySelector("#preview");              //Канвас со спиралью
 
+        const widthScale = 3;
+        const heightScale = 1.5;
         const sizes = {
-            width: canvas.offsetWidth / 3,
-            height: canvas.offsetHeight / 1.5,
+            width: canvas.offsetWidth / widthScale,
+            height: canvas.offsetHeight / heightScale,
         };
 
         //Создаём сцену с "бесконечным" пространством
@@ -38,6 +40,7 @@
         renderer.setSize(sizes.width, sizes.height);
         renderer.setClearColor(0x000000, 0);
         renderer.domElement.setAttribute("id", "CSULogo");
+        renderer.domElement.setAttribute("class", "position-absolute start-50 translate-middle z-1");
         canvas.insertBefore(renderer.domElement, canvas.firstChild);
 
         //Создаём пространственный свет
@@ -78,8 +81,8 @@
         window.addEventListener('resize', () => {
         // Обновляем размеры
         canvas = document.querySelector("#preview");
-        sizes.width = canvas.offsetWidth / 3;
-        sizes.height = canvas.offsetHeight / 1.5;
+        sizes.width = canvas.offsetWidth / widthScale;
+        sizes.height = canvas.offsetHeight / heightScale;
 
         // Обновляем соотношение сторон камеры
         camera.aspect = sizes.width / sizes.height;
@@ -119,9 +122,9 @@
 	</section>
 
     <section id="about us">
-        <div class="bg-body-secondary p-3">
-            <h1 class="fs-1 mb-3">О нас</h1>
-            <p class="text-body-secondary fs-5 px-5">Виртуальное пространство, где инновации и знания сливаются в единое целое! Наш хостинг - это результат коллективных усилий университета, предоставляющий инфраструктуру для запуска и поддержки разнообразных проектов, подпроектов и исследовательских инициатив.Мы предоставляем пространство и ресурсы для развертывания разнообразных проектов, от исследовательских и учебных до инновационных и творческих инициатив.
+        <div class="bg-body-secondary py-3">
+            <h1 class="fs-1 mb-3 ps-3">О нас</h1>
+            <p class="text-body-secondary fs-5 px-3">Виртуальное пространство, где инновации и знания сливаются в единое целое! Наш хостинг - это результат коллективных усилий университета, предоставляющий инфраструктуру для запуска и поддержки разнообразных проектов, подпроектов и исследовательских инициатив.Мы предоставляем пространство и ресурсы для развертывания разнообразных проектов, от исследовательских и учебных до инновационных и творческих инициатив.
         </div>
         <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">
@@ -186,9 +189,9 @@
     </section>
 
     <section id="projects">
-        <h1 class="fs-1 px-3">Проекты</h1>
+        <h1 class="fs-1 ps-3">Проекты</h1>
 
-            <div class="container my-5 bg-light-primary border border-2 rounded-4 g-0 p-3 shadow">
+            <div class="container my-5 bg-light-primary border border-2 rounded-4 g-0 p-3 shadow w-75">
                 <form>
                     <div class="form-floating d-flex rounded-start" role="search">
                         <input name="search-text" class="form-control border-0 shadow-none" type="search" id="floatingSearch" placeholder="Поиск проекта" aria-label="Search">
@@ -201,18 +204,18 @@
 
         <div class="container">
             <div class="grid mt-4">
-                <div class="row gy-5 gx-0 justify-content-between">
+                <div class="row gy-5 gx-0 justify-content-between align-items-center">
                     {% for card in cards%}
-                    <div class="card shadow-lg col-sm-6 rounded-4 border-2 bg-body-tertiary" style=" max-height: 240px;">
+                    <div class="card shadow-lg col-sm-5 rounded-4 border-2 bg-body-tertiary" style="max-height: 240px; min-width: 250px;">
                         <div class="row">
                             <div class="col-4">
                                 {% if card.mediaExists %}
-                                    <img class="rounded-start-4 img-fluid h-100" style="max-height: 236px;" src= {{card.photo.url}}>
+                                    <img class="rounded-start-4 img-fluid h-100" style="max-height: 240px; object-fit: cover; min-width: 115px;" src= {{card.photo.url}}>
                                 {% else %}
-                                    <img class="rounded-start-4 img-fluid h-100" style="max-height: 236px;" src={% static "/img/logo-photo.jpg" %}>
+                                    <img class="rounded-start-4 img-fluid h-100" style="max-height: 240px; object-fit: cover; min-width: 115px;" src={% static "/img/logo-photo.jpg" %}>
                                 {% endif %}
                             </div>
-                            <div class="col-8">
+                            <div class="col-8 px-4">
                                 <div class="card-body w-100 h-100">
                                     <span class="d-flex badge justify-content-end">
                                         {% if card.status == 'full' %}
@@ -257,7 +260,7 @@
                                     </span>
                                     <h5 class="card-title text-center fs-5 text-danger">{{card.title}}</h5>
                                     <p class="card-text d-lg-block d-none fs-6 fw-semibold">{{card.description|truncatechars:140}}</p>
-                                    <p class="card-text d-lg-none d-block">{{card.description|truncatechars:60}}</p>
+                                    <p class="card-text d-lg-none d-block fs-6 fw-semibold">{{card.description|truncatechars:60}}</p>
                                     <a href="subProjects/{{card.pid}}" class="stretched-link"></a>
                                 </div>
                             </div>
@@ -279,23 +282,23 @@
                 </g>
             </svg>
         </div>
-        <div class="container-fluid bg-body-secondary">
+        <div class="container-fluid bg-body-secondary ps-3">
             <h1 class="fs-1">Единство Творческих Умов</h1>
             <div class="container-fluid">
                 <div class="row justify-content-around">
                     <div class="col-md-5 mt-3">
                         <p class="text-body-secondary fs-5">С гордостью объявляем, что наш хостинг поддерживает целое сообщество талантливых и преданных участников. Мы вдохновляем, обучаем и совершенствуемся вместе, создавая инновационные проекты, которые изменят мир.</p>
-                        <div class="row mt-4 fs-5 justify-content-center text-lg-center text-start">
-                            <div class="col-xl-3">
-                                <span class="lead fs-4">Участников</span><div class="d-lg-block d-none"></div>
+                        <div class="row mt-4 fs-5 justify-content-center text-xl-center text-start">
+                            <div class="col-xl-4">
+                                <span class="lead fs-4 text-danger">Участников</span><div class="d-xl-block d-none"></div>
                                 <span>{{wcount}}</span>
                             </div>
-                            <div class="col-xl-3">
-                                <span class="lead fs-4">Проектов</span><div class="d-lg-block d-none"></div>
+                            <div class="col-xl-4">
+                                <span class="lead fs-4 text-danger">Проектов</span><div class="d-xl-block d-none"></div>
                                 <span>{{pcount}}</span>
                             </div>
-                            <div class="col-xl-5">
-                                <span class="lead fs-4">Выполненных проектов</span><div class="d-lg-block d-none"></div>
+                            <div class="col-xl-4">
+                                <span class="lead fs-4 text-danger">Выполненных проектов</span><div class="d-xl-block d-none"></div>
                                 <span>{{cpcount}}</span>
                             </div>
                         </div>

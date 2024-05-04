@@ -93,7 +93,7 @@
 
     <section id="info">
         <div class="bg-body-secondary p-3">
-            <h1 class="fs-1 px-3">Выполненные проекты</h1>
+            <h1 class="fs-1 ps-3">Выполненные проекты</h1>
             <p class="text-body-secondary fs-5 px-5">Мы гордимся результатами наших талантливых участников, представляя уникальные и инновационные проекты, которые вдохновляют и двигают вперед. Исследуйте наше портфолио, погружайтесь в разнообразие идей и готовьтесь к собственным творческим достижениям.</p>
         </div>
         <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
@@ -107,7 +107,7 @@
         </div>
     </section>
 
-    <div class="container my-5 bg-light-primary border border-2 rounded-4 g-0 p-3 shadow">
+    <div class="container my-5 bg-light-primary border border-2 rounded-4 g-0 p-3 shadow w-75">
         <form>
             <div class="form-floating d-flex rounded-start" role="search">
                 <input name="search-text" class="form-control border-0 shadow-none" type="search" id="floatingSearch" placeholder="Поиск проекта" aria-label="Search">
@@ -119,21 +119,21 @@
     </div>
 
     <section id="projects">
-        <h1 class="fs-1 p-2">Проекты</h1>
+        <h1 class="fs-1 p-2 ps-3">Проекты</h1>
         <div class="container">
-            <div class="grid mt-4 mb-4">
-                <div class="row gy-5 gx-0 justify-content-between">
+            <div class="grid mt-4 mb-5">
+                <div class="row gy-5 gx-0 justify-content-between align-items-center">
                     {% for card in cards%}
-                    <div class="card shadow-lg col-sm-6 rounded-4 border-2 bg-body-tertiary" style=" max-height: 240px;">
+                    <div class="card shadow-lg col-sm-5 rounded-4 border-2 bg-body-tertiary" style=" max-height: 240px; min-width: 250px;">
                         <div class="row">
                             <div class="col-4">
-                                {% if card.mediaExists %}
-                                    <img class="rounded-start-4 img-fluid h-100" style="max-height: 236px;" src= {{card.photo.url}}>
+                                {% if card.pid__photo %}
+                                    <img class="rounded-start-4 img-fluid h-100" style="max-height: 236px; object-fit: cover; min-width: 115px;" src="{{MEDIA_URL}}{{ card.pid__photo }}">
                                 {% else %}
-                                    <img class="rounded-start-4 img-fluid h-100" style="max-height: 236px;" src={% static "/img/logo-photo.jpg" %}>
+                                    <img class="rounded-start-4 img-fluid h-100" style="max-height: 236px; object-fit: cover; min-width: 115px;" src={% static "/img/logo-photo.jpg" %}>
                                 {% endif %}
                             </div>
-                            <div class="col-8">
+                            <div class="col-8 px-4">
                                 <div class="card-body w-100 h-100">
                                     <h5 class="card-title text-center fs-5 text-danger">{{card.pid__title}}</h5>
                                     <p class="card-text d-lg-block d-none fs-6 fw-semibold">{{card.pid__description|truncatechars:140}}</p>

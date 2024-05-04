@@ -59,7 +59,7 @@ def subProjects(request, pid):
     return response
 
 def completedProjects(request):
-    data = Subprojects.objects.select_related('pid').filter(status='completed').values('pid', 'pid__title', 'pid__description').distinct()
+    data = Subprojects.objects.select_related('pid').filter(status='completed').values('pid', 'pid__title', 'pid__description', 'pid__photo').distinct()
     context= {"template_name" : 'completedProjects.html', "cards": data}
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
