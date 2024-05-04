@@ -189,7 +189,7 @@
         <h1 class="fs-1 px-3">Проекты</h1>
 
             <div class="container my-5 bg-light-primary border border-2 rounded-4 g-0 p-3 shadow">
-                <form>
+                <form action={% url 'search' %} method="get" target="_self">
                     <div class="form-floating d-flex rounded-start" role="search">
                         <input name="search-text" class="form-control border-0 shadow-none" type="search" id="floatingSearch" placeholder="Поиск проекта" aria-label="Search">
                         <label for="floatingSearch">Поиск проекта</label>
@@ -255,7 +255,7 @@
                                             </div>
                                         {% endif %}
                                     </span>
-                                    <h5 class="card-title text-center fs-5 text-danger">{{card.title}}</h5>
+                                    <h5 id="{{card.pid}}" class="card-title text-center fs-5 text-danger">{{card.title|title}}</h5>
                                     <p class="card-text d-lg-block d-none fs-6 fw-semibold">{{card.description|truncatechars:140}}</p>
                                     <p class="card-text d-lg-none d-block">{{card.description|truncatechars:60}}</p>
                                     <a href="subProjects/{{card.pid}}" class="stretched-link"></a>
@@ -266,6 +266,7 @@
                     {% endfor %}
                 </div>
             </div>
+            <div id="nf" class="visually-hidden text-center"> Ничего не найдено</div>
         </div>
     </section>
 

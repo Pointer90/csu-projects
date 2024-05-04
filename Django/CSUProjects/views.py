@@ -1,3 +1,5 @@
+from django.http import JsonResponse
+from django.core.serializers import serialize
 from django.shortcuts import render
 from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects
 from .smtp_server import send_form
@@ -80,3 +82,18 @@ def cinema(request, pid):
     response = set_cookie(response, theme=context['theme'])
 
     return response
+
+
+def search(request):
+
+    if request.method == 'GET':
+        search_query = request.GET.get('search', '')
+
+        if search_query:
+            prj = Projects.objects.filter(title__icontains=search_query)
+        else:
+            prj = Projects.objects.all()
+
+    response = serialize('json', list(prj), fields=('pid'))
+
+    return JsonResponse(response, safe=False)
