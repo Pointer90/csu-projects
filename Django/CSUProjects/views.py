@@ -79,7 +79,7 @@ def completedProjects(request):
 
 def cinema(request, pid):
     name = Projects.objects.get(pid=pid)
-    data = WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid)
+    data = WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid, sid__status='completed')
     context = {'project': name, 'cards': data}
 
     name.phone = format_phone(name)

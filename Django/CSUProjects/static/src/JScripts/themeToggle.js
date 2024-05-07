@@ -27,12 +27,12 @@ function lightThemeActivation()
     svgs.forEach(svg => {
         svg.setAttribute('fill', "white");
     });
-    btns.forEach(btn =>{
-        btn.setAttribute('class', "btn btn-outline-dark rounded-3 lastBtn");
-    });
-    if (modalBtn){
-        modalBtn.setAttribute("class","btn btn-outline-dark rounded-3 col modalBtn")
-    };
+    // btns.forEach(btn =>{
+    //     btn.setAttribute('class', "btn btn-outline-dark rounded-3 lastBtn");
+    // });
+    // if (modalBtn){
+    //     modalBtn.setAttribute("class","btn btn-outline-dark rounded-3 col modalBtn")
+    // };
 }
 
 function darkThemeActivation()
@@ -48,12 +48,12 @@ function darkThemeActivation()
     svgs.forEach(svg => {
         svg.setAttribute("fill", "#212529");
     });
-    btns.forEach(btn =>{
-        btn.setAttribute('class', "btn btn-outline-light rounded-3 lastBtn");
-    });
-    if (modalBtn){
-        modalBtn.setAttribute("class","btn btn-outline-light rounded-3 col modalBtn");
-    };
+    // btns.forEach(btn =>{
+    //     btn.setAttribute('class', "btn btn-outline-light rounded-3 lastBtn");
+    // });
+    // if (modalBtn){
+    //     modalBtn.setAttribute("class","btn btn-outline-light rounded-3 col modalBtn");
+    // };
 }
 
 if (bodyTag.getAttribute('data-bs-theme') == themeMode.LIGHT)
