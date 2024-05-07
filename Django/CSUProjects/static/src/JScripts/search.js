@@ -1,38 +1,39 @@
-const elements = document.querySelectorAll(".card-title");
-const searchForm = document.forms[0];
+const cards = document.querySelectorAll(".card-search-element");
+const searchForm = document.getElementById('search');
+const searchField = document.getElementById('search-field')
 
 searchForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const query = searchForm[0].value.toLowerCase();
+    const query = searchField.value.toLowerCase();
 
     // Отправляем запрос на сервер
     fetch(`/search?search=${query}`)
         .then(response => response.json())
-        .then(data => {
-            // Обрабатываем полученные данные
-            updateCardsVisibility(JSON.parse(data));
-        })
+        .then(data => {updateCardsVisibility(JSON.parse(data));})
         .catch(error => console.error('Ошибка при выполнении запроса:', error));
 });
 
 // Функция для обновления видимости карточек на странице
 function updateCardsVisibility(data) {
+    // pids - project indexes
     const pids = data.map(item => item.pk);
-    var nf = document.querySelector('#nf');
+    var nf = document.getElementById('not-found').classList;
 
-    elements.forEach(element => {
-        if (pids.includes(parseInt(element.id)))
-            element.closest('.card').classList.remove('visually-hidden')
+    cards.forEach(card => {
+        let cardId = parseInt(card.id);
+        let cardWrap = card.classList
+
+        if (pids.includes(cardId))
+            cardWrap.remove('visually-hidden')
         else
-            element.closest('.card').classList.add('visually-hidden')
+            cardWrap.add('visually-hidden')
     });
 
-    //TODO: Переименуй 
     if (pids.length > 0){
-        nf.classList.add('visually-hidden');       
+        nf.add('visually-hidden');
     }
     else{
-        nf.classList.remove('visually-hidden');
+        nf.remove('visually-hidden');
     }
 }
