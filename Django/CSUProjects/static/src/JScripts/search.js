@@ -8,7 +8,7 @@ searchForm.addEventListener('submit', function(event) {
     const query = searchField.value.toLowerCase();
 
     // Отправляем запрос на сервер
-    fetch(`/search?search=${query}`)
+    fetch(`/search?search=${query}&page=${document.title}`)
         .then(response => response.json())
         .then(data => {updateCardsVisibility(JSON.parse(data));})
         .catch(error => console.error('Ошибка при выполнении запроса:', error));
