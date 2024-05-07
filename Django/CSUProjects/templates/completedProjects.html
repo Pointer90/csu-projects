@@ -107,11 +107,11 @@
         </div>
     </section>
 
-    <div class="container my-5 bg-light-primary border border-2 rounded-4 g-0 p-3 shadow w-75">
-        <form>
+    <div class="container my-5 bg-light-primary border border-2 rounded-4 g-0 p-3 shadow">
+        <form id="search" action={% url 'search' %} method="get" target="_self">
             <div class="form-floating d-flex rounded-start" role="search">
-                <input name="search-text" class="form-control border-0 shadow-none" type="search" id="floatingSearch" placeholder="Поиск проекта" aria-label="Search">
-                <label for="floatingSearch">Поиск проекта</label>
+                <input name="search-text" class="form-control border-0 shadow-none" type="search" id="search-field" placeholder="Поиск проекта" aria-label="Search">
+                <label for="search-field">Поиск проекта</label>
                 <div class="vr"></div>
                 <button class="btn border-0" type="submit">Поиск</button>
             </div>
@@ -124,7 +124,7 @@
             <div class="grid mt-4 mb-5">
                 <div class="row gy-5 gx-0 justify-content-between align-items-center">
                     {% for card in cards%}
-                    <div class="card shadow-lg col-sm-5 rounded-4 border-2 bg-body-tertiary" style=" max-height: 240px; min-width: 250px;">
+                    <div id="{{card.pid}}" class="card shadow-lg col-sm-5 rounded-4 border-2 bg-body-tertiary card-search-element" style=" max-height: 240px; min-width: 250px;">
                         <div class="row">
                             <div class="col-4">
                                 {% if card.pid__photo %}
@@ -135,7 +135,7 @@
                             </div>
                             <div class="col-8 px-4">
                                 <div class="card-body w-100 h-100">
-                                    <h5 class="card-title text-center fs-5 text-danger">{{card.pid__title}}</h5>
+                                    <h5 class="card-title text-center fs-5 text-danger">{{card.pid__title|title}}</h5>
                                     <p class="card-text d-lg-block d-none fs-6 fw-semibold">{{card.pid__description|truncatechars:140}}</p>
                                     <p class="card-text d-lg-none d-block fs-6 fw-semibold">{{card.pid__description|truncatechars:60}}</p>
                                     <a href="cinema/{{card.pid}}" class="stretched-link"></a>
@@ -145,6 +145,15 @@
                     </div>
                 {% endfor %}
                 </div>
+            </div>
+
+            <div id="not-found" class="visually-hidden text-center fw-semibold fs-4 py-5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-patch-question" viewBox="0 0 16 16">
+                    <path d="M8.05 9.6c.336 0 .504-.24.554-.627.04-.534.198-.815.847-1.26.673-.475 1.049-1.09 1.049-1.986 0-1.325-.92-2.227-2.262-2.227-1.02 0-1.792.492-2.1 1.29A1.71 1.71 0 0 0 6 5.48c0 .393.203.64.545.64.272 0 .455-.147.564-.51.158-.592.525-.915 1.074-.915.61 0 1.03.446 1.03 1.084 0 .563-.208.885-.822 1.325-.619.433-.926.914-.926 1.64v.111c0 .428.208.745.585.745z"/>
+                    <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911l-1.318.016z"/>
+                    <path d="M7.001 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0z"/>
+                </svg></br>
+                Странно, мы ничего не нашли.
             </div>
             {% if cards.paginator.num_pages != 1 %}
                 <ul class="pagination pagination-lg mt-4 justify-content-center">

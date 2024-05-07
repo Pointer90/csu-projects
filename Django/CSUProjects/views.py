@@ -1,3 +1,5 @@
+from django.http import JsonResponse
+from django.core.serializers import serialize
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects
@@ -89,3 +91,26 @@ def cinema(request, pid):
     response = set_cookie(response, theme=context['theme'])
 
     return response
+
+
+def search(request):
+
+    model = Projects.objects
+
+    if request.GET.get('page') == 'Выполненные проекты':
+        tmp = Subprojects.objects.select_related('pid').filter(status='completed').values('pid')
+        pids = [dict['pid'] for dict in tmp]
+        model = Projects.objects.filter(pid__in=pids)
+
+
+    if request.method == 'GET':
+        search_query = request.GET.get('search', '')
+
+        if search_query:
+            prj = model.filter(title__icontains=search_query)
+        else:
+            prj = model.all()
+
+    response = serialize('json', list(prj), fields=('pid'))
+
+    return JsonResponse(response, safe=False)
