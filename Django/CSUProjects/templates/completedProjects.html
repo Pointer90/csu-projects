@@ -146,6 +146,31 @@
                 {% endfor %}
                 </div>
             </div>
+            {% if cards.paginator.num_pages != 1 %}
+                <ul class="pagination pagination-lg mt-4 justify-content-center">
+                    {% if cards.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link link-danger border-danger-subtle" href="?page=1#projects">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link link-danger border-danger-subtle" href="?page={{ cards.previous_page_number }}#projects">{{ cards.previous_page_number }}</a>
+                    </li>
+                    {% endif %}
+                    <li class="page-item"><a class="page-link disabled bg-body-tertiary link-danger border-danger-subtle" href="?page={{ cards.number }}">{{ cards.number }}</a></li>
+                    {% if cards.has_next %}
+                    <li class="page-item">
+                        <a class="page-link link-danger border-danger-subtle" href="?page={{ cards.next_page_number }}#projects">{{ cards.next_page_number }}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link link-danger border-danger-subtle" href="?page={{ cards.paginator.num_pages }}#projects">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
         </div>
     </section>
     

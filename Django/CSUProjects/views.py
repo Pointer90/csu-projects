@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects
 from .smtp_server import send_form
 
@@ -16,6 +17,8 @@ def format_phone(prj: Projects) -> str:
 
 def main(request):
     data = Projects.objects.exclude(status='completed').exclude(status='frozen')
+    data_paginator = Paginator(data, 10)
+
     workers_count = Workers.objects.count()
     projects_count = Projects.objects.count()
     completed_projects_count = Projects.objects.filter(status='completed').count()
@@ -29,7 +32,9 @@ def main(request):
             data[name] = request.POST.get(name)
             send_form(data)
 
-    context = {"template_name" : 'index.html', "cards": data, "wcount" : workers_count, "pcount": projects_count, "cpcount": completed_projects_count}
+    page_number = request.GET.get("page")
+    needed_page = data_paginator.get_page(page_number)
+    context = {"template_name" : 'index.html', "cards": needed_page, "wcount" : workers_count, "pcount": projects_count, "cpcount": completed_projects_count}
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
     response = render(request, 'index.html', context=context)
@@ -60,7 +65,11 @@ def subProjects(request, pid):
 
 def completedProjects(request):
     data = Subprojects.objects.select_related('pid').filter(status='completed').values('pid', 'pid__title', 'pid__description', 'pid__photo').distinct()
-    context= {"template_name" : 'completedProjects.html', "cards": data}
+    data_paginator = Paginator(data, 10)
+    page_number = request.GET.get("page")
+    needed_page = data_paginator.get_page(page_number)
+
+    context= {"template_name" : 'completedProjects.html', "cards": needed_page}
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
     response = render(request, 'completedProjects.html', context=context)
