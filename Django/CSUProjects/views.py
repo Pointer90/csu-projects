@@ -1,6 +1,7 @@
-from django.http import JsonResponse
-from django.core.serializers import serialize
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.urls import reverse
+from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
 from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects
 from .smtp_server import send_form
@@ -13,104 +14,137 @@ def set_cookie(response, **kwargs):
     
     return response
 
-def format_phone(prj: Projects) -> str:
-    return f'{prj.phone[0]}({prj.phone[1:4]})-{prj.phone[4:7]}-{prj.phone[7:9]}-{prj.phone[9:]}'
-
 
 def main(request):
-    data = Projects.objects.exclude(status='completed').exclude(status='frozen')
-    data_paginator = Paginator(data, 10)
+    pids = request.session.pop('pids', None)
 
-    workers_count = Workers.objects.count()
-    projects_count = Projects.objects.count()
-    completed_projects_count = Projects.objects.filter(status='completed').count()
+    if pids is not None:
+        data = Projects.get_projects_by_pid(pids)
+    else:
+        data = Projects.objects.exclude(status='completed').exclude(status='frozen')
 
-    # Отправка почты
-    if request.method == "POST":
-        data = dict()
-        form_names = ['title_project', 'title_organization', 'email', 'vacancy', 'description']
-
-        for name in form_names:
-            data[name] = request.POST.get(name)
-            send_form(data)
-
+    data_paginator = Paginator(data, 2)
     page_number = request.GET.get("page")
-    needed_page = data_paginator.get_page(page_number)
-    context = {"template_name" : 'index.html', "cards": needed_page, "wcount" : workers_count, "pcount": projects_count, "cpcount": completed_projects_count}
+
+    context = {
+        'page': 'main',
+        'template_name' : 'index.html',
+        'cards': data_paginator.get_page(page_number),
+        'wcount': Workers.objects.count(),
+        'pcount': Projects.objects.count(),
+        'cpcount': Projects.objects.filter(status='completed').count(),
+    }
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
-    response = render(request, 'index.html', context=context)
+    response = render(request, 'pages/index.html', context=context)
     response = set_cookie(response, theme=context['theme'])
 
     return response
+
 
 def subProjects(request, pid):
-    name = Projects.objects.get(pid=pid)
-    data = Subprojects.objects.filter(pid=pid).filter(status='completed')
-    vacs = Vacancies.objects.select_related('sid').filter(sid__pid=pid).values("vid", "post", "sid", "description")
-    context= {"project" : name, "cards" : data, "vacancies": vacs}
-
-    # Отправка почты
-    if request.method == "POST":
-        data = dict()
-        form_names = ['name', 'second_name', 'group', 'email', 'subporject_name', 'vacancy', 'description']
-
-        for name in form_names:
-            data[name] = request.POST.get(name)
-            send_form(data)
+    context= {
+        'page': 'subProjects',
+        'project' : Projects.objects.get(pid=pid),
+        'cards' : Subprojects.objects.filter(pid=pid).filter(status='completed'),
+        'vacancies': Vacancies.objects.select_related('sid').filter(sid__pid=pid).values('vid', 'post', 'sid', 'description'),
+    }
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
-    response = render(request, 'subProjects.html', context=context)
+    response = render(request, 'pages/subProjects.html', context=context)
     response = set_cookie(response, theme=context['theme'])
 
     return response
+
 
 def completedProjects(request):
-    data = Subprojects.objects.select_related('pid').filter(status='completed').values('pid', 'pid__title', 'pid__description', 'pid__photo').distinct()
-    data_paginator = Paginator(data, 10)
-    page_number = request.GET.get("page")
-    needed_page = data_paginator.get_page(page_number)
+    pids = request.session.pop('pids', None)
 
-    context= {"template_name" : 'completedProjects.html', "cards": needed_page}
+    if pids is not None:
+        data = Projects.get_projects_by_pid(pids)
+    else:
+        data = Projects.get_partially_completed_projects()
+
+    data_paginator = Paginator(data, 10)
+    page_number = request.GET.get('page')
+
+    context= {
+        'page': 'completedProjects',
+        'template_name' : 'completedProjects.html',
+        'cards': data_paginator.get_page(page_number),
+    }
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
-    response = render(request, 'completedProjects.html', context=context)
+    response = render(request, 'pages/completedProjects.html', context=context)
     response = set_cookie(response, theme=context['theme'])
 
     return response
+
 
 def cinema(request, pid):
-    name = Projects.objects.get(pid=pid)
-    data = WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid, sid__status='completed')
-    context = {'project': name, 'cards': data}
-
-    name.phone = format_phone(name)
+    context = {
+        'project': Projects.get_projects_by_pid([pid])[0],
+        'cards': WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid, sid__status='completed')
+    }
 
     context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
-    response = render(request, 'cinema.html', context=context)
+    response = render(request, 'pages/cinema.html', context=context)
     response = set_cookie(response, theme=context['theme'])
 
     return response
 
-
+# ---- API ednpoits ----
 def search(request):
-
-    model = Projects.objects
-
-    if request.GET.get('page') == 'Выполненные проекты':
-        tmp = Subprojects.objects.select_related('pid').filter(status='completed').values('pid')
-        pids = [dict['pid'] for dict in tmp]
-        model = Projects.objects.filter(pid__in=pids)
-
+    url = reverse('main')
 
     if request.method == 'GET':
-        search_query = request.GET.get('search', '')
+        pids = []
+
+        search_query = request.GET.get('search', '').lower()
+        page = request.GET.get('page-query')
 
         if search_query:
-            prj = model.filter(title__icontains=search_query)
+            if page == 'completedProjects':
+                tmp = Subprojects.objects.select_related('pid').filter(status='completed').values('pid')
+                
+                pids = Projects.objects.filter(
+                    pid__in=tmp,
+                    title__icontains=search_query
+                ).values('pid')
+
+            if page == 'main':
+                pids = Projects.objects.filter(title__icontains=search_query).values('pid')
+
+            request.session['pids'] = [dict['pid'] for dict in pids]
         else:
-            prj = model.all()
+            request.session['pids'] = None
 
-    response = serialize('json', list(prj), fields=('pid'))
+        url = reverse(page)
 
-    return JsonResponse(response, safe=False)
+    return redirect(url)
+
+
+def sendLetter(request):
+    
+
+    if request.method == "POST":
+        page = request.POST.get('page-query')
+
+        if page == 'main':
+            form_names = ['title_project', 'title_organization', 'email', 'vacancy', 'description']
+        elif page == 'subProjects':
+            form_names = ['name', 'second_name', 'group', 'email', 'subporject_name', 'vacancy', 'description']
+        else:
+            return HttpResponse('Invalid argument', status=422)
+
+
+        data = dict()
+        
+        for name in form_names:
+            data[name] = request.POST.get(name)
+
+        # send_form(data)
+
+        return HttpResponse('Form submitted successfully', status=200)
+    else:
+        return HttpResponse(status=403)

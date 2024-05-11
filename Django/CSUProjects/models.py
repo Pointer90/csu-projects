@@ -74,6 +74,21 @@ class Projects(models.Model):
         except:
             return False
         return True
+    
+    @staticmethod
+    def get_projects_by_pid(pids: list):
+        pids = list(map(int, pids))
+        return Projects.objects.filter(pid__in=pids)
+    
+    @staticmethod
+    def get_partially_completed_projects():
+        query = Subprojects.objects.select_related('pid').filter(status='completed').values('pid', 'pid__title', 'pid__description', 'pid__photo').distinct()
+        return Projects.get_projects_by_pid([data['pid'] for data in query])
+    
+    @property
+    def phone_f(self):
+        return f'{self.phone[0]}({self.phone[1:4]})-{self.phone[4:7]}-{self.phone[7:9]}-{self.phone[9:]}'
+
 
 class Workers(models.Model):
     wid = models.AutoField(primary_key=True)

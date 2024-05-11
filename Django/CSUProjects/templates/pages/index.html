@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+{% block title %} Главная {% endblock title %}
+{% block cssAndScripts %}
+    {% load static%}
+
+    {% include "components/csuLogo.html" %}
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
+
+    <script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_constants.js" %} defer></script>
+	<script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_engine.js" %} defer></script>
+    <script type="text/javascript" src={% static "/src/JScripts/themeToggle.js" %} defer></script>
+    
+    {% comment %} <script type="text/javascript" src={% static "/src/JScripts/CSULogo.js" %} defer></script> {% endcomment %}
+
+	<link rel="stylesheet" href={% static "/css/vortex.css" %}>
+    <link rel="stylesheet" href={% static "/css/dropdown.css" %}>
+
+{% endblock cssAndScripts %}
+
+{% block content %}
+
+	<section id="preview">
+		<div class="container-fluid row-2 text-center bg-body-tertiary">
+            <canvas id="vortex" class="img-fluid" width="800" height="300">
+            </canvas>
+            <h1 class="fs-1 mb-5">Проекты ЧелГУ</h1>
+        </div>
+	</section>
+
+    <section id="about us">
+        <div class="bg-body-secondary py-3">
+            <h1 class="fs-1 mb-3 ps-3">О нас</h1>
+            <p class="text-body-secondary fs-5 px-3">Виртуальное пространство, где инновации и знания сливаются в единое целое! Наш хостинг - это результат коллективных усилий университета, предоставляющий инфраструктуру для запуска и поддержки разнообразных проектов, подпроектов и исследовательских инициатив.Мы предоставляем пространство и ресурсы для развертывания разнообразных проектов, от исследовательских и учебных до инновационных и творческих инициатив.
+        </div>
+        <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,150.000000) scale(1.000000,-0.100000)" fill="white" class="svgObj">
+                    <path d="M1915 1509 c-151 -35 -317 -106 -521 -222 -364 -206 -608 -307 -884
+                    -363 -142 -29 -328 -38 -452 -21 l-58 7 0 -455 0 -455 1000 0 1000 0 0 760 0
+                    760 -22 -1 c-13 -1 -41 -5 -63 -10z"/>
+                </g>
+            </svg>
+        </div>
+    </section>
+
+    <section id="benefits">
+        <div class="container-fluid mt-4 col-10">
+            <div class="row">
+                <div class="col-md-3 p-4">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-columns-gap" viewBox="0 0 16 16">
+                            <path d="M6 1v3H1V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zm14 12v3h-5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zM6 8v7H1V8zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zm14-6v7h-5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"/>
+                        </svg>
+                    </span>
+                    <h3 class="fw-normal fs-3 mt-3 text-danger">Многообразие проектов:</h3>
+                    <p class="text-body-secondary fs-6 fw-semibold">
+                        Мы приветствуем широкий спектр проектов, включая исследования, учебные инициативы, творческие проекты и инновационные стартапы. Важно, чтобы ваш проект отражал ценности университетского сообщества.
+                    </p>
+                </div>
+                <div class="col-md-3 p-4">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
+                        </svg>
+                    </span>
+                    <h3 class="fw-normal fs-3 mt-3 text-danger">Польза от размещения:</h3>
+                    <p class="text-body-secondary fs-6 fw-semibold">
+                        Наша платформа предоставляет виртуальное пространство для подбора исполнителей проекта среди студентов университета разных направлений обучения. Работодатели могут найти исполнителей среди студентов, участники - приобрести опыт работы в команде.
+                    </p>
+                </div>
+                <div class="col-md-3 p-4">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-chat-square-text-fill" viewBox="0 0 16 16">
+                            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+                        </svg>
+                    </span>
+                    <h3 class="fw-normal fs-3 mt-3 text-danger">Поддержка проектов:</h3>
+                    <p class="text-body-secondary fs-6 fw-semibold">
+                        Мы предоставляем техническую поддержку и консультации по настройке проекта. Кроме того, у нас есть сеть сообщества, где вы можете обсудить свои идеи, найти партнеров и получить обратную связь от опытных участников.
+                    </p>
+                </div>
+                <div class="col-md-3 p-4">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707"/>
+                        </svg>
+                    </span>
+                    <h3 class="fw-normal fs-3 mt-3 text-danger">Перспективы:</h3>
+                    <p class="text-body-secondary fs-6 fw-semibold">
+                        Работодатели могут найти на нашей платформе исполнителей среди студентов.  Исполнители проектов приобретут опыт работы в команде. Выпускники смогут продемонстрировать свою работу на нашей платформе при поиске работы.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h1 class="fs-1 ps-3">Проекты</h1>
+        {% include "components/search.html" %}
+
+        <div class="container">
+            {% if cards.number != 1 %}
+                <div class="grid mt-4">
+            {% else %}
+                <div class="grid mt-4">
+            {% endif %}
+            <div class="row gy-5 gx-0 justify-content-between align-items-center">{% include "components/cardProjects.html" %}</div>
+                
+            </div>
+            <div id="not-found" class="visually-hidden text-center fw-semibold fs-4 py-5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-patch-question" viewBox="0 0 16 16">
+                    <path d="M8.05 9.6c.336 0 .504-.24.554-.627.04-.534.198-.815.847-1.26.673-.475 1.049-1.09 1.049-1.986 0-1.325-.92-2.227-2.262-2.227-1.02 0-1.792.492-2.1 1.29A1.71 1.71 0 0 0 6 5.48c0 .393.203.64.545.64.272 0 .455-.147.564-.51.158-.592.525-.915 1.074-.915.61 0 1.03.446 1.03 1.084 0 .563-.208.885-.822 1.325-.619.433-.926.914-.926 1.64v.111c0 .428.208.745.585.745z"/>
+                    <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911l-1.318.016z"/>
+                    <path d="M7.001 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0z"/>
+                </svg></br>
+                Странно, мы ничего не нашли.
+            </div>
+            {% if cards.paginator.num_pages != 1 %}
+                <ul class="pagination pagination-lg mt-4 justify-content-center">
+                    {% if cards.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link link-danger border-danger-subtle" href="?page=1#projects">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link link-danger border-danger-subtle" href="?page={{ cards.previous_page_number }}#projects">{{ cards.previous_page_number }}</a>
+                    </li>
+                    {% endif %}
+                    <li class="page-item"><a class="page-link disabled bg-body-tertiary link-danger border-danger-subtle" href="?page={{ cards.number }}">{{ cards.number }}</a></li>
+                    {% if cards.has_next %}
+                    <li class="page-item">
+                        <a class="page-link link-danger border-danger-subtle" href="?page={{ cards.next_page_number }}#projects">{{ cards.next_page_number }}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link link-danger border-danger-subtle" href="?page={{ cards.paginator.num_pages }}#projects">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="metrics">
+        <div class="shape shape-bottom shape-fluid-x text-gray-200">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet" class="bg-body-secondary">
+                <g transform="translate(0.000000,175.000000) scale(1.000000,-0.100000)" fill="white" class="svgObj">
+                    <path d="M0 1610 l0 -389 63 -51 c79 -64 118 -83 242 -116 164 -44 405 -37
+                    600 18 89 24 260 91 349 135 168 84 366 149 526 172 41 6 108 19 148 28 l72
+                    17 0 288 0 288 -1000 0 -1000 0 0 -390z"/>
+                </g>
+            </svg>
+        </div>
+        <div class="container-fluid bg-body-secondary ps-3">
+            <h1 class="fs-1">Единство Творческих Умов</h1>
+            <div class="container-fluid">
+                <div class="row justify-content-around">
+                    <div class="col-md-5 mt-3">
+                        <p class="text-body-secondary fs-5">С гордостью объявляем, что наш хостинг поддерживает целое сообщество талантливых и преданных участников. Мы вдохновляем, обучаем и совершенствуемся вместе, создавая инновационные проекты, которые изменят мир.</p>
+                        <div class="row mt-4 fs-5 justify-content-center text-xl-center text-start">
+                            <div class="col-xl-4">
+                                <span class="lead fs-4 fw-normal text-danger">Участников</span><div class="d-xl-block d-none"></div>
+                                <span>{{wcount}}</span>
+                            </div>
+                            <div class="col-xl-4">
+                                <span class="lead fs-4 fw-normal text-danger">Проектов</span><div class="d-xl-block d-none"></div>
+                                <span>{{pcount}}</span>
+                            </div>
+                            <div class="col-xl-4">
+                                <span class="lead fs-4 fw-normal text-danger">Выполненных проектов</span><div class="d-xl-block d-none"></div>
+                                <span>{{cpcount}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-md-block d-none">
+                        <img src={% static "/img/idea.png" %} width="80%" height="80%" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="invite">
+        <div class="container-fluid bg-body-secondary pt-4">
+            <h1 class="fs-1 p-2 text-center">Хочешь поделиться идеей или посмотреть что сделали другие?</h1>
+            <p class="fw-normal fs-4 mt-3 text-center">Ваш взгляд ценен! Предложите свои идеи или ознакомьтесь с тем, что уже сделали другие участники.</p>
+            <div class="mt-5 pb-1 px-0 mx-0">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-lg-3 col-sm-5 mb-3 mb-sm-0 px-3">
+                        <div class="card shadow-lg p-3 h-100">
+                            <div class="card-body text-center d-flex flex-column">
+                                <p class="card-text d-lg-block d-none pb-5 fs-6 text-start">Мы гордимся результатами творчества и инноваций в нашем университетском сообществе. Исследуйте наши успешно завершенные проекты, каждый из которых стал уникальным вкладом в наше общее научное и творческое наследие. Открывайте для себя идеи, вдохновляйтесь достижениями других участников, и подготовьтесь к собственным ярким шагам в мире инноваций.</p>
+                                <p class="card-text d-lg-none d-block pb-5 fs-6">Здесь мы гордимся результатами творчества и инноваций в нашем университетском сообществе. Исследуйте наши успешно завершенные проекты, каждый из которых стал уникальным вкладом в наше общее научное и творческое наследие.</p>
+                                <div class="position-absolute bottom-0 start-50 translate-middle-x pb-3">
+                                    <a class="btn btn-outline-danger rounded-3 fw-semibold lastBtn" href={% url 'completedProjects' %}>Выполненные проекты</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-5 mb-3 mb-sm-0 px-3">
+                        <div class="card shadow-lg p-3 h-100">
+                        <div class="card-body text-center d-flex flex-column">
+                            <p class="card-text d-lg-block d-none pb-5 fs-6 text-start">Это ваше пространство для творчества и инноваций! Нажмите на кнопку "Предложить свои проекты", чтобы внести свой вклад в уникальную мозаику идей и исследований нашего университетского хостинга. Здесь ваше видение может стать реальностью, а ваш проект - частью нашей вдохновляющей истории. Давайте вместе строить будущее, наполненное творчеством и инновациями!</p>
+                            <p class="card-text d-lg-none d-block pb-5 fs-6">Это ваше пространство для творчества и инноваций! Нажмите на кнопку "Предложить свои проекты", чтобы внести свой вклад в уникальную мозаику идей и исследований нашего университетского хостинга.</p>
+                            <div class="position-absolute bottom-0 start-50 translate-middle-x pb-3">
+                                <button type="button" class="btn btn-outline-danger rounded-3 fw-semibold lastBtn" data-bs-toggle="modal" data-bs-target="#invite-prj">
+                                    Предложить проект
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Modal window -->
+<div class="modal fade" id="invite-prj" tabindex="-1" aria-labelledby="label-invite-prj" aria-hidden="true" style="backdrop-filter: blur(10px)">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header vstack border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="modal-title fs-3" id="label-invite-prj">Предложить проект</h1>
+            </div>
+            <form action={% url 'sendLetter' %} method="post" target="_blank">
+                <input id="page-field" name="page-query" type="hidden"  value="{{page}}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-floating mb-4">
+                        <input name="title_project" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingTitle" placeholder="Название проекта">
+                        <label for="floatingTitle">Название проекта</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input name="title_organization" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingOrganization" placeholder="Название организации">
+                        <label for="floatingOrganization">Название организации</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input name="email" type="email" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingEmail" placeholder="Email">
+                        <label for="floatingEmail">Email</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input name="vacancy" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingVacancy" placeholder="Кто необходим" aria-describedby="vacancyHelp">
+                        <label for="floatingVacancy" class="form-label">Кто необходим</label>
+                        <div id="vacancyHelp" class="form-text">Перечислите должности участников.</div>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <textarea name="description" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingDescription" rows="3" col="4" placeholder="Описание проекта" aria-describedby="descriptionHelp"></textarea>
+                        <label for="floatingDescription" class="form-label">Описание</label>
+                        <div id="descriptionHelp" class="form-text">Кратко опишите идею своего проекта.</div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center border-0">
+                    <button type="submit" class="btn btn-outline-danger rounded-3 col fw-semibold modalBtn">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
