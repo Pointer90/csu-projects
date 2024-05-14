@@ -8,13 +8,6 @@ from .smtp_server import send_form
 
 # Create your views here.
 
-def set_cookie(response, **kwargs):
-    for key, value in kwargs.items():
-        response.set_cookie(key, value)
-    
-    return response
-
-
 def main(request):
     pids = request.session.pop('pids', None)
 
@@ -34,26 +27,18 @@ def main(request):
         'cpcount': Projects.objects.filter(status='completed').count(),
     }
 
-    context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
-    response = render(request, 'pages/index.html', context=context)
-    response = set_cookie(response, theme=context['theme'])
-
-    return response
+    return render(request, 'pages/index.html', context=context)
 
 
 def subProjects(request, pid):
     context= {
         'page': 'subProjects',
-        'project' : Projects.objects.get(pid=pid),
+        'project' : Projects.get_projects_by_pid([pid]),
         'cards' : Subprojects.objects.filter(pid=pid).filter(status='completed'),
         'vacancies': Vacancies.objects.select_related('sid').filter(sid__pid=pid).values('vid', 'post', 'sid', 'description'),
     }
 
-    context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
-    response = render(request, 'pages/subProjects.html', context=context)
-    response = set_cookie(response, theme=context['theme'])
-
-    return response
+    return render(request, 'pages/subProjects.html', context=context)
 
 
 def completedProjects(request):
@@ -72,11 +57,7 @@ def completedProjects(request):
         'cards': data_paginator.get_page(page_number),
     }
 
-    context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
-    response = render(request, 'pages/completedProjects.html', context=context)
-    response = set_cookie(response, theme=context['theme'])
-
-    return response
+    return render(request, 'pages/completedProjects.html', context=context)
 
 
 def cinema(request, pid):
@@ -85,11 +66,7 @@ def cinema(request, pid):
         'cards': WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid, sid__status='completed')
     }
 
-    context['theme'] = 'light' if request.COOKIES.get('theme') is None else request.COOKIES.get('theme')
-    response = render(request, 'pages/cinema.html', context=context)
-    response = set_cookie(response, theme=context['theme'])
-
-    return response
+    return render(request, 'pages/cinema.html', context=context)
 
 # ---- API ednpoits ----
 def search(request):
