@@ -16,7 +16,7 @@ def main(request):
     else:
         data = Projects.objects.exclude(status='completed').exclude(status='frozen')
 
-    data_paginator = Paginator(data, 2)
+    data_paginator = Paginator(data, 10)
     page_number = request.GET.get("page")
 
     context = {
