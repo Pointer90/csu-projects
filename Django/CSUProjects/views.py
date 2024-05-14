@@ -33,7 +33,7 @@ def main(request):
 def subProjects(request, pid):
     context= {
         'page': 'subProjects',
-        'project' : Projects.get_projects_by_pid([pid]),
+        'project' : Projects.get_projects_by_pid([pid])[0],
         'cards' : Subprojects.objects.filter(pid=pid).filter(status='completed'),
         'vacancies': Vacancies.objects.select_related('sid').filter(sid__pid=pid).values('vid', 'post', 'sid', 'description'),
     }
