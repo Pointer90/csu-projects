@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block title %} Подпроекты {% endblock title %}
+
+{% block cssAndScripts %}
+    {% load static%}
+
+
+    {% include "components/csuLogoMini.html" %}
+
+    <script type="text/javascript" src= {% static "/src/JScripts/gen_word_engine.js" %} defer></script>
+    <script type="text/javascript" src={% static "/src/JScripts/themeToggle.js" %} defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
+
+
+    
+{% endblock cssAndScripts %}
+
+{% block content %}
+
+    <section id="about-project">
+        <div class="bg-body-secondary p-3">
+            <h1 class="fs-1 mb-3">{{project.title}}</h1>
+            <p class="text-body-secondary fs-5 px-5">{{project.description}}</p>
+        </div>
+        <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(-5.000000,200.000000) scale(1.000000,-0.1300000)" fill="white" class="svgObj">
+                    <path d="M0 725 l0 -725 1000 0 1000 0 0 645 c0 355 -3 645 -7 645 -3 0 -55
+                    -23 -114 -50 -128 -59 -203 -74 -491 -92 -203 -13 -397 -3 -547 28 -118 25
+                    -426 127 -533 178 -54 25 -102 46 -108 46 -5 0 -49 11 -96 25 -47 14 -90 25
+                    -95 25 -5 0 -9 -309 -9 -725z"/>
+                </g>
+            </svg>
+        </div>
+    </section>
+
+    <section id="subprojects">
+        <h1 class="fs-1 px-3">Подпроекты</h1>
+        <div class="container">
+            <div class="grid mt-5 mb-5">
+                <div class="row gy-4 gx-0 justify-content-lg-between justify-content-center align-items-center">
+                {% for card in cards%}
+                    <div class="card shadow-lg rounded-4 border-2 bg-body-tertiary"
+                         id="{{card.sid}}"
+                         style="max-width: 540px;">
+                        <div class="d-flex text-center align-items-center">
+                            <div class="card-body px-0">
+                                <h5 class="card-title pb-3 border-bottom border-2 text-center fs-5 text-danger">{{card.title}}</h5>
+                                <div class="card-text collapse multiCollapse{{card.sid}}" id="collapse{{card.sid}} description{{card.sid}}">
+                                    <table class="table table-striped table-borderless w-100">
+                                        <thead class="align-middle px-5">
+                                            <th>Навыки</th>
+                                            <th>Направления обучения</th>
+                                        </thead>
+                                        <tbody class="align-middle fs-6 fw-semibold">
+                                            {% for vacancy in vacancies %}
+                                                {% if vacancy.sid == card.sid %}
+                                                    <tr>
+                                                        <td>{{vacancy.description}}</th>
+                                                        <td>{{vacancy.post}}</td>
+                                                    </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p class="card-text px-4 collapse show multiCollapse{{card.sid}} fs-6 fw-semibold" id="description{{card.sid}}">{{card.description}}</p>
+                                <div class="d-flex pt-3 pe-2 border-top border-1 justify-content-around">
+                                    <button class="btn btn-sm btn-outline-danger rounded-3 lastBtn"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target=".multiCollapse{{card.sid}}"
+                                        aria-expanded="false"
+                                        aria-controls="collapse{{card.sid}}">
+                                    Доступные вакансии
+                                    </button>
+                                    <button type="button"
+                                            class="btn btn-sm btn-outline-danger rounded-3 lastBtn"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#invite-prj">
+                                            Записаться
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Modal window -->
+    <div class="modal fade" id="invite-prj" tabindex="-1" aria-labelledby="label-invite-prj" aria-hidden="true" style="backdrop-filter: blur(10px)">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header vstack border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title fs-3" id="label-invite-prj">Записаться на проект</h1>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-floating mb-4">
+                            <input name="name" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingName" placeholder="Имя">
+                            <label for="floatingName">Имя</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input name="second_name" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingSecondName" placeholder="Фамилия">
+                            <label for="floatingSecondName">Фамилия</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input name="group" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingGroup" placeholder="Группа">
+                            <label for="floatingGroup">Группа</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input name="email" type="email" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingEmail" placeholder="Email">
+                            <label for="floatingEmail">Email</label>
+                        </div>
+                        <div class="form-floating">
+                            <select name="subporject_name" class="form-select mb-4" id="floatingSubproject" aria-label="select">
+                                <option selected>-----------------------</option>
+                                {% for card in cards %}
+                                <option value="{{vacancy.vid}}">{{card.title}}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="floatingSubproject">Выберете интересующий вас подпроект</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input name="vacancy" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingVacancy" placeholder="Вакансия">
+                            <label for="floatingVacancy">Введите интересующую вас вакансию</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <textarea name="description" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingDescription" rows="3" col="4" placeholder="О себе" aria-describedby="descriptionHelp"></textarea>
+                            <label for="floatingDescription" class="form-label">О себе</label>
+                            <div id="descriptionHelp" class="form-text">Расскажите нам немного о себе</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center border-0">
+                        <button type="submit" class="btn btn-outline-danger rounded-3 col fw-semibold modalBtn">Записаться</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
