@@ -22,7 +22,7 @@ function getCookies()
     for (let i = 0; i < data.length; i++)
     {
         let tmp = data[i].split('=')
-        cookie[tmp[0].trim()] = tmp[1].trim()
+        cookie[tmp[0].trim()] = tmp[1]
     }
 
     if (!('theme' in cookie))
