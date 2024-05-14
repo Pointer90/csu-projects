@@ -1,10 +1,10 @@
 from django.http import HttpResponse
 from django.urls import reverse
-from django.shortcuts import redirect
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
 from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects
 from .smtp_server import send_form
+from .forms import ShareProjectForm, SubprojectForm
 
 # Create your views here.
 
@@ -25,6 +25,7 @@ def main(request):
         'wcount': Workers.objects.count(),
         'pcount': Projects.objects.count(),
         'cpcount': Projects.objects.filter(status='completed').count(),
+        'form': {'body':ShareProjectForm(), 'title': 'Предложить проект', 'btn_text': 'Отправить'}
     }
 
     return render(request, 'pages/index.html', context=context)
@@ -34,8 +35,9 @@ def subProjects(request, pid):
     context= {
         'page': 'subProjects',
         'project' : Projects.get_projects_by_pid([pid]),
-        'cards' : Subprojects.objects.filter(pid=pid).filter(status='completed'),
+        'cards' : Subprojects.objects.filter(pid=pid).exclude(status='completed'),
         'vacancies': Vacancies.objects.select_related('sid').filter(sid__pid=pid).values('vid', 'post', 'sid', 'description'),
+        'form': {'body': SubprojectForm(pid=pid), 'title': 'Записаться на проект', 'btn_text': 'Записаться'}
     }
 
     return render(request, 'pages/subProjects.html', context=context)

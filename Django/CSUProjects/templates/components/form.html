@@ -1,0 +1,25 @@
+<div class="modal fade" id="invite-prj" tabindex="-1" aria-labelledby="label-invite-prj" aria-hidden="true" style="backdrop-filter: blur(10px)">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header vstack border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="modal-title fs-3" id="label-invite-prj">{{form.title}}</h1>
+            </div>
+            <form action={% url 'sendLetter' %} method="post" target="_blank">
+                <input id="page-field" name="page-query" type="hidden"  value="{{page}}">
+                <div class="modal-body">
+                    {% for field in form.body %}
+                        <div class="form-floating mb-4">
+                            {{field}}
+                            {{field.label_tag}}
+                            <div class="form-text">{{field.help_text}}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="modal-footer justify-content-center border-0">
+                    <button type="submit" class="btn btn-outline-danger rounded-3 col fw-semibold">{{form.btn_text}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

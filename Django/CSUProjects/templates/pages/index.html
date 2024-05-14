@@ -221,45 +221,5 @@
     </section>
 
 <!-- Modal window -->
-<div class="modal fade" id="invite-prj" tabindex="-1" aria-labelledby="label-invite-prj" aria-hidden="true" style="backdrop-filter: blur(10px)">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header vstack border-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <h1 class="modal-title fs-3" id="label-invite-prj">Предложить проект</h1>
-            </div>
-            <form action={% url 'sendLetter' %} method="post" target="_blank">
-                <input id="page-field" name="page-query" type="hidden"  value="{{page}}">
-                {% csrf_token %}
-                <div class="modal-body">
-                    <div class="form-floating mb-4">
-                        <input name="title_project" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingTitle" placeholder="Название проекта">
-                        <label for="floatingTitle">Название проекта</label>
-                    </div>
-                    <div class="form-floating mb-4">
-                        <input name="title_organization" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingOrganization" placeholder="Название организации">
-                        <label for="floatingOrganization">Название организации</label>
-                    </div>
-                    <div class="form-floating mb-4">
-                        <input name="email" type="email" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingEmail" placeholder="Email">
-                        <label for="floatingEmail">Email</label>
-                    </div>
-                    <div class="form-floating mb-4">
-                        <input name="vacancy" type="text" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingVacancy" placeholder="Кто необходим" aria-describedby="vacancyHelp">
-                        <label for="floatingVacancy" class="form-label">Кто необходим</label>
-                        <div id="vacancyHelp" class="form-text">Перечислите должности участников.</div>
-                    </div>
-                    <div class="form-floating mb-4">
-                        <textarea name="description" class="form-control border-0 border-bottom rounded-0 shadow-none" id="floatingDescription" rows="3" col="4" placeholder="Описание проекта" aria-describedby="descriptionHelp"></textarea>
-                        <label for="floatingDescription" class="form-label">Описание</label>
-                        <div id="descriptionHelp" class="form-text">Кратко опишите идею своего проекта.</div>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-center border-0">
-                    <button type="submit" class="btn btn-outline-danger rounded-3 col fw-semibold">Отправить</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+{% include "components/form.html"%}
 {% endblock content %}
