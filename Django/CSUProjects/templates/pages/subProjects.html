@@ -20,8 +20,16 @@
 
     <section id="about-project">
         <div class="bg-body-secondary p-3">
+            <div class="position-absolute end-0 pe-4">
+                <a href={% url 'main' %}#projects class="btn btn-outline-danger border-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                    </svg>
+                </a>
+            </div>
             <h1 class="fs-1 mb-3">{{project.title}}</h1>
-            <p class="text-body-secondary fs-5 px-5">{{project.description}}</p>
+            <p class="text-body-secondary fs-5 px-5 fw-semibold">{{project.description}}</p>
         </div>
         <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">

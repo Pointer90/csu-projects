@@ -28,7 +28,6 @@ def main(request):
 
     context = {
         'page': 'main',
-        'template_name' : 'index.html',
         'cards': data_paginator.get_page(page_number),
         'wcount': Workers.objects.count(),
         'pcount': Projects.objects.count(),
@@ -70,7 +69,6 @@ def completedProjects(request):
 
     context= {
         'page': 'completedProjects',
-        'template_name' : 'completedProjects.html',
         'cards': data_paginator.get_page(page_number),
     }
 

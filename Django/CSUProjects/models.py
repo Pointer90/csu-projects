@@ -82,7 +82,7 @@ class Projects(models.Model):
     
     @staticmethod
     def get_partially_completed_projects():
-        query = Subprojects.objects.select_related('pid').filter(status='completed').values('pid', 'pid__title', 'pid__description', 'pid__photo').distinct()
+        query = Subprojects.objects.select_related('pid').filter(status='completed').values('pid').distinct()
         return Projects.get_projects_by_pid([data['pid'] for data in query])
     
     @property
