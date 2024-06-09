@@ -52,7 +52,7 @@
                             </div>
                         {% endif %}
                     </span>
-                    <h5 class="card-title text-center fs-5 text-danger">{{card.title|title}}</h5>
+                    <h5 class="card-title text-center fs-5 text-danger">{{card.title|capfirst}}</h5>
                     <p class="card-text d-lg-block d-none fs-6 fw-semibold">{{card.description|truncatechars:140}}</p>
                     <p class="card-text d-lg-none d-block fs-6 fw-semibold">{{card.description|truncatechars:60}}</p>
 

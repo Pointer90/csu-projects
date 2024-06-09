@@ -28,8 +28,8 @@
                     </svg>
                 </a>
             </div>
-            <h1 class="fs-1 mb-3">{{project.title}}</h1>
-            <p class="text-body-secondary fs-5 px-5 fw-semibold">{{project.description}}</p>
+            <h1 class="fs-1 mb-3">{{project.title|capfirst}}</h1>
+            <p class="text-body-secondary fs-5 px-5 fw-semibold">{{project.description|capfirst}}</p>
         </div>
         <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">
@@ -65,8 +65,8 @@
                                             {% for vacancy in vacancies %}
                                                 {% if vacancy.sid == card.sid %}
                                                     <tr>
-                                                        <td>{{vacancy.description}}</th>
-                                                        <td>{{vacancy.post}}</td>
+                                                        <td>{{vacancy.description|capfirst}}</th>
+                                                        <td>{{vacancy.post|capfirst}}</td>
                                                     </tr>
                                                 {% endif %}
                                             {% endfor %}

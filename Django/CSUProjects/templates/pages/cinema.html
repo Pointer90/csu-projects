@@ -30,8 +30,8 @@
                 </svg>
             </a>
         </div>
-        <h2 class="fs-1 text-center pb-2">{{project.title}}</h2>
-        <h4 class="p-4 lead fs-4 text-center fw-semibold">{{project.description}}</h4>
+        <h2 class="fs-1 text-center pb-2">{{project.title|capfirst}}</h2>
+        <h4 class="p-4 lead fs-4 text-center fw-semibold">{{project.description|capfirst}}</h4>
 
         <div class="owl-carousel owl-carousel1 owl-theme">
         {% for card in cards %}
