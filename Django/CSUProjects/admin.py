@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 
 from django.db import models
-from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects, WorkersInSubprojects
+from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects
 
 # TabularInlines
 
