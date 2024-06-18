@@ -5,3 +5,22 @@
 
 > Сайт "визитка" содержащий подробное описание всех проектов университета ЧелГУ. Благодаря сайту можно посмотреть, какие проекты уже выполнены, кто над ними работал, а также проекты находящиеся в разработке.
 Стек технологий: Bootstap + Django + Python + SQLite
+
+### Первое развертывание приложения.
+Скачивание образов (Django выдаст ошибку — игнорируем).
+```powershell
+docker compose -f ./docker-compose.prod.yml build
+```
+затем комменируем строку в файле `app/csu-projects/docker-compose.prod.yml`
+
+`command: psql -U postgres; psql create user ${POSTGRES_USER} with PASSWORD ${POSTGRES_PASSWORD};create database ${POSTGRES_NAME};`
+
+и перезапускаем командой
+
+```powershell
+docker compose -f ./docker-compose.prod.yml up --build
+```
+Для перезапуска контейнеров используем
+```powershell
+docker compose -f ./docker-compose.prod.yml up
+```
