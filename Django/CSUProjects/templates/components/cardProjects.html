@@ -1,6 +1,6 @@
 {% load static%}
 {% for card in cards%}
-    <div class="card shadow-lg col-sm-5 rounded-4 border-2 bg-body-tertiary" style="max-height: 240px; min-width: 250px;">
+    <div class="card shadow-lg col-lg-5 col-10 rounded-4 border-2 bg-body-tertiary" style="max-height: 240px; min-width: 350px;">
         <div class="row">
             <div class="col-4">
                 {% if card.mediaExists %}
@@ -53,7 +53,7 @@
                         {% endif %}
                     </span>
                     <h5 class="card-title text-center fs-5 text-danger">{{card.title|capfirst}}</h5>
-                    <p class="card-text d-lg-block d-none fs-6 fw-semibold">{{card.description|truncatechars:140}}</p>
+                    <p class="card-text d-lg-block d-none fs-6 fw-semibold">{{card.description|truncatechars:120}}</p>
                     <p class="card-text d-lg-none d-block fs-6 fw-semibold">{{card.description|truncatechars:60}}</p>
 
                     {% if page == 'completedProjects' %}

@@ -1,3 +1,4 @@
+{% load static %}
 <script type="importmap">
     {
         "imports": {
@@ -9,7 +10,7 @@
 
     <script type = "module" name="miniCSULogo" defer>
         import * as THREE from 'three';
-        import {GLTFLoader} from 'three/addons/loaders/GLTFLoader'
+        import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
 
         //Требуемые переменные и константы
         let logo = null,                                              //Хранилище логотипа
