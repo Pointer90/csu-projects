@@ -1,21 +1,42 @@
-version: '3.11'
+version: '3.8'
 
 services:
   web:
-    build: ./Django
+    build:
+      context: ./Django
+      dockerfile: Django.Dockerfile
     volumes:
-      - ${ROOT}:/usr/src/app/static
-      - ${ROOT}\db:/usr/src/app/db
-      - ${ROOT}:/usr/src/app/media
+      - ./docker_volumes/dj/static:/usr/src/app/static
+      - ./docker_volumes/dj/media:/usr/src/app/media
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      WEB_PORT: ${WEB_PORT}
     expose:
       - 8000
+    depends_on:
+      - db
 
   nginx:
-    build: ./nginx
+    image: nginx:1.25-alpine
     volumes:
-      - ${ROOT}:/home/app/web/static
-      - ${ROOT}:/usr/src/app/media
+      - ./docker_volumes/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./docker_volumes/dj/static:/home/app/web/static
+      - ./docker_volumes/dj/media:/usr/src/app/media
     ports:
-      - ${PORT}:80
+      - ${WEB_PORT}:80
     depends_on:
       - web
+  
+  db:
+    image: postgres:14.12-alpine3.20
+    volumes:
+      - ./docker_volumes/db:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  
+    expose:
+      - 5432

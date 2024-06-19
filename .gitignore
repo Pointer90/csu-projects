@@ -1,7 +1,8 @@
 # media
 /Django/CSUProjects/static/src/img/
 /Django/media/
-/static_volume
+/docker_volumes/db
+/docker_volumes/dj
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
