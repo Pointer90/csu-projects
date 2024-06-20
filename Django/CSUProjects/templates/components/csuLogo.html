@@ -1,15 +1,16 @@
+{% load static %}
 <script type="importmap">
     {
         "imports": {
-            "three": "https://unpkg.com/three@v0.158.0/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@v0.158.0/examples/jsm/"
+            "three": "{% static 'node_modules/three_js/build/three.module.js' %}",
+            "three/addons/": "{% static 'node_modules/three_js/examples/jsm/' %}"
         }
     }
     </script>
 
 <script type = "module" name="CSULogo" defer>
     import * as THREE from 'three';
-    import {GLTFLoader} from 'three/addons/loaders/GLTFLoader'
+    import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
 
     //Требуемые переменные и константы
     let logo = null,                                              //Хранилище логотипа
