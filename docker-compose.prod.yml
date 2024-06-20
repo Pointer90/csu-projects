@@ -5,6 +5,7 @@ services:
     build:
       context: ./Django
       dockerfile: Django.Dockerfile
+    restart: always
     volumes:
       - ./docker_volumes/dj/static:/usr/src/app/static
       - ./docker_volumes/dj/media:/usr/src/app/media
