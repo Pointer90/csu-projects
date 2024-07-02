@@ -6,6 +6,7 @@
                 <h1 class="modal-title fs-3" id="label-invite-prj">{{form.title}}</h1>
             </div>
             <form action={% url 'sendLetter' %} method="post" target="_blank">
+                {% csrf_token %}
                 <input id="page-field" name="page-query" type="hidden"  value="{{page}}">
                 <div class="modal-body">
                     {% for field in form.body %}

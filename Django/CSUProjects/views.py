@@ -122,7 +122,7 @@ def sendLetter(request):
         for name in form_names:
             data[name] = request.POST.get(name)
 
-        # send_form(data)
+        send_form(data)
 
         return HttpResponse('Form submitted successfully', status=200)
     else:
