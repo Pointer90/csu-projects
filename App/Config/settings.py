@@ -54,7 +54,7 @@ MIDDLEWARE = [
 
 CSRF_TRUSTED_ORIGINS = [f'http://localhost:{os.getenv("WEB_PORT")}',]
 
-ROOT_URLCONF = 'Django.urls'
+ROOT_URLCONF = 'Config.urls'
 
 TEMPLATES = [
     {
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Django.wsgi.application'
+WSGI_APPLICATION = 'Config.wsgi.application'
 
 
 # Database
