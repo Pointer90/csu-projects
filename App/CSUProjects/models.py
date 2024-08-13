@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 ProjectStatusesEnum = (
     ('completed', 'Выполнен'),
@@ -50,6 +51,13 @@ class Projects(models.Model):
         'Ссылка на сайт проекта',
         blank=True,
         help_text='*необязательное поле'
+    )
+    rating = models.FloatField(
+        'Рейтинг проекта',
+        blank=True,
+        default=0.0,
+        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)],
+        help_text='*необязательное поле, запись в формате "x,x"'
     )
 
 

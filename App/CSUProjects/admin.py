@@ -37,11 +37,11 @@ class WorkersInSubprojectsInlines(admin.TabularInline):
 @admin.register(Projects)
 class Projects(admin.ModelAdmin):
 
-    list_display = ['title', 'status', 'display_year', ]
+    list_display = ['title', 'status', 'display_year',]
     list_filter = ['status',]
     search_fields = ['creation_date', 'title__startswith', 'status']
 
-    fields = (('title', 'status'),'phone', 'link', 'photo', 'description')
+    fields = (('title', 'status'),'phone', 'link', 'photo', 'description', 'rating')
     inlines = [SubprojectsInline]
 
 @admin.register(Workers)

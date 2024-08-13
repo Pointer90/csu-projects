@@ -11,4 +11,4 @@ urlpatterns = [
     path('cinema/<int:pid>', views.cinema, name='cinema'),
     path('search', views.search, name='search'),
     path('sendLetter', views.sendLetter, name='sendLetter'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
