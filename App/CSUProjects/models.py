@@ -72,9 +72,9 @@ class Projects(models.Model):
         return self.creation_date.year
     display_year.short_description = 'Год создания'
 
-    def save(self, *args, **kwargs):
-        self.title = self.title.lower()
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.title = self.title.lower()
+    #     super().save(*args, **kwargs)
 
     def mediaExists(self):
         try:
