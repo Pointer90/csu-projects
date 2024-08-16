@@ -13,7 +13,7 @@ class Projects(models.Model):
     pid = models.AutoField(primary_key=True)
     title = models.CharField(
         'Название проекта',
-        max_length=80,
+        max_length=48,
         unique=True,
         blank=False
     )

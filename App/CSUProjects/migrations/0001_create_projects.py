@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name='Projects',
             fields=[
                 ('pid', models.AutoField(primary_key=True, serialize=False)),
-                ('title', models.CharField(max_length=80, unique=True, verbose_name='Название проекта')),
+                ('title', models.CharField(max_length=48, unique=True, verbose_name='Название проекта')),
                 ('description', models.TextField(verbose_name='Описание проекта')),
                 ('photo', models.ImageField(blank=True, help_text='*необязательное поле', upload_to='previews/', verbose_name='Превью проекта')),
                 ('status', models.CharField(choices=[('completed', 'Выполнен'), ('quickly', 'Срочно'), ('full', 'Набор окончен'), ('process', 'В процессе'), ('frozen', 'Заморожен')], default='process', help_text='Ведите состояние (статус) проекта. По умолчанию статус - В процессе', max_length=14, verbose_name='Статус')),

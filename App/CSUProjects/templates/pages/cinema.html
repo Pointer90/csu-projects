@@ -20,7 +20,7 @@
 {% block content %}
 
     <section class="cinema-carousel pt-3">
-        <div class="position-absolute end-0 pe-4">
+        <div class="position-absolute end-0 pe-lg-4 pe-md-1 pe-0">
             <a href={% url 'completedProjects' %}#projects class="btn btn-outline-danger border-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
@@ -28,7 +28,7 @@
                 </svg>
             </a>
         </div>
-        <h2 class="fs-1 text-center pb-2">{{project.title|capfirst}}</h2>
+        <h2 class="fs-1 text-center pb-2 px-lg-0 px-5">{{project.title|capfirst}}</h2>
         <h4 class="p-4 lead fs-4 text-center fw-semibold">{{project.description|capfirst}}</h4>
 
         <div class="owl-carousel owl-carousel1 owl-theme">
