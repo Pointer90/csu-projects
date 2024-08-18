@@ -1,10 +1,11 @@
 import smtplib
-from email.mime.application import MIMEApplication
+
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from os import getenv
 
-def send_form(data:dict) -> None:
+
+def send_form(data: dict) -> None:
 
     try:
         email_from = getenv('EMAIL_FROM')
@@ -17,21 +18,18 @@ def send_form(data:dict) -> None:
         msg['From'] = email_from
         msg['To'] = email_to
         msg['Subject'] = 'CSU Projects'
-        
+
         # Текст сообщения
-        text_form = ""
-        for elem in data:
-            text_form = text_form + f'{elem}:\n\t{data[elem]}\n'
-        msg.attach(MIMEText(text_form, 'plain'))
+        text = '\n'.join([f'{key}:\t{value}' for key, value in data.items()])
+        msg.attach(MIMEText(text, 'plain'))
 
         # Подключение к сереверу и отправка
         server = smtplib.SMTP_SSL(smtp_server, smtp_port)
         server.login(email_from, token_access)
-        text = msg.as_string()
 
-        server.sendmail(email_from, email_to, text)
+        server.sendmail(email_from, email_to, msg.as_string())
 
-    except Exception as e:
-        print(e)
+    except Exception:
+        raise ValueError
     finally:
         server.quit()
