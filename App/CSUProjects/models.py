@@ -13,7 +13,7 @@ class Projects(models.Model):
     pid = models.AutoField(primary_key=True)
     title = models.CharField(
         'Название проекта',
-        max_length=80,
+        max_length=48,
         unique=True,
         blank=False
     )
@@ -72,9 +72,9 @@ class Projects(models.Model):
         return self.creation_date.year
     display_year.short_description = 'Год создания'
 
-    def save(self, *args, **kwargs):
-        self.title = self.title.lower()
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.title = self.title.lower()
+    #     super().save(*args, **kwargs)
 
     def mediaExists(self):
         try:

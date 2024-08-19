@@ -94,7 +94,7 @@ def search(request: HttpRequest):
     if request.method == 'GET':
         pids = []
 
-        search_query = request.GET.get('search', '').lower()
+        search_query = request.GET.get('search', '')
         page = request.GET.get('page-query')
 
         if search_query:
@@ -107,7 +107,7 @@ def search(request: HttpRequest):
                 ).values('pid')
 
             if page == 'main':
-                pids = Projects.objects.filter(title__icontains=search_query).values('pid')
+                pids = Projects.objects.exclude(status='completed').exclude(status='frozen').filter(title__icontains=search_query).values('pid')
 
             request.session['pids'] = [dict['pid'] for dict in pids]
         else:
