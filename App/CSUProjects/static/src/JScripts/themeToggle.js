@@ -9,7 +9,7 @@ themeMode = {DARK: 'dark', LIGHT: 'light'};
 function setTheme(mode)
 {
     theme = encodeURIComponent('theme') + '=' + encodeURIComponent(mode) + encodeURI();
-    document.cookie = `theme=${mode}; path=/;`;
+    document.cookie = `theme=${mode}; path=/; max-age=${60 * 60 * 24 * 31}`;
 }
 
 function getCookies()

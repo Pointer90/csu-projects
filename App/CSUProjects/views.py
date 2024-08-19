@@ -1,5 +1,4 @@
 from django.http import HttpRequest
-from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
 from .models import Projects, Workers, Subprojects, Vacancies, WorkersInSubprojects
@@ -13,10 +12,10 @@ def main(request: HttpRequest):
     pids = request.session.pop('pids', None)
     check_form = request.session.pop('is_form_valid', None)
 
-    if pids is not None:
-        data = Projects.get_projects_by_pid(pids)
-    else:
+    if pids is None:
         data = Projects.objects.exclude(status='completed').exclude(status='frozen')
+    else:
+        data = Projects.get_projects_by_pid(pids)
 
     data_paginator = Paginator(data, 10)
     page_number = request.GET.get("page")
@@ -31,6 +30,8 @@ def main(request: HttpRequest):
         'form': {'body': ShareProjectForm(), 'title': 'Предложить проект', 'btn_text': 'Отправить'},
         'notify': notify(check_form),
     }
+
+    request.session.clear()
 
     return render(request, 'pages/index.html', context=context)
 
@@ -52,16 +53,18 @@ def subProjects(request: HttpRequest, pid):
         'notify': notify(check_form),
     }
 
+    request.session.clear()
+
     return render(request, 'pages/subProjects.html', context=context)
 
 
 def completedProjects(request: HttpRequest):
     pids = request.session.pop('pids', None)
 
-    if pids is not None:
-        data = Projects.get_projects_by_pid(pids)
-    else:
+    if pids is None:
         data = Projects.get_partially_completed_projects()
+    else:
+        data = Projects.get_projects_by_pid(pids)
 
     data_paginator = Paginator(data, 10)
     page_number = request.GET.get('page')
@@ -72,15 +75,15 @@ def completedProjects(request: HttpRequest):
         'cards': data_paginator.get_page(page_number),
     }
 
+    request.session.clear()
+
     return render(request, 'pages/completedProjects.html', context=context)
 
 
 def cinema(request: HttpRequest, pid):
     context = {
         'project': Projects.get_projects_by_pid([pid])[0],
-        'cards': WorkersInSubprojects.objects
-                .select_related('sid', 'wid')
-                .filter(sid__pid=pid, sid__status='completed')
+        'cards': WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid, sid__status='completed')
     }
 
     return render(request, 'pages/cinema.html', context=context)
@@ -88,34 +91,29 @@ def cinema(request: HttpRequest, pid):
 # ---- API ednpoits ----
 
 
-def search(request: HttpRequest):
-    url = reverse('main')
+def api_search(request: HttpRequest):
+    redirect_func = redirect(main)
 
     if request.method == 'GET':
-        pids = []
-
         search_query = request.GET.get('search', '')
-        page = request.GET.get('page-query')
+        path_page = request.GET.get('page-query').split('/')
 
         if search_query:
-            if page == 'completedProjects':
-                tmp = Subprojects.objects.select_related('pid').filter(status='completed').values('pid')
-
+            if 'completedProjects' in path_page:
                 pids = Projects.objects.filter(
-                    pid__in=tmp,
+                    pid__in=Subprojects.objects.select_related('pid').filter(status='completed').values('pid'),
                     title__icontains=search_query
                 ).values('pid')
+                redirect_func = redirect(completedProjects)
 
-            if page == 'main':
+            if 'main' in path_page:
                 pids = Projects.objects.exclude(status='completed').exclude(status='frozen').filter(title__icontains=search_query).values('pid')
 
             request.session['pids'] = [dict['pid'] for dict in pids]
         else:
             request.session['pids'] = None
 
-        url = reverse(page)
-
-    return redirect(url)
+    return redirect_func
 
 
 def api_post_form(request: HttpRequest):
