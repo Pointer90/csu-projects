@@ -1,0 +1,12 @@
+{% if notify.is_active %}
+
+<div id="notify" class="toast position-fixed bottom-0 end-0 m-3 text-bg-{{ notify.status }}" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex justify-content-center fs-6 fw-semibold">
+        <div class="toast-body"> <strong>{{ notify.type }}</strong>:   {{ notify.body }} </div>
+    </div>
+</div>
+
+{% load static %}
+<script  src={% static "/src/JScripts/notification.js" %}></script>
+
+{% endif %}

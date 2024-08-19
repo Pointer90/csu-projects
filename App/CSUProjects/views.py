@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpRequest
 from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
@@ -8,8 +8,10 @@ from .forms import ShareProjectForm, SubprojectForm
 
 # Create your views here.
 
-def main(request):
+
+def main(request: HttpRequest):
     pids = request.session.pop('pids', None)
+    check_form = request.session.pop('is_form_valid', None)
 
     if pids is not None:
         data = Projects.get_projects_by_pid(pids)
@@ -20,31 +22,40 @@ def main(request):
     page_number = request.GET.get("page")
 
     context = {
-        'page': 'main',
+        'page': f'{request.get_full_path()}main',
         'cards': data_paginator.get_page(page_number),
         'wcount': Workers.objects.count(),
         'pcount': Projects.objects.count(),
         'cpcount': Projects.objects.filter(status='completed').count(),
         'notFound': True if data.count() > 0 else False,
-        'form': {'body':ShareProjectForm(), 'title': 'Предложить проект', 'btn_text': 'Отправить'}
+        'form': {'body': ShareProjectForm(), 'title': 'Предложить проект', 'btn_text': 'Отправить'},
+        'notify': notify(check_form),
     }
 
     return render(request, 'pages/index.html', context=context)
 
 
-def subProjects(request, pid):
-    context= {
-        'page': 'subProjects',
-        'project' : Projects.get_projects_by_pid([pid])[0],
-        'cards' : Subprojects.objects.filter(pid=pid).exclude(status='completed'),
-        'vacancies': Vacancies.objects.select_related('sid').filter(sid__pid=pid).values('vid', 'post', 'sid', 'description'),
-        'form': {'body': SubprojectForm(pid=pid), 'title': 'Записаться на проект', 'btn_text': 'Записаться'}
+def subProjects(request: HttpRequest, pid):
+    check_form = request.session.pop('is_form_valid', None)
+
+    context = {
+        'page': f'{request.get_full_path()}',
+        'project': Projects.get_projects_by_pid([pid])[0],
+        'cards': Subprojects.objects.filter(pid=pid).exclude(status='completed'),
+        'vacancies': Vacancies.objects
+                .select_related('sid')
+                .filter(sid__pid=pid)
+                .values('vid', 'post', 'sid', 'description'),
+        'form': {'body': SubprojectForm(pid=pid),
+                 'title': 'Записаться на проект',
+                 'btn_text': 'Записаться'},
+        'notify': notify(check_form),
     }
 
     return render(request, 'pages/subProjects.html', context=context)
 
 
-def completedProjects(request):
+def completedProjects(request: HttpRequest):
     pids = request.session.pop('pids', None)
 
     if pids is not None:
@@ -55,8 +66,8 @@ def completedProjects(request):
     data_paginator = Paginator(data, 10)
     page_number = request.GET.get('page')
 
-    context= {
-        'page': 'completedProjects',
+    context = {
+        'page': request.get_full_path(),
         'notFound': True if data.count() > 0 else False,
         'cards': data_paginator.get_page(page_number),
     }
@@ -64,16 +75,20 @@ def completedProjects(request):
     return render(request, 'pages/completedProjects.html', context=context)
 
 
-def cinema(request, pid):
+def cinema(request: HttpRequest, pid):
     context = {
         'project': Projects.get_projects_by_pid([pid])[0],
-        'cards': WorkersInSubprojects.objects.select_related('sid', 'wid').filter(sid__pid=pid, sid__status='completed')
+        'cards': WorkersInSubprojects.objects
+                .select_related('sid', 'wid')
+                .filter(sid__pid=pid, sid__status='completed')
     }
 
     return render(request, 'pages/cinema.html', context=context)
 
 # ---- API ednpoits ----
-def search(request):
+
+
+def search(request: HttpRequest):
     url = reverse('main')
 
     if request.method == 'GET':
@@ -85,7 +100,7 @@ def search(request):
         if search_query:
             if page == 'completedProjects':
                 tmp = Subprojects.objects.select_related('pid').filter(status='completed').values('pid')
-                
+
                 pids = Projects.objects.filter(
                     pid__in=tmp,
                     title__icontains=search_query
@@ -103,27 +118,57 @@ def search(request):
     return redirect(url)
 
 
-def sendLetter(request):
-    
+def api_post_form(request: HttpRequest):
+    redirect_func = redirect(main)
 
-    if request.method == "POST":
-        page = request.POST.get('page-query')
+    try:
+        if request.method == 'POST':
+            path_query = request.POST.get('page-query').split('/')
 
-        if page == 'main':
-            form_names = ['title_project', 'title_organization', 'email', 'vacancy', 'description']
-        elif page == 'subProjects':
-            form_names = ['name', 'second_name', 'group', 'email', 'subporject_name', 'vacancy', 'description']
+            if 'main' in path_query:
+                form = ShareProjectForm(request.POST)
+
+            elif 'subProjects' in path_query:
+                pid = int(path_query[-1])
+                form = SubprojectForm(pid=pid, data=request.POST)
+                redirect_func = redirect(subProjects, pid)
+            else:
+                raise ValueError
+
+            if form.is_valid():
+                send_form(form.cleaned_data)
+                request.session['is_form_valid'] = 200
+            else:
+                request.session['is_form_valid'] = 300
+
+            return redirect_func
+
         else:
-            return HttpResponse('Invalid argument', status=422)
+            raise ValueError
+
+    except ValueError:
+        request.session['is_form_valid'] = 500
+        return redirect_func
 
 
-        data = dict()
-        
-        for name in form_names:
-            data[name] = request.POST.get(name)
+# ---- Services ----
 
-        send_form(data)
+def notify(status, msg: str = None) -> dict:
+    notify = {'is_active': False}
 
-        return HttpResponse('Form submitted successfully', status=200)
-    else:
-        return HttpResponse(status=403)
+    if status is not None:
+        notify.update({'is_active': True})
+
+        if status == 200:
+            notify.update({'type': 'Успех', 'body': 'Данные отправлены.', 'status': 'success'})
+
+        elif status == 300:
+            notify.update({'type': 'Внимание', 'body': 'Некорректные данные.', 'status': 'warning'})
+
+        elif status == 500:
+            notify.update({'type': 'Ошибка', 'body': 'Данные не отправлены.', 'status': 'danger'})
+
+        if msg is not None:
+            notify.update({'body': msg})
+
+    return notify
