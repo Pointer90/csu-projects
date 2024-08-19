@@ -56,7 +56,7 @@
                     <p class="card-text d-lg-block d-none w-100 fs-6 mb-1 fw-semibold">{{card.description|truncatechars:120}}</p>
                     <p class="card-text d-lg-none d-block w-100 fs-6 mb-1 fw-semibold">{{card.description|truncatechars:35}}</p>
 
-                    {% if page == 'completedProjects' %}
+                    {% if 'completedProjects' in page %}
                         <div class="position-absolute sticky-bottom mb-1 end-0 d-flex align-items-end">
                             <p class="card-text fw-semibold fs-6 me-2 text-danger">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">

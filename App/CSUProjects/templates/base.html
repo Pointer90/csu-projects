@@ -13,26 +13,24 @@
 <body data-tag="body" data-bs-theme="{{theme}}">
 
     <nav class="navbar navbar-expand position-fixed-top shadow-lg border-bottom nav-underline user-select-none">
-        {% if page == 'main'%}
-            <div class="container-fluid">
+        <div class="container-fluid">
+        {% if 'main' in page %}
                 <h2 class="d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
-            </div>
         {% else %}
-            <div class="container-fluid">
                 <h2 class="logo d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
-            </div>
         {% endif %}
+        </div>
         <div class="collapse navbar-collapse justify-content-sm-end justify-content-center col-sm-8 col-10 me-4" id="navbarNav">
             <ul class="navbar-nav text-center align-items-center">
                 <li class="nav-item">
-                    {% if page == 'main'%}
+                    {% if 'main' in page %}
                         <a class="nav-link active fs-5" href={% url 'main' %}>Главная</a>
                     {% else %}
                         <a class="nav-link fs-5" href={% url 'main' %}>Главная</a>
                     {% endif %}
                 </li>
                 <li class="nav-item">
-                    {% if page == 'completedProjects'%}
+                    {% if 'completedProjects' in page %}
                         <a class="nav-link active fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
                     {% else %}
                         <a class="nav-link fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
@@ -69,30 +67,11 @@
     {% block content %} {% endblock %}
 
     <section id="contacts">
-        {% if page == 'main'%}
-        <div class="container-fluid mt-4 sticky-bottom pe-5">
-            <h1 class="fs-1 col text-start ps-3">Контакты</h1>
-            <div class="row justify-content-center">
-                <div class="col-lg-3 col-6">
-                    <h6 class="fw-normal fs-4 mt-3">Контакты</h6>
-                    <ul class="ps-2">
-                        <li>Телефон: 8(351)799-72-35</li>
-                        <li>Адрес: г. Челябинск, ул. Братьев Кашириных, д. 129</li>
-                        <li>Почта: plekhanovam.v@yandex.ru</li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-4">
-                    <h6 class="fw-normal fs-4 mt-3 ps-4">Продукты</h6>
-                    <ul>
-                        <li>
-                            <a href="https://www.csu.ru/" class="link-danger link-offset-2">Официальный сайт</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        {% if 'main' in page%}
+        <div class="container-fluid mt-4 sticky-bottom pe-5 z-n1">
         {% else %}
-        <div class="container-fluid mt-4 sticky-bottom bg-body-secondary border-top border-3">
+        <div class="container-fluid mt-4 sticky-bottom bg-body-secondary border-top border-3 z-n1">
+        {% endif %}
             <h1 class="fs-1 col text-start">Контакты</h1>
             <div class="row justify-content-center">
                 <div class="col-lg-3 col-6">
@@ -113,7 +92,6 @@
                 </div>
             </div>
         </div>
-        {% endif %}
     </section>
 
 </body>
