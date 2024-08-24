@@ -26,7 +26,7 @@ def main(request: HttpRequest):
         'wcount': Workers.objects.count(),
         'pcount': Projects.objects.count(),
         'cpcount': Projects.objects.filter(status='completed').count(),
-        'notFound': True if data.count() > 0 else False,
+        'isFound': True if data.count() > 0 else False,
         'form': {'body': ShareProjectForm(), 'title': 'Предложить проект', 'btn_text': 'Отправить'},
         'notify': notify(check_form),
     }
@@ -71,7 +71,7 @@ def completedProjects(request: HttpRequest):
 
     context = {
         'page': request.get_full_path(),
-        'notFound': True if data.count() > 0 else False,
+        'isFound': True if data.count() > 0 else False,
         'cards': data_paginator.get_page(page_number),
     }
 
