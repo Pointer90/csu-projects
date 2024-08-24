@@ -34,12 +34,6 @@
         renderer.setSize(sizes.width, sizes.height);
         renderer.setClearColor(0x000000, 0);
         renderer.domElement.setAttribute("id", "CSULogo");
-        {% comment %} var el = document.createElement('a');
-        el.setAttribute("id", "title");
-        el.href = '{% url 'main' %}';
-        el.setAttribute("class", "button");
-        el.appendChild(document.createTextNode('Проекты ЧелГУ.'));
-        renderer.domElement.appendChild(el); {% endcomment %}
         canvas.insertBefore(renderer.domElement, canvas.firstChild);
 
         //Создаём пространственный свет

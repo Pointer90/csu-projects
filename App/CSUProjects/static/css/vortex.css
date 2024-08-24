@@ -11,16 +11,6 @@
   user-select: none;
 }
 
-#title
-{
-  top: 90%;
-  display: flexbox;
-  position: absolute;
-  font-size: 4em;
-  font-weight: 600;
-  font-style: italic;
-}
-
 #vortex
 {
   width: 100%;
