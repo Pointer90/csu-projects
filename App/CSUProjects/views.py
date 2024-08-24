@@ -26,7 +26,7 @@ def main(request: HttpRequest):
         'wcount': Workers.objects.count(),
         'pcount': Projects.objects.count(),
         'cpcount': Projects.objects.filter(status='completed').count(),
-        'notFound': True if data.count() > 0 else False,
+        'isFound': True if data.count() > 0 else False,
         'form': {'body': ShareProjectForm(), 'title': 'Предложить проект', 'btn_text': 'Отправить'},
         'notify': notify(check_form),
     }
@@ -71,7 +71,7 @@ def completedProjects(request: HttpRequest):
 
     context = {
         'page': request.get_full_path(),
-        'notFound': True if data.count() > 0 else False,
+        'isFound': True if data.count() > 0 else False,
         'cards': data_paginator.get_page(page_number),
     }
 
@@ -158,13 +158,13 @@ def notify(status, msg: str = None) -> dict:
         notify.update({'is_active': True})
 
         if status == 200:
-            notify.update({'type': 'Успех', 'body': 'Данные отправлены.', 'status': 'success'})
+            notify.update({'type': 'Успех', 'body': 'данные отправлены.', 'status': 'success'})
 
         elif status == 300:
-            notify.update({'type': 'Внимание', 'body': 'Некорректные данные.', 'status': 'warning'})
+            notify.update({'type': 'Внимание', 'body': 'некорректные данные.', 'status': 'warning'})
 
         elif status == 500:
-            notify.update({'type': 'Ошибка', 'body': 'Данные не отправлены.', 'status': 'danger'})
+            notify.update({'type': 'Ошибка', 'body': 'данные не отправлены.', 'status': 'danger'})
 
         if msg is not None:
             notify.update({'body': msg})

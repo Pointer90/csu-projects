@@ -9,13 +9,14 @@
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
+    <script type="text/javascript" src= {% static "/src/JScripts/gen_word_engine.js" %} defer> </script>
 </head>
 <body data-tag="body" data-bs-theme="{{theme}}">
 
     <nav class="navbar navbar-expand position-fixed-top shadow-lg border-bottom nav-underline user-select-none">
         <div class="container-fluid">
         {% if 'main' in page %}
-                <h2 class="d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
+                <h2 class="logo d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
         {% else %}
                 <h2 class="logo d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
         {% endif %}
@@ -23,18 +24,10 @@
         <div class="collapse navbar-collapse justify-content-sm-end justify-content-center col-sm-8 col-10 me-4" id="navbarNav">
             <ul class="navbar-nav text-center align-items-center">
                 <li class="nav-item">
-                    {% if 'main' in page %}
-                        <a class="nav-link active fs-5" href={% url 'main' %}>Главная</a>
-                    {% else %}
-                        <a class="nav-link fs-5" href={% url 'main' %}>Главная</a>
-                    {% endif %}
+                    <a class="nav-link {% if 'main' in page %}active{% endif %} fs-5" href={% url 'main' %}>Главная</a>
                 </li>
                 <li class="nav-item">
-                    {% if 'completedProjects' in page %}
-                        <a class="nav-link active fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
-                    {% else %}
-                        <a class="nav-link fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
-                    {% endif %}
+                    <a class="nav-link {% if 'completedProjects' in page %}active{% endif %} fs-5" href={% url 'completedProjects' %}>Выполненные проекты</a>
                 </li>
                 <li class="nav-item dropdown-center">
                     <button class="dropdown-toggle fs-5 nav-link" type="button" data-bs-toggle="dropdown">
@@ -67,11 +60,7 @@
     {% block content %} {% endblock %}
 
     <section id="contacts">
-        {% if 'main' in page%}
-        <div class="container-fluid mt-4 sticky-bottom pe-5 z-n1">
-        {% else %}
-        <div class="container-fluid mt-4 sticky-bottom bg-body-secondary border-top border-3 z-n1">
-        {% endif %}
+        <div class="container-fluid mt-4 sticky-bottom {% if 'main' not in page%} bg-body-secondary border-top border-3 {% endif %} pe-5 z-n1">
             <h1 class="fs-1 col text-start">Контакты</h1>
             <div class="row justify-content-center">
                 <div class="col-lg-3 col-6">
