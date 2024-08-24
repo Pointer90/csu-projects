@@ -34,12 +34,8 @@
         {% for card in cards %}
             <div class="mb-5 ">
                 <div class="card text-center shadow-lg mx-4 rounded-4 bg-body-tertiary">
-                    {% if card.wid.mediaExists %}
-                        <img class="card-img-top" src= {{card.wid.photo.url}}>
-                    {% else %}
-                        <img class="card-img-top"src={% static "/img/worker-photo.jpg" %}>
-                    {% endif %}
-                    
+                    <img class="card-img-top" src= {{card.get_preview}}>
+
                     <div class="card-body">
                         <h3 class="text-danger-subtle h2"> {{card.wid.name}}</h3>
                         <h5 class="text-body-secondary fs-4"> {{card.post}} </h5>
