@@ -164,9 +164,9 @@ class Subprojects(models.Model):
         auto_now=True
     )
     status = models.CharField(
-        'Статус', 
-        max_length=14, 
-        choices=ProjectStatusesEnum, 
+        'Статус',
+        max_length=14,
+        choices=ProjectStatusesEnum,
         default='process',
         help_text='Выберите состояние (статус) подпроекта'
     )
