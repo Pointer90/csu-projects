@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from Config.settings import MEDIA_ROOT
+
+import os
 
 ProjectStatusesEnum = (
     ('completed', 'Выполнен'),
@@ -8,6 +11,7 @@ ProjectStatusesEnum = (
     ('process', 'В процессе'),
     ('frozen', 'Заморожен'),
 )
+
 
 class Projects(models.Model):
     pid = models.AutoField(primary_key=True)
@@ -60,10 +64,9 @@ class Projects(models.Model):
         help_text='*необязательное поле, запись в формате "x,x"'
     )
 
-
     def __str__(self):
         return self.title
-    
+
     class Meta:
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
@@ -72,26 +75,28 @@ class Projects(models.Model):
         return self.creation_date.year
     display_year.short_description = 'Год создания'
 
-    def mediaExists(self):
-        try:
-            result = self.photo.url
-        except:
-            return False
-        return True
-    
     @staticmethod
     def get_projects_by_pid(pids: list):
         pids = list(map(int, pids))
         return Projects.objects.filter(pid__in=pids)
-    
+
     @staticmethod
     def get_partially_completed_projects():
         query = Subprojects.objects.select_related('pid').filter(status='completed').values('pid').distinct()
         return Projects.get_projects_by_pid([data['pid'] for data in query])
-    
+
     @property
     def phone_f(self):
-        return f'{self.phone[0]}({self.phone[1:4]})-{self.phone[4:7]}-{self.phone[7:9]}-{self.phone[9:]}'
+        return f'{self.phone[0]} ({self.phone[1:4]}) {self.phone[4:7]}-{self.phone[7:9]}-{self.phone[9:]}'
+
+    @property
+    def get_preview(self):
+        file = os.path.join(MEDIA_ROOT, str(self.photo))
+
+        if os.path.exists(file) and str(self.photo) != '':
+            return f'/media/{self.photo}'
+        else:
+            return '/static/img/logo-photo.jpg'
 
 
 class Workers(models.Model):
@@ -110,16 +115,19 @@ class Workers(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def get_preview(self):
+        file = os.path.join(MEDIA_ROOT, str(self.photo))
+
+        if os.path.exists(file) and str(self.photo) != '':
+            return f'/media/{self.photo}'
+        else:
+            return '/static/img/worker-photo.jpg'
+
     class Meta:
         verbose_name = 'Исполнитель'
         verbose_name_plural = 'Исполнители'
 
-    def mediaExists(self):
-        try:
-            result = self.photo.url
-        except:
-            return False
-        return True
 
 class Subprojects(models.Model):
     sid = models.AutoField(primary_key=True)
@@ -169,13 +177,23 @@ class Subprojects(models.Model):
 
     def __str__(self):
         return self.title
-    
+
     def get_absolute_url(self):
         return f'/admin/CSUProjects/subprojects/{self.sid}'
-    
+
+    @property
+    def get_preview(self):
+        file = os.path.join(MEDIA_ROOT, str(self.photo))
+
+        if os.path.exists(file) and str(self.photo) != '':
+            return f'/media/{self.photo}'
+        else:
+            return '/static/img/logo-photo.jpg'
+
+
 class Vacancies(models.Model):
     vid = models.AutoField(primary_key=True)
-    sid =models.ForeignKey(
+    sid = models.ForeignKey(
         Subprojects,
         on_delete=models.CASCADE,
         verbose_name='Название подпроекта'
@@ -199,38 +217,48 @@ class Vacancies(models.Model):
         verbose_name = 'Вакансия',
         verbose_name_plural = 'Вакансии'
 
+
 class WorkersInSubprojects(models.Model):
     wsid = models.AutoField(primary_key=True)
     sid = models.ForeignKey(
         Subprojects,
-        verbose_name = 'Название подпроекта',
-        on_delete = models.CASCADE,
+        verbose_name='Название подпроекта',
+        on_delete=models.CASCADE,
         help_text='Необходимо указать к какому подпроекту принадлежит'
     )
     wid = models.ForeignKey(
         Workers,
-        verbose_name = 'Имя участника',
-        on_delete = models.CASCADE,
+        verbose_name='Имя участника',
+        on_delete=models.CASCADE,
         help_text='Необходимо указать кто участвует в проекте'
     )
 
     post = models.CharField(
         'Должность',
-        max_length = 80,
-        blank = False
+        max_length=80,
+        blank=False
     )
 
     description = models.TextField(
         'Описание',
-        max_length = 255,
+        max_length=255,
         blank=False
     )
 
     def str(self):
         return f'{self.wid} {self.sid}'
-    
+
     def get_absolute_url(self):
         return f'/admin/CSUProjects/workers/{self.wsid}'
+
+    @property
+    def get_preview(self):
+        file = os.path.join(MEDIA_ROOT, str(self.wid.photo))
+
+        if os.path.exists(file) and str(self.wid.photo) != '':
+            return f'/media/{self.wid.photo}'
+        else:
+            return '/static/img/worker-photo.jpg'
 
     class Meta:
         verbose_name = 'Исполнитель в подпроекте'
