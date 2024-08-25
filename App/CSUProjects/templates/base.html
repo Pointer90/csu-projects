@@ -15,11 +15,7 @@
 
     <nav class="navbar navbar-expand position-fixed-top shadow-lg border-bottom nav-underline user-select-none">
         <div class="container-fluid">
-        {% if 'main' in page %}
-                <h2 class="logo d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
-        {% else %}
-                <h2 class="logo d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
-        {% endif %}
+            <h2 class="{% if 'main' not in page %}logo{% endif %} d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
         </div>
         <div class="collapse navbar-collapse justify-content-sm-end justify-content-center col-sm-8 col-10 me-4" id="navbarNav">
             <ul class="navbar-nav text-center align-items-center">
