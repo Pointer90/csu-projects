@@ -5,6 +5,8 @@ services:
     build:
       context: ./App
       dockerfile: Django.Dockerfile
+      args:
+        HTTP_PROXY: 'http://${HTTP_PROXY}:${HTTP_PROXY_PORT}'
     restart: always
     volumes:
       - ./Docker_volumes/dj/static:/usr/src/app/static

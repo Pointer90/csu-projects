@@ -4,6 +4,7 @@ WORKDIR /usr/src/app
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ARG HTTP_PROXY
 
 RUN pip install --proxy $HTTP_PROXY --upgrade pip
 COPY requirements.txt .
