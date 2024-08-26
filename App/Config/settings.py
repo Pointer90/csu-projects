@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = [f'http://{os.getenv('HTTP_PROXY')}:{os.getenv("WEB_PORT")}',]
+CSRF_TRUSTED_ORIGINS = [f'http://{os.getenv("HTTP_PROXY")}:{os.getenv("WEB_PORT")}',]
 
 ROOT_URLCONF = 'Config.urls'
 
