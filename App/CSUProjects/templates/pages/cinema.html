@@ -3,8 +3,6 @@
 
 {% block cssAndScripts %}
     {% load static%}
-    
-    {% include "components/csuLogoMini.html" %}
 
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
     <link rel="stylesheet" href={% static "/css/cinema.css"%}>
@@ -12,13 +10,13 @@
     <script src='https://code.jquery.com/jquery-2.2.4.min.js' defer></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js' defer></script>
     <script  src={% static "/src/JScripts/cinemaCarousel.js" %} defer></script>
-    <script type="text/javascript" src={% static "/src/JScripts/themeToggle.js" %} defer></script>
     
 {% endblock cssAndScripts %}
 
 {% block content %}
 
     <section class="cinema-carousel pt-3">
+
         <div class="position-absolute end-0 pe-lg-4 pe-md-1 pe-0">
             <a href={% url 'completedProjects' %}#projects class="btn btn-outline-danger border-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
@@ -27,8 +25,9 @@
                 </svg>
             </a>
         </div>
-        <h2 class="fs-1 text-center pb-2 px-lg-0 px-5">{{project.title|capfirst}}</h2>
-        <h4 class="p-4 lead fs-4 text-center fw-semibold">{{project.description|capfirst}}</h4>
+
+        <h2 class="fs-1 text-center pb-2 px-lg-0 px-5 appearance-down-fast">{{project.title|capfirst}}</h2>
+        <h4 class="p-4 lead fs-4 text-center fw-semibold appearance-down-normal">{{project.description|capfirst}}</h4>
 
         <div class="owl-carousel owl-carousel1 owl-theme">
         {% for card in cards %}

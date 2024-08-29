@@ -1,21 +1,12 @@
 {% extends "base.html" %}
 {% block title %} Выполненные проекты {% endblock title %}
 
-{% block cssAndScripts %}
-    {% load static%}
-
-    {% include "components/csuLogoMini.html" %}
-
-    <script type="text/javascript" src={% static "/src/JScripts/themeToggle.js" %} defer></script>
-
-{% endblock cssAndScripts %}
-
 {% block content %}
 
     <section id="info">
         <div class="bg-body-secondary p-3">
-            <h1 class="fs-1 ps-3">Выполненные проекты</h1>
-            <p class="text-body-secondary fs-5 px-5">Мы гордимся результатами наших талантливых участников, представляя уникальные и инновационные проекты, которые вдохновляют и двигают вперед. Исследуйте наше портфолио, погружайтесь в разнообразие идей и готовьтесь к собственным творческим достижениям.</p>
+            <h1 class="fs-1 ps-3 appearance-right-fast">Выполненные проекты</h1>
+            <p class="text-body-secondary fs-5 px-5 appearance-right-normal">Мы гордимся результатами наших талантливых участников, представляя уникальные и инновационные проекты, которые вдохновляют и двигают вперед. Исследуйте наше портфолио, погружайтесь в разнообразие идей и готовьтесь к собственным творческим достижениям.</p>
         </div>
         <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">
@@ -28,12 +19,13 @@
         </div>
     </section>
 
-    {% include "components/search.html" %}
-
     <section id="projects">
-        <h1 class="fs-1 p-2 ps-4">Проекты</h1>
+        <h1 class="fs-1 p-2 ps-4 appearance-right-normal">Проекты</h1>
+
+        {% include "components/search.html" %}
+
         <div class="container">
-            <div class="grid mt-4 mb-5">
+            <div class="grid mt-4 mb-5 appearance-up-slow">
                 <div class="row gy-5 gx-0 justify-content-between align-items-center">{% include "components/cardProjects.html" %}</div>
             </div>
 

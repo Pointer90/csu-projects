@@ -1,10 +1,10 @@
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-
 //Modify and create colors
 $red: #D6312C;
 $yellow: #FCA62D;
 $beige: #f5e6c7;
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
 
 //add new colores into theme-colors map
 $theme-colors: map-merge(
@@ -25,4 +25,4 @@ $table-variants: map-merge(
 
 $dropdown-min-width: 4rem;
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/bootstrap/scss/bootstrap";

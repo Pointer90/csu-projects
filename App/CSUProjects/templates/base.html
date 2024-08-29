@@ -8,14 +8,23 @@
     {% load static%}
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/preview.css' %}" rel="stylesheet">
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
+    <script type="text/javascript" src={% static "/src/JScripts/themeToggle.js" %} defer></script>
     <script type="text/javascript" src= {% static "/src/JScripts/gen_word_engine.js" %} defer> </script>
+    <script type="text/javascript" src={% static "/src/JScripts/scroll.js" %} defer></script>
+
 </head>
 <body data-tag="body" data-bs-theme="{{theme}}">
 
     <nav class="navbar navbar-expand position-fixed-top shadow-lg border-bottom nav-underline user-select-none">
         <div class="container-fluid">
-            <h2 class="{% if 'main' not in page %}logo{% endif %} d-sm-flex d-none justify-content-center fs-1"><a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a></h2>
+            <h2 class="d-sm-flex d-none justify-content-center fs-1">
+                {% if 'main' not in page%}
+                <img src={% static "/img/logo.svg" %} class="img-fluid" style="max-height: 50px;">
+                {% endif %}
+                <a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a>
+            </h2>
         </div>
         <div class="collapse navbar-collapse justify-content-sm-end justify-content-center col-sm-8 col-10 me-4" id="navbarNav">
             <ul class="navbar-nav text-center align-items-center">
@@ -57,7 +66,7 @@
 
     <section id="contacts">
         <div class="container-fluid mt-4 sticky-bottom {% if 'main' not in page%} bg-body-secondary border-top border-3 {% endif %} pe-5 z-n1">
-            <h1 class="fs-1 col text-start">Контакты</h1>
+            <h1 class="fs-1 col text-start">Дополнительная информация</h1>
             <div class="row justify-content-center">
                 <div class="col-lg-3 col-6">
                     <h6 class="fw-normal fs-4 mt-3">Контакты</h6>

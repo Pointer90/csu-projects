@@ -3,32 +3,27 @@
 {% block cssAndScripts %}
     {% load static%}
 
-    {% include "components/csuLogo.html" %}
-
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
 
-    <script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_constants.js" %} defer></script>
-	<script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_engine.js" %} defer></script>
-    <script type="text/javascript" src={% static "/src/JScripts/themeToggle.js" %} defer></script>
-
-	<link rel="stylesheet" href={% static "/css/vortex.css" %}>
 
 {% endblock cssAndScripts %}
 
 {% block content %}
-	<section id="preview">
-		<div class="container-fluid row-2 text-center bg-body-tertiary">
-            <canvas id="vortex" class="img-fluid" width="800" height="300">
-            </canvas>
-            <h1 class="fs-1 mb-5">Проекты ЧелГУ</h1>
-        </div>
-	</section>
-
-    <section id="about us">
-        <div class="bg-body-secondary py-3">
-            <h1 class="fs-1 mb-3 ps-4">О нас</h1>
-            <p class="text-body-secondary fs-5 px-4">Виртуальное пространство, где инновации и знания сливаются в единое целое! Наш хостинг - это результат коллективных усилий университета, предоставляющий инфраструктуру для запуска и поддержки разнообразных проектов, подпроектов и исследовательских инициатив.Мы предоставляем пространство и ресурсы для развертывания разнообразных проектов, от исследовательских и учебных до инновационных и творческих инициатив.
+    <section id="preview">
+        <div class="text-center bg-body-secondary py-5">
+            <div class="row">
+                <div class="col-lg-5 col-xl-4 fs-1 align-self-center z-3"><img src={% static "/img/logo.svg" %} class="img-fluid fly" style="max-height: 450px;"></div>
+                <div class="col-lg-5 col-xl-6 pt-5">
+                    <div class="text-start py-4 px-2 fs-1 row align-items-center"><div class="col-auto bg-body-secondary z-3"><h1>ЧелГУ |</h1></div><h2 class="col-auto g-0 z-1 appearance-title">Проекты</h2></div>
+                    <p class="fs-5 text-start ps-sm-5 ps-2 pb-xxl-5 pb-3 pe-3 appearance-left-fast z-0">Виртуальное пространство, где инновации и знания сливаются в единое целое! Мы предоставляем пространство и ресурсы для развертывания разнообразных проектов, от исследовательских и учебных до инновационных и творческих инициатив.</p>
+                    <div class="d-flex justify-content-lg-end ps-xl-0 ps-sm-5 ps-1 pt-xxl-5 pt-2 pe-5 pb-3">
+                        <a type="button" class="btn btn-outline-danger fs-4" href="#projects">
+                            К проектам!
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">
@@ -42,9 +37,9 @@
     </section>
 
     <section id="benefits">
-        <div class="container-fluid mt-4 col-10">
+        <div class="container-fluid mt-5 col-10">
             <div class="row">
-                <div class="col-md-3 p-4">
+                <div data-direction="up" data-delay="fast" class="col-md-3 p-4 scroll-check">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-columns-gap" viewBox="0 0 16 16">
                             <path d="M6 1v3H1V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zm14 12v3h-5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zM6 8v7H1V8zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zm14-6v7h-5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"/>
@@ -55,7 +50,7 @@
                         Мы приветствуем широкий спектр проектов, включая исследования, учебные инициативы, творческие проекты и инновационные стартапы. Важно, чтобы ваш проект отражал ценности университетского сообщества.
                     </p>
                 </div>
-                <div class="col-md-3 p-4">
+                <div data-direction="up" data-delay="normal" class="col-md-3 p-4 scroll-check">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
@@ -66,7 +61,7 @@
                         Наша платформа предоставляет виртуальное пространство для подбора исполнителей проекта среди студентов университета разных направлений обучения. Работодатели могут найти исполнителей среди студентов, участники - приобрести опыт работы в команде.
                     </p>
                 </div>
-                <div class="col-md-3 p-4">
+                <div data-direction="up" data-delay="normal" class="col-md-3 p-4 scroll-check">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-chat-square-text-fill" viewBox="0 0 16 16">
                             <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.5a1 1 0 0 0-.8.4l-1.9 2.533a1 1 0 0 1-1.6 0L5.3 12.4a1 1 0 0 0-.8-.4H2a2 2 0 0 1-2-2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
@@ -77,7 +72,7 @@
                         Мы предоставляем техническую поддержку и консультации по настройке проекта. Кроме того, у нас есть сеть сообщества, где вы можете обсудить свои идеи, найти партнеров и получить обратную связь от опытных участников.
                     </p>
                 </div>
-                <div class="col-md-3 p-4">
+                <div data-direction="up" data-delay="slow" class="col-md-3 p-4 scroll-check">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707m4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707m0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707m-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707"/>
@@ -93,10 +88,10 @@
     </section>
 
     <section id="projects">
-        <h1 class="fs-1 ps-4">Проекты</h1>
+        <h1 data-direction="right" data-delay="fast" class="fs-1 ps-4 scroll-check">Проекты</h1>
         {% include "components/search.html" %}
 
-        <div class="container">
+        <div data-direction="up" data-delay="normal" class="container scroll-check">
             <div class="grid mt-4">
                 <div class="row gy-5 gx-0 justify-content-between align-items-center">{% include "components/cardProjects.html" %}</div>
             </div>
@@ -147,21 +142,21 @@
             </svg>
         </div>
         <div class="container-fluid bg-body-secondary ps-4">
-            <h1 class="fs-1">Единство Творческих Умов</h1>
+            <h1 data-direction="right" data-delay="fast" class="fs-1 scroll-check">Единство Творческих Умов</h1>
             <div class="container-fluid">
                 <div class="row justify-content-around">
                     <div class="col-md-5 mt-3">
-                        <p class="text-body-secondary fs-5">С гордостью объявляем, что наш хостинг поддерживает целое сообщество талантливых и преданных участников. Мы вдохновляем, обучаем и совершенствуемся вместе, создавая инновационные проекты, которые изменят мир.</p>
+                        <p data-direction="right" data-delay="normal" class="text-body-secondary fs-5 scroll-check">С гордостью объявляем, что наш хостинг поддерживает целое сообщество талантливых и преданных участников. Мы вдохновляем, обучаем и совершенствуемся вместе, создавая инновационные проекты, которые изменят мир.</p>
                         <div class="row mt-4 fs-5 justify-content-center text-xl-center text-start">
-                            <div class="col-xl-4">
+                            <div data-direction="down" data-delay="fast" class="col-xl-4 scroll-check">
                                 <span class="lead fs-4 fw-normal text-danger">Участников</span><div class="d-xl-block d-none"></div>
                                 <span>{{wcount}}</span>
                             </div>
-                            <div class="col-xl-4">
+                            <div data-direction="down" data-delay="normal"  class="col-xl-4 scroll-check">
                                 <span class="lead fs-4 fw-normal text-danger">Проектов</span><div class="d-xl-block d-none"></div>
                                 <span>{{pcount}}</span>
                             </div>
-                            <div class="col-xl-4">
+                            <div data-direction="down" data-delay="slow"  class="col-xl-4 scroll-check">
                                 <span class="lead fs-4 fw-normal text-danger">Выполненных проектов</span><div class="d-xl-block d-none"></div>
                                 <span>{{cpcount}}</span>
                             </div>
@@ -182,7 +177,7 @@
             <div class="mt-5 pb-1 px-0 mx-0">
                 <div class="row justify-content-center mb-5">
                     <div class="col-lg-3 col-sm-5 mb-3 mb-sm-0 px-3">
-                        <div class="card shadow-lg p-3 h-100">
+                        <div data-direction="right" data-delay="fast"  class="card shadow-lg p-3 h-100 scroll-check">
                             <div class="card-body text-center d-flex flex-column">
                                 <p class="card-text d-lg-block d-none pb-5 fs-6 text-start">Мы гордимся результатами творчества и инноваций в нашем университетском сообществе. Исследуйте наши успешно завершенные проекты, каждый из которых стал уникальным вкладом в наше общее научное и творческое наследие. Открывайте для себя идеи, вдохновляйтесь достижениями других участников, и подготовьтесь к собственным ярким шагам в мире инноваций.</p>
                                 <p class="card-text d-lg-none d-block pb-5 fs-6">Здесь мы гордимся результатами творчества и инноваций в нашем университетском сообществе. Исследуйте наши успешно завершенные проекты, каждый из которых стал уникальным вкладом в наше общее научное и творческое наследие.</p>
@@ -194,7 +189,7 @@
                     </div>
 
                     <div class="col-lg-3 col-sm-5 mb-3 mb-sm-0 px-3">
-                        <div class="card shadow-lg p-3 h-100">
+                        <div data-direction="left" data-delay="normal" class="card shadow-lg p-3 h-100 scroll-check">
                         <div class="card-body text-center d-flex flex-column">
                             <p class="card-text d-lg-block d-none pb-5 fs-6 text-start">Это ваше пространство для творчества и инноваций! Нажмите на кнопку "Предложить свои проекты", чтобы внести свой вклад в уникальную мозаику идей и исследований нашего университетского хостинга. Здесь ваше видение может стать реальностью, а ваш проект - частью нашей вдохновляющей истории. Давайте вместе строить будущее, наполненное творчеством и инновациями!</p>
                             <p class="card-text d-lg-none d-block pb-5 fs-6">Это ваше пространство для творчества и инноваций! Нажмите на кнопку "Предложить свои проекты", чтобы внести свой вклад в уникальную мозаику идей и исследований нашего университетского хостинга.</p>

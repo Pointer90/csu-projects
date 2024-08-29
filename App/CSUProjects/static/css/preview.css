@@ -1,0 +1,97 @@
+@keyframes fly {
+    0%, 100% {transform: translateY(30px);}
+    50% {transform: translateY(-15px);}
+}
+
+@keyframes appearance-up {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes appearance-down {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes appearance-left{
+    from {transform: translateX(1000px); opacity: 0;}
+    to {transform: translateX(0px); opacity: 1;}
+}
+
+@keyframes appearance-right{
+    from {transform: translateX(-1000px); opacity: 0;}
+    to {transform: translateX(0px); opacity: 1;}
+}
+
+@keyframes appearance-title{
+    from {transform: translateX(-150px); opacity: 0;}
+    to {transform: translateX(0px); opacity: 1;}
+}
+
+.appearance-title{
+    animation: appearance-title 2s ease-out both;
+}
+
+.appearance-up-fast{
+    animation: appearance-up 2s 1s ease-out both;
+}
+
+.appearance-up-normal{
+    animation: appearance-up 2s 1.5s ease-out both;
+}
+
+.appearance-up-slow{
+    animation: appearance-up 2s 2s ease-out both;
+}
+
+.appearance-down-fast{
+    animation: appearance-down 2s 1s ease-out both;
+}
+
+.appearance-down-normal{
+    animation: appearance-down 2s 1.5s ease-out both;
+}
+
+.appearance-down-slow{
+    animation: appearance-down 2s 2s ease-out both;
+}
+
+.appearance-left-fast{
+    animation: appearance-left 2s 1s ease-out both;
+}
+
+.appearance-left-normal{
+    animation: appearance-left 2s 1.5s ease-out both;
+}
+
+.appearance-left-slow{
+    animation: appearance-left 2s 2s ease-out both;
+}
+
+.appearance-right-fast{
+    animation: appearance-right 2s 0s ease-out both;
+}
+
+.appearance-right-normal{
+    animation: appearance-right 2s 1.5s ease-out both;
+}
+
+.appearance-right-slow{
+    animation: appearance-right 2s 2s ease-out both;
+}
+
+.fly {
+    animation: fly 5s ease infinite;
+}
