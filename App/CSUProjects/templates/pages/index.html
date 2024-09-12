@@ -3,14 +3,21 @@
 {% block cssAndScripts %}
     {% load static%}
 
+    {% include "components/csuLogo.html" %}
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
+    <script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_constants.js" %} defer></script>
+	<script type="text/javascript" src={% static "/src/JScripts/vortexAnimation/V_engine.js" %} defer></script>
+
+	<link rel="stylesheet" href={% static "/css/vortex.css" %}>
 
 
 {% endblock cssAndScripts %}
 
 {% block content %}
-    <section id="preview">
+
+    <!-- <section id="preview">
         <div class="text-center bg-body-secondary py-5">
             <div class="row">
                 <div class="col-lg-5 col-xl-4 fs-1 align-self-center z-3"><img src={% static "/img/logo.svg" %} class="img-fluid fly" style="max-height: 450px;"></div>
@@ -24,6 +31,30 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,150.000000) scale(1.3000000,-0.100000)" fill="white" class="svgObj">
+                    <path d="M1915 1509 c-151 -35 -317 -106 -521 -222 -364 -206 -608 -307 -884
+                    -363 -142 -29 -328 -38 -452 -21 l-58 7 0 -455 0 -455 1000 0 1000 0 0 760 0
+                    760 -22 -1 c-13 -1 -41 -5 -63 -10z"/>
+                </g>
+            </svg>
+        </div>
+    </section> -->
+
+    <section id="preview">
+        <div class="container-fluid row-2 text-center bg-body-tertiary">
+            <canvas id="vortex" class="img-fluid" width="800" height="300">
+            </canvas>
+            <h1 class="fs-1 mb-5">Проекты ЧелГУ</h1>
+        </div>
+    </section>
+
+    <section id="about us">
+        <div class="bg-body-secondary py-3">
+            <h1 data-direction="right" data-delay="fast" class="fs-1 mb-3 ps-4 scroll-check">О нас</h1>
+            <p data-direction="right" data-delay="normal" class="text-body-secondary fs-5 px-4 scroll-check">Виртуальное пространство, где инновации и знания сливаются в единое целое! Наш хостинг - это результат коллективных усилий университета, предоставляющий инфраструктуру для запуска и поддержки разнообразных проектов, подпроектов и исследовательских инициатив.Мы предоставляем пространство и ресурсы для развертывания разнообразных проектов, от исследовательских и учебных до инновационных и творческих инициатив.
         </div>
         <div class="shape-container shape-line shape-position-bottom bg-body-secondary">
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" height="10%" preserveAspectRatio="xMidYMid meet">
@@ -176,7 +207,7 @@
             <p class="fw-normal fs-4 mt-3 text-center">Ваш взгляд ценен! Предложите свои идеи или ознакомьтесь с тем, что уже сделали другие участники.</p>
             <div class="mt-5 pb-1 px-0 mx-0">
                 <div class="row justify-content-center mb-5">
-                    <div class="col-lg-3 col-sm-5 mb-3 mb-sm-0 px-3">
+                    <div class="col-xl-3 col-sm-5 mb-3 mb-sm-0 px-3">
                         <div data-direction="right" data-delay="fast"  class="card shadow-lg p-3 h-100 scroll-check">
                             <div class="card-body text-center d-flex flex-column">
                                 <p class="card-text d-lg-block d-none pb-5 fs-6 text-start">Мы гордимся результатами творчества и инноваций в нашем университетском сообществе. Исследуйте наши успешно завершенные проекты, каждый из которых стал уникальным вкладом в наше общее научное и творческое наследие. Открывайте для себя идеи, вдохновляйтесь достижениями других участников, и подготовьтесь к собственным ярким шагам в мире инноваций.</p>
@@ -188,7 +219,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-sm-5 mb-3 mb-sm-0 px-3">
+                    <div class="col-xl-3 col-sm-5 mb-3 mb-sm-0 px-3">
                         <div data-direction="left" data-delay="normal" class="card shadow-lg p-3 h-100 scroll-check">
                         <div class="card-body text-center d-flex flex-column">
                             <p class="card-text d-lg-block d-none pb-5 fs-6 text-start">Это ваше пространство для творчества и инноваций! Нажмите на кнопку "Предложить свои проекты", чтобы внести свой вклад в уникальную мозаику идей и исследований нашего университетского хостинга. Здесь ваше видение может стать реальностью, а ваш проект - частью нашей вдохновляющей истории. Давайте вместе строить будущее, наполненное творчеством и инновациями!</p>

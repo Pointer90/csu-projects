@@ -15,14 +15,14 @@
     <script type="text/javascript" src={% static "/src/JScripts/scroll.js" %} defer></script>
 
 </head>
-<body data-tag="body" data-bs-theme="{{theme}}">
+<body data-tag="body" style="overflow-x: hidden;" data-bs-theme="{{theme}}">
 
     <nav class="navbar navbar-expand position-fixed-top shadow-lg border-bottom nav-underline user-select-none">
         <div class="container-fluid">
-            <h2 class="d-sm-flex d-none justify-content-center fs-1">
-                {% if 'main' not in page%}
+            <h2 class="{% if 'main' not in page %}logo{% endif %} d-sm-flex d-none justify-content-center fs-1">
+                <!-- {% if 'main' not in page%}
                 <img src={% static "/img/logo.svg" %} class="img-fluid" style="max-height: 50px;">
-                {% endif %}
+                {% endif %} -->
                 <a class="navbar-brand nav-link active" id="title" href={% url 'main' %}>Проекты ЧелГУ.</a>
             </h2>
         </div>

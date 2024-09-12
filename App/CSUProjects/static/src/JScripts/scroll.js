@@ -2,6 +2,8 @@ var elements = [...document.querySelectorAll('.scroll-check')];
 var wh = document.documentElement.clientHeight;
 var current = elements.shift();
 
+const border = 100;
+
 
 function elementsOnScreen(){
     while (current.offsetTop < wh){
@@ -20,7 +22,7 @@ if(elements.length > 0){
     
         var et = current.offsetTop;
         var eh = current.clientHeight;
-        if(wt + wh >= et || eh + et < wh){
+        if(wt + wh >= et - border || eh + et - border < wh){
             current.classList.add(`appearance-${current.dataset.direction}-${current.dataset.delay}`);
             if(elements.length > 0)
                 current = elements.shift();
